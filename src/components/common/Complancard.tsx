@@ -161,7 +161,6 @@ export default function Complancard(prop: Props) {
                         >
                             <img src={img?.img} alt='store' width={150} height={150}  className=' group-hover:scale-110 transition-all duration-300'/>
 
-                            <p className=' absolute top-2 right-2 rounded-full bg-light text-white text-[.6rem] font-medium px-3 py-1'>{prop.name}</p>
 
                         </div>
 
