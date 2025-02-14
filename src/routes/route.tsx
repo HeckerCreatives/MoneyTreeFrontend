@@ -40,17 +40,17 @@ export const superadmin = [
     path:'/superadmin/payout', subpath:[]},
     {name: 'Complan', icon: <Folder size={15}/>, 
     path:'/superadmin/complan', subpath:[]},
-    {name: 'Sales', icon: <Banknote size={15}/>, 
-    path:'/superadmin/sales', subpath:[]},
-    {name: 'Top Commission', icon: <Users size={15}/>, 
-    path:'/superadmin/topcommission', subpath:[]},
-    {name: 'Leaderboard', icon: <Users size={15}/>, 
-    path:'/superadmin/leaderboard', subpath:[]},
+    // {name: 'Sales', icon: <Banknote size={15}/>, 
+    // path:'/superadmin/sales', subpath:[]},
+    // {name: 'Top Commission', icon: <Users size={15}/>, 
+    // path:'/superadmin/topcommission', subpath:[]},
+    // {name: 'Leaderboard', icon: <Users size={15}/>, 
+    // path:'/superadmin/leaderboard', subpath:[]},
     
-    {name: 'Maintenance', icon: <Wrench size={15}/>, 
-    path:'/superadmin/maintenance', subpath:[]},
-    {name: 'Settings', icon: <Settings size={15}/>, 
-    path:'/superadmin/settings', subpath:[]},
+    // {name: 'Maintenance', icon: <Wrench size={15}/>, 
+    // path:'/superadmin/maintenance', subpath:[]},
+    // {name: 'Settings', icon: <Settings size={15}/>, 
+    // path:'/superadmin/settings', subpath:[]},
 ]
 
 export const admin = [

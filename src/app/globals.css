@@ -117,3 +117,12 @@ body {
 .primary-btn{
   @apply bg-amber-950 py-2 px-4 text-amber-50 text-sm font-bold rounded-sm
 }
+
+.primary-green{
+  @apply bg-[#A8DC08] py-2 px-4 text-amber-50 text-sm font-bold rounded-sm flex items-center
+}
+
+.primary-red{
+  @apply bg-red-600 py-2 px-4 text-amber-50 text-sm font-bold rounded-sm flex items-center
+}
+
