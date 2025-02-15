@@ -80,7 +80,6 @@ useEffect(() => {
   getList()
 },[])
 
-console.log(gameid)
 
 const icon = (data: string) => {
   if(data === 'facebook'){

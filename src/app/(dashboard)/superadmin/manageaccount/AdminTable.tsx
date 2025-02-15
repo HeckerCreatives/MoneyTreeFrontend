@@ -169,7 +169,7 @@ export default function AdminTable() {
 
 
   return (
-     <div className=' w-full flex flex-col gap-4 h-auto bg-white rounded-xl shadow-sm mt-4 p-6'>
+     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm mt-4 p-6'>
         <p className=' text-sm font-medium'>Admin List</p>
 
         <div className=' w-full flex flex-wrap items-center gap-4'>

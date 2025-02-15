@@ -139,11 +139,10 @@ export default function Payin() {
  const selectedUsername = watch("username");
 
   return (
-    <div className='w-full flex flex-col gap-8 font-light'>
-      <h2 className='text-xl font-bold mt-8 text-white'>Payin</h2>
+    <div className='w-full flex flex-col gap-8 font-light py-8'>
 
       <div className='w-full flex items-center justify-center'>
-        <div className='flex flex-col items-center justify-center max-w-[400px] w-full bg-white h-auto rounded-lg relative p-4'>
+        <div className='flex flex-col items-center justify-center max-w-[400px] w-full bg-cream h-auto rounded-lg relative p-4'>
           <div className='w-full p-4 flex flex-col gap-4'>
             <p className='text-lg font-medium'>Send fiat to player</p>
 
@@ -222,9 +221,9 @@ export default function Payin() {
               
 
 
-              <button type='submit' className='primary-btn mt-4' disabled={loading}>
+              <Button type='submit' className=' mt-4' disabled={loading}>
                 {loading ? 'Sending...' : 'Send'}
-              </button>
+              </Button>
             </form>
           </div>
         </div>

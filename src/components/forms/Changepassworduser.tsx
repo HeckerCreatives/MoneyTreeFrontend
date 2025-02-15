@@ -107,7 +107,7 @@ const changePassword = async (data: UserChangePassword) => {
       <DialogTrigger className=" bg-blue-600 px-3 py-1 text-white rounded-md text-[.6rem]">
         Change Password
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className=" bg-cream">
         <DialogHeader>
           <DialogTitle>Change Password</DialogTitle>
           <DialogDescription>Enter a new password to update.</DialogDescription>
@@ -154,8 +154,7 @@ const changePassword = async (data: UserChangePassword) => {
 
 
           <Button
-           
-            className="primary-btn w-full"
+            className=" w-full"
           >
             Save
           </Button>

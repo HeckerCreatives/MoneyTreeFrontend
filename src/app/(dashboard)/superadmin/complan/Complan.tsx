@@ -90,7 +90,6 @@ export default function Complan() {
     
             
 
-            <h2 className=' text-sm font-medium mt-4 text-white'>Pets</h2>
             <div className=' w-full h-auto grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-items-center gap-4 '>
               
                 

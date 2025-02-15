@@ -50,7 +50,6 @@ export function RegisterForm() {
           const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/getreferralusername?id=${decryptUid(referralDecrypt)}`, {
             withCredentials: true
           })
-          console.log(response.data)
           setReferral(response.data.data)
         }
       } catch (error) {
@@ -126,13 +125,13 @@ export function RegisterForm() {
       style={{backgroundImage: 'url(/assets/login.png)', backgroundPosition:'bottom', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
       >
 
-            <div className=" flex items-center justify-center md:mt-4">
+            <a href="/" className=" flex items-center justify-center md:mt-4">
                 <img src="/assets/logo.png" alt="moneytree" width={150} height={150} />
-            </div>
+            </a>
 
             <div className=" w-full flex flex-col items-center justify-center gap-2">
               <p className=" text-lg font-black">Welcome</p>
-              <p className=" text-sm">Log in your account</p>
+              <p className=" text-sm">Register an account</p>
 
             </div>
 
@@ -228,7 +227,7 @@ export function RegisterForm() {
               <div className="text-center text-sm">
                 Already have an account?{" "}
                 <a href="/auth/login" className="underline underline-offset-4">
-                  Sign in
+                  Log in
                 </a>
               </div>
             </div>

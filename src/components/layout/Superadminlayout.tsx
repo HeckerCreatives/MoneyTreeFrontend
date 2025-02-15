@@ -61,7 +61,6 @@ export default function Superadminlayout({
         })
 
         setRate(response.data.data.rate)
-        console.log(0/0)
 
       
       } catch (error) {

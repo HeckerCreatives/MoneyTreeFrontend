@@ -137,7 +137,6 @@ export default function Complancard(prop: Props) {
         }
     }
 
-    console.log(errors)
 
     useEffect(() => {
         reset({
@@ -151,11 +150,11 @@ export default function Complancard(prop: Props) {
 
 
   return (
-    <div className=' group w-full h-auto bg-cream rounded-md overflow-hidden'>
+    <div className=' group w-full h-auto bg-cream rounded-md overflow-hidden shadow-md'>
 
                    
 
-                        <div className=' group-hover:bg-gray-200 transition-all duration-300 w-full aspect-video  shadow-sm flex items-center justify-center relative'
+                        <div className=' group-hover:bg-amber-900 bg-amber-950 transition-all duration-300 w-full aspect-video  shadow-sm flex items-center justify-center relative'
                         style={{backgroundImage: `url(${bgImage(prop.name)})`, backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'center'}}
                         
                         >
@@ -173,7 +172,7 @@ export default function Complancard(prop: Props) {
                             onCheckedChange={(value) => setValue("b1t1", value)} 
     />
                         </div>
-                        <p className=' text-lg font-medium'>{prop.name}</p>
+                        <p className=' text-lg font-black'>{prop.name}</p>
 
 
                         <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Profit (%)</label>

@@ -114,7 +114,6 @@ export default function Createadminform( prop: Props) {
       };
 
 
-      console.log(prop)
       
   return (
     <Dialog open={open} onOpenChange={setOpen}>

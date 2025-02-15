@@ -63,7 +63,6 @@ export default function Settings() {
     useEffect(() => {
         const getAvatar = localStorage.getItem('avatar')
 
-        console.log(getAvatar)
         setAvatar(getAvatar || '')
     },[avatar])
 
@@ -142,7 +141,6 @@ export default function Settings() {
     })
 
     const onSubmit = async (data: UserAccount) => {
-        console.log(data)
         setRefresh('true')
         setLoading(true)
         try {

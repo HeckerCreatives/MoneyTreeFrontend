@@ -92,9 +92,9 @@ export function LoginForm({
       style={{backgroundImage: 'url(/assets/login.png)', backgroundPosition:'bottom', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
       >
 
-            <div className=" flex items-center justify-center mt-4">
+            <a href="/" className=" flex items-center justify-center mt-4">
                 <img src="/assets/logo.png" alt="moneytree" width={150} height={150} />
-            </div>
+            </a>
 
             <div className=" w-full flex flex-col items-center justify-center gap-2">
               <p className=" text-lg font-black">Welcome</p>

@@ -110,7 +110,6 @@ export default function Withdrawform( prop: Props) {
       };
 
 
-      console.log(prop)
       
   return (
     <Dialog>

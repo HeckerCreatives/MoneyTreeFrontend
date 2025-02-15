@@ -64,7 +64,6 @@ export default function Playerlayout({
         withCredentials:true
         })
 
-        console.log(response.data)
         setReferral(response.data.data)
 
       
@@ -90,7 +89,6 @@ export default function Playerlayout({
         })
 
         setRate(response.data.data.rate)
-        console.log(0/0)
 
       
       } catch (error) {

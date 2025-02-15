@@ -26,6 +26,7 @@ import {
 import { Eye, EyeOff, Plus } from 'lucide-react'
 import loadingStore from '@/store/loading'
 import refreshStore from '@/store/refresh'
+import { Button } from '../ui/button'
 
   
 type Props = {
@@ -114,14 +115,13 @@ export default function Createadminform( prop: Props) {
       };
 
 
-      console.log(prop)
       
   return (
     <Dialog open={open} onOpenChange={setOpen}>
     <DialogTrigger className='primary-green'>
         <Plus size={15}/>Create
     </DialogTrigger>
-    <DialogContent className=' md:w-full w-[90%] rounded-lg'>
+    <DialogContent className=' md:w-full w-[90%] rounded-lg bg-cream'>
       <DialogHeader>
         <DialogTitle>Create Admin Account</DialogTitle>
         <DialogDescription>
@@ -154,7 +154,7 @@ export default function Createadminform( prop: Props) {
                 </div>
                 {errors.password && <p className='text-[.6em] text-red-500'>{errors.password.message}</p>}
 
-                <label htmlFor="" className='text-sm text-zinc-500 mt-4'>Confirm password</label>
+                <label htmlFor="" className='text-sm text-zinc-500 mt-1'>Confirm password</label>
                 <div className="relative">
                     <Input
                         placeholder='Confirm password'
@@ -173,11 +173,11 @@ export default function Createadminform( prop: Props) {
                 {errors.confirm && <p className='text-[.6em] text-red-500'>{errors.confirm.message}</p>} 
 
 
-        <button disabled={loading} className=' primary-btn px-4 py-3 mt-4'>
+        <Button disabled={loading} className=' px-4 py-3 mt-4'>
             {loading === true && (
                 <span className=' loader'></span>
             )}
-            Save</button>
+            Save</Button>
     
       </form>
 

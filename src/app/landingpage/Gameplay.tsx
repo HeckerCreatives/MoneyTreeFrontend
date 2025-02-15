@@ -55,7 +55,6 @@ export default function Gameplay() {
       };
       
 
-      console.log(current, count)
   return (
     <div className=' w-full max-w-[1440px] h-auto relative flex flex-col items-center justify-center py-12'
     >
@@ -76,22 +75,7 @@ export default function Gameplay() {
                         <div className=' w-[60%] md:w-[90%] lg:w-full h-full flex flex-col'>
                             <Carousel className='' setApi={setApi}>
                             <CarouselContent className=''>
-                                <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/5'>
-                                    <div className=' w-full flex flex-col h-auto'
-                                    >
-                                        <div className=' w-full aspect-square flex items-center justify-center rounded-md'
-                                        style={{backgroundImage: 'url(/assets/BG.png)', backgroundPosition:'center', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
-                                        >
-                                            <img src="/assets/jar.png" alt="jar" width={150} />
-
-                                        </div>
-
-                                        <div className=' flex flex-col gap-1 mt-2'>
-                                            <h2 className=' text-xl font-bold text-amber-900'>Jar</h2>
-                                            <p className=' text-sm text-amber-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                        </div>
-                                    </div>
-                                </CarouselItem>
+                               
 
                                 <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/5'>
                                     <div className=' w-full flex flex-col h-auto'
@@ -104,8 +88,27 @@ export default function Gameplay() {
                                         </div>
 
                                         <div className=' flex flex-col gap-1 mt-2'>
-                                            <h2 className=' text-xl font-bold text-amber-900'>Nest</h2>
-                                            <p className=' text-sm text-amber-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            <h2 className=' text-xl font-bold text-amber-900'>Nest Stash</h2>
+                                            <p className=' text-sm text-amber-700'>The Nest Stash plan is an excellent choice for those just starting out. It offers a simple way to begin saving with a fast return, making it ideal for anyone looking to grow their funds in a short time.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </CarouselItem>
+
+                                <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/5'>
+                                    <div className=' w-full flex flex-col h-auto'
+                                    >
+                                        <div className=' w-full aspect-square flex items-center justify-center rounded-md'
+                                        style={{backgroundImage: 'url(/assets/BG.png)', backgroundPosition:'center', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
+                                        >
+                                            <img src="/assets/jar.png" alt="jar" width={150} />
+
+                                        </div>
+
+                                        <div className=' flex flex-col gap-1 mt-2'>
+                                            <h2 className=' text-xl font-bold text-amber-900'>Wealth Jar</h2>
+                                            <p className=' text-sm text-amber-700'>The Wealth Jar plan is designed for those looking to save for two weeks. It offers steady growth, allowing you to grow your savings at a reliable pace. Ideal for people who want a balance between time and return on their investment.
+                                            </p>
                                         </div>
                                     </div>
                                 </CarouselItem>
@@ -122,7 +125,8 @@ export default function Gameplay() {
 
                                         <div className=' flex flex-col gap-1 mt-2'>
                                             <h2 className=' text-xl font-bold text-amber-900'>Piggy Bank</h2>
-                                            <p className=' text-sm text-amber-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            <p className=' text-sm text-amber-700'>The Piggy Bank plan is perfect for individuals who are ready to commit to saving over a longer period. With a one-month duration, it offers a higher return, making it ideal for those looking to grow larger sums of money while saving steadily over time.
+                                            </p>
                                         </div>
                                     </div>
                                 </CarouselItem>
@@ -139,7 +143,7 @@ export default function Gameplay() {
 
                                         <div className=' flex flex-col gap-1 mt-2'>
                                             <h2 className=' text-xl font-bold text-amber-900'>Money Vault <span className=' text-xs'>(Coming Soon!)</span></h2>
-                                            <p className=' text-sm text-amber-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            {/* <p className=' text-sm text-amber-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> */}
                                         </div>
                                     </div>
                                 </CarouselItem>
@@ -156,7 +160,7 @@ export default function Gameplay() {
 
                                         <div className=' flex flex-col gap-1 mt-2'>
                                             <h2 className=' text-xl font-bold text-amber-900'>Treasure Chest <span className=' text-xs'>(Coming Soon!)</span></h2>
-                                            <p className=' text-sm text-amber-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            {/* <p className=' text-sm text-amber-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> */}
                                         </div>
                                     </div>
                                 </CarouselItem>
@@ -181,19 +185,30 @@ export default function Gameplay() {
                     </div>
                 </div>
 
-                <div id='play' className=' scroll-m-12 w-full h-[500px] bg-amber-900 rounded-sm flex flex-col items-center p-6'>
+                <div id='play' className=' scroll-m-12 w-full h-auto bg-amber-900 rounded-sm flex flex-col items-center p-6'>
                     <p className=' text-2xl font-black text-amber-50'>How to play</p>
 
-                    <div className=' w-full grid grid-cols-3 gap-4 mt-8'>
-                        <div className=' w-full h-[200px] bg-amber-800'>
+                    <div className=' w-full grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] place-items-center gap-4 mt-8'>
+
+                        <div className=' w-full flex flex-col gap-4  '>
+                        <img src="/assets/play1.png" alt="" width={300} height={300} className=' w-full' />
+                        <p className=' text-amber-50 ~text-xs/sm h-[80px]'>Press the collect button and tap the hand pump until the container is full.</p>
+                        </div>
+
+                        <div className=' w-full flex flex-col gap-4'>
+                        <img src="/assets/play2.png" alt="" width={300} height={300} className=' w-full' />
+                        <p className=' text-amber-50 ~text-xs/sm h-[80px]'> Once the water container is full, click the "USE" button to water the tree. Then, tap the "Harvest" button to collect the coins that appeared on the tree.
+                        </p>
 
                         </div>
-                        <div className=' w-full h-[200px] bg-amber-800'>
 
-                        </div>
-                        <div className=' w-full h-[200px] bg-amber-800'>
+                        <div className=' w-full flex flex-col gap-4'>
+                        <img src="/assets/play3.png" alt="" width={300} height={300} className=' w-full' />
+                        <p className=' text-amber-50 ~text-xs/sm h-[80px]'> When the Daily Income bar is full, all the collected coins will be automatically transferred to the Saving Plan
 
+                        </p>
                         </div>
+                       
 
                     </div>
 

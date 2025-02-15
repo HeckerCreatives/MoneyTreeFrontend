@@ -159,7 +159,6 @@ export default function Dashboard() {
           withCredentials:true
           })
 
-          console.log(response.data)
           setReferral(response.data.data)
 
         

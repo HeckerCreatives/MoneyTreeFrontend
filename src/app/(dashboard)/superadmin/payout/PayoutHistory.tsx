@@ -220,7 +220,7 @@ export default function Payouthistory() {
         <TabsTrigger onClick={() => setTab('commissionbalance')} value="commissionbalance">Comission</TabsTrigger>
       </TabsList>
       <TabsContent value="gamebalance" className=' flex flex-col gap-4'>
-      <div className=' w-full flex flex-col gap-4 h-auto bg-white rounded-xl shadow-sm p-6'>
+      <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Game Payout List</p>
 
@@ -326,7 +326,7 @@ export default function Payouthistory() {
             )}
         
        </div>
-       <div className=' w-full flex flex-col gap-4 h-auto bg-white rounded-xl shadow-sm p-6'>
+       <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Game Payout History</p>
         </div>
@@ -397,7 +397,7 @@ export default function Payouthistory() {
        </div>
       </TabsContent>
       <TabsContent value="commissionbalance" className=' flex flex-col gap-4'>
-      <div className=' w-full flex flex-col gap-4 h-auto bg-white rounded-xl shadow-sm p-6'>
+      <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Comission Payout List</p>
 
@@ -503,7 +503,7 @@ export default function Payouthistory() {
             )}
         
        </div>
-       <div className=' w-full flex flex-col gap-4 h-auto bg-white rounded-xl shadow-sm p-6'>
+       <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>ComissionPayout History</p>
         </div>
