@@ -119,7 +119,7 @@ export default function Gameplay() {
                                         <div className=' w-full aspect-square flex items-center justify-center rounded-md'
                                         style={{backgroundImage: 'url(/assets/BG.png)', backgroundPosition:'center', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
                                         >
-                                            <img src="/assets/piggy.png" alt="piggy bank" width={150} />
+                                            <img src="/assets/Piggy.png" alt="piggy bank" width={150} />
 
                                         </div>
 
@@ -137,7 +137,7 @@ export default function Gameplay() {
                                         <div className=' w-full aspect-square flex items-center justify-center rounded-md'
                                         style={{backgroundImage: 'url(/assets/BG.png)', backgroundPosition:'center', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
                                         >
-                                            <img src="/assets/safe.png" alt="money vault" width={150}  className=' grayscale'/>
+                                            <img src="/assets/Safe.png" alt="money vault" width={150}  className=' grayscale'/>
 
                                         </div>
 
@@ -154,7 +154,7 @@ export default function Gameplay() {
                                         <div className=' w-full aspect-square flex items-center justify-center rounded-md'
                                         style={{backgroundImage: 'url(/assets/BG.png)', backgroundPosition:'center', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
                                         >
-                                            <img src="/assets/treasure.png" alt="treasure chest" width={150} className=' grayscale'/>
+                                            <img src="/assets/Treasure.png" alt="treasure chest" width={150} className=' grayscale'/>
 
                                         </div>
 
