@@ -47,11 +47,14 @@ export function LoginForm({
         toast.success('Successfully logged in')
         router.push('/superadmin/analytics')
         setLoading(false)
-      } else if (response.data.data.auth === 'admin') {
-        toast.success('Successfully logged in')
-        router.push('/admin/analytics')
-        setLoading(false)
-      } else {
+      } 
+      // else if (response.data.data.auth === 'admin') {
+      //   toast.success('Successfully logged in')
+      //   router.push('/admin/analytics')
+      //   setLoading(false)
+      // }
+      
+      else {
         toast.error(response.data.data)
         setLoading(false)
       }
