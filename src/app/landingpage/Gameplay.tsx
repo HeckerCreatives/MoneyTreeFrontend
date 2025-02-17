@@ -197,7 +197,7 @@ export default function Gameplay() {
 
                         <div className=' w-full flex flex-col gap-4'>
                         <img src="/assets/play2.png" alt="" width={300} height={300} className=' w-full' />
-                        <p className=' text-amber-50 ~text-xs/sm h-[80px]'> Once the water container is full, click the "USE" button to water the tree. Then, tap the "Harvest" button to collect the coins that appeared on the tree.
+                        <p className=' text-amber-50 ~text-xs/sm h-[80px]'> Once the water is full, press the "USE" button to water the tree, then tap the "Harvest" button to collect the coins that appear on the tree.
                         </p>
 
                         </div>

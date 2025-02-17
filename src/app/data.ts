@@ -8,11 +8,11 @@ export const navigation = [
 export const faqs = [
     {
       question: "What is Money Tree?",
-      answer: "Money Tree is a play-to-earn game where you can earn money by taking care of a virtual tree. You need to interact with the tree through simple actions to help it grow and yield rewards. The rewards you earn can be exchanged for real money. It’s easy, fun, and a great way to make money while enjoying the game!"
+      answer: `Money Tree is a play-to-earn game where players take care of a tree to earn coins. To do this, you must first fill the water container. Once it's full, press the "USE" button to water the tree. After watering, tap the "Harvest" button to collect the coins that appear.The game is simple, fun, and offers an engaging way to earn rewards while playing. Keep watering and harvesting to maximize your earnings!`
     },
     {
       question: "How to earn?",
-      answer: ""
+      answer: "In Money Tree, taking care of your tree is a fun and interactive way to earn rewards. This includes various activities to ensure that your tree grows and continues to produce coins. First, you need to fill the water container to have an adequate supply. Once it's full, you can use the water to nourish your tree and keep it healthy. After watering, you can harvest the coins that appear as a reward for your efforts. Consistently caring for, watering, and harvesting your tree not only keeps it alive but also helps you progress and earn in the game, making your experience both enjoyable and rewarding."
     },
     {
       question: "How do I create an account?",
