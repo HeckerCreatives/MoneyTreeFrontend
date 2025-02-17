@@ -40,7 +40,9 @@ export const faqs = [
     },
     {
       question: "What type of saving plan can i buy?",
-      answer: `
+      answer: `Money Tree offers various savings options to suit your needs, with five saving plan,:
+Nest Stash, Wealth Jar, Piggy Bank, Money Vault, and Treasure Chest. Each plan offers different returns based on your chosen investment.
+
       Nest Stash: Earn 20% profit in just 7 days with investments ranging from ₱500 to ₱5,000.
       Wealth Jar: Enjoy a 50% profit in 14 days with investments between ₱1,000 and ₱10,000.
       Piggy Bank: Maximize your returns with a 120% profit in 28 days, requiring an investment of ₱5,000 to ₱50,000.

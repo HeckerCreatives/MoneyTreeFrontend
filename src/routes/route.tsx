@@ -61,7 +61,7 @@ export const admin = [
 
     {name: 'Payout', icon: <Wallet size={15}/>, 
     path:'/admin/payout', subpath:[]},
-    {name: 'Settings', icon: <Settings size={15}/>, 
-    path:'/admin/settings', subpath:[]},
+     {name: 'Settings', icon: <Settings size={15}/>, 
+     path:'/admin/settings', subpath:[]},
 ]
 
