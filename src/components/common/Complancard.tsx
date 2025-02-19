@@ -150,12 +150,12 @@ export default function Complancard(prop: Props) {
 
 
   return (
-    <div className=' group w-full h-auto bg-cream rounded-md overflow-hidden shadow-md'>
+    <div className={` group w-full h-auto bg-cream rounded-md overflow-hidden shadow-md ${(prop.name.includes('Money') || prop.name.includes('Treasure')) && 'grayscale'}`}>
 
                    
 
-                        <div className=' group-hover:bg-amber-900 bg-amber-950 transition-all duration-300 w-full aspect-video  shadow-sm flex items-center justify-center relative'
-                        style={{backgroundImage: `url(${bgImage(prop.name)})`, backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'center'}}
+                        <div className=' transition-all duration-300 w-full aspect-video  shadow-sm flex items-center justify-center relative'
+                        style={{backgroundImage: `url('/assets/BG.png')`, backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'center'}}
                         
                         >
                             <img src={img?.img} alt='store' width={150} height={150}  className=' group-hover:scale-110 transition-all duration-300'/>
@@ -195,7 +195,10 @@ export default function Complancard(prop: Props) {
                         {errors.max && <p className='text-[.6em] text-red-500'>{errors.max.message}</p>}
 
 
-                        <Button className=' w-full mt-4'>Save</Button>
+                        <Button disabled={prop.name.includes('Money') || prop.name.includes('Treasure')}  className={`w-full mt-4`}>
+
+                            {(prop.name.includes('Money') || prop.name.includes('Treasure')) ? ' Coming Soon!' : 'Save'}
+                        </Button>
                        </form>
 
     </div>

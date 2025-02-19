@@ -59,7 +59,7 @@ export default function Header() {
   }
   return (
     <section id={'home'} className=' w-full max-h-[1080px] h-screen flex flex-col items-center py-4'
-    style={{backgroundImage: "url('/assets/Background.png')" , backgroundPosition:'bottom', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
+    style={{backgroundImage: "url('/assets/Header BG.png')" , backgroundPosition:'bottom', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
     >
         <Navigation/>
 

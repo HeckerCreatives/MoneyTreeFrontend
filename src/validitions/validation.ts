@@ -86,6 +86,10 @@ export const createAdmin = z.object({
             }),
     });
 
+    export const masterkey = z.object({
+        key: z.string().min(1, 'Secret key is empty'),
+    })
+
     
 
       
@@ -98,3 +102,4 @@ export type SaveConversionRate = z.infer<typeof conversionRate>;
 export type SaveComplan = z.infer<typeof complanSchema>;
 export type CreateAdminAccount = z.infer<typeof createAdmin>;
 export type AddSocialMedia = z.infer<typeof socialsSchema>;
+export type CreateMasterKey = z.infer<typeof masterkey>;

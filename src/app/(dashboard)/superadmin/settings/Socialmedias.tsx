@@ -67,7 +67,7 @@ export default function Socialmedias() {
 
 
   return (
-    <div className=' flex flex-col  w-full max-w-[400px] p-6 bg-cream rounded-md'>
+    <div className=' flex flex-col  w-full max-w-[400px] h-fit p-6 bg-cream rounded-md'>
         <p className=' font-semibold'>Social Media</p>
 
         <div className=' flex items-center mt-2'>

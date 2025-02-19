@@ -194,7 +194,8 @@ export default function Adminlayout({
                   <DropdownMenuTrigger className=' focus:ring-0'>
                     <div className=' flex items-center gap-2'>
                       <p>Admin</p>
-                      <div className=' h-8 aspect-square rounded-full bg-amber-950'>
+                      <div className=' h-8 aspect-square rounded-full '>
+                        <img src="/assets/coin.png" alt="coin" width={50} height={50} />
 
                       </div>
 

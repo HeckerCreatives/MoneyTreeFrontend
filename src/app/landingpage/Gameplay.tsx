@@ -171,7 +171,7 @@ export default function Gameplay() {
 
                         
 
-                            <div className=' w-full flex items-center justify-center mt-6'>
+                            <div className=' w-full lg:hidden flex items-center justify-center mt-6'>
                                 <button>
                                     <img onClick={handlePrev} src="/assets/slide-prev.png" alt="prev"  width={40} height={40} className=' cursor-pointer'/>
                                 </button>
@@ -191,19 +191,19 @@ export default function Gameplay() {
                     <div className=' w-full grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] place-items-center gap-4 mt-8'>
 
                         <div className=' w-full flex flex-col gap-4  '>
-                        <img src="/assets/play1.png" alt="" width={300} height={300} className=' w-full' />
+                        <img src="/assets/htp1.png" alt="" width={300} height={300} className=' w-full' />
                         <p className=' text-amber-50 ~text-xs/sm h-[80px]'>Press the collect button and tap the hand pump until the container is full.</p>
                         </div>
 
                         <div className=' w-full flex flex-col gap-4'>
-                        <img src="/assets/play2.png" alt="" width={300} height={300} className=' w-full' />
+                        <img src="/assets/htp2.png" alt="" width={300} height={300} className=' w-full' />
                         <p className=' text-amber-50 ~text-xs/sm h-[80px]'> Once the water is full, press the "USE" button to water the tree, then tap the "Harvest" button to collect the coins that appear on the tree.
                         </p>
 
                         </div>
 
                         <div className=' w-full flex flex-col gap-4'>
-                        <img src="/assets/play3.png" alt="" width={300} height={300} className=' w-full' />
+                        <img src="/assets/htp3.png" alt="" width={300} height={300} className=' w-full' />
                         <p className=' text-amber-50 ~text-xs/sm h-[80px]'> When the Daily Income bar is full, all the collected coins will be automatically transferred to the Saving Plan
 
                         </p>

@@ -10,7 +10,7 @@ export default function ManageAccount() {
     <div className=' w-full flex flex-col'>
 
       <Tabs defaultValue="Admin" className=" w-full mt-8">
-        <TabsList>
+        <TabsList className=' bg-cream'>
             <TabsTrigger value="Admin">Admin</TabsTrigger>
             <TabsTrigger value="User">User</TabsTrigger>
         </TabsList>

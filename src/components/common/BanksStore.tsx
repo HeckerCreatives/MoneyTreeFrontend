@@ -148,15 +148,21 @@ export default function BanksStore(prop: Bank) {
     const findBank = banks.find((item) => item.id === prop.name)
 
   return (
-    <div  className={`relative w-fit h-auto flex items-center justify-center ${prop.locked && 'grayscale'}`}>
-        <img src="/assets/storecard.png" alt="" />
-        <div className=' w-full flex gap-4 items-center justify-center h-full absolute p-6'>
+    <div  className={`relative w-fit h-auto flex items-center justify-center ${prop.locked && 'grayscale'}`}
+    style={{backgroundImage: `url('/assets/BG.png')`, backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'center'}}
+    >
+
+        <div className=' w-full h-full absolute bg-zinc-950/30'>
+
+        </div>
+        {/* <img src="/assets/storecard.png" alt="" /> */}
+        <div className=' relative z-10 w-full flex gap-4 items-center justify-center h-full  p-6'>
             <div className=' w-fit'>
                 <img src={findBank?.img} alt="bank" width={100} height={100} className=' w-[180px] aspect-square' />
 
             </div>
 
-            <div className=' w-full flex flex-col text-amber-50 text-xs'>
+            <div className=' w-full flex flex-col text-amber-50 text-xs font-bold'>
                 <h2 className=' text-lg font-black'>{prop.name}</h2>
                 {prop.locked ? (
                     <>

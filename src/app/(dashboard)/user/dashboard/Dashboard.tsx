@@ -41,6 +41,7 @@ export default function Dashboard() {
     const [event, setEvent] = useState('On')
     const [open, setOpen] = useState(false)
     const [gameid, setGameid] = useState('')
+    const [username, setUsername] = useState('')
 
     
 
@@ -189,6 +190,7 @@ export default function Dashboard() {
           })
     
           setGameid(response.data.data.gameid)
+          setUsername(response.data.data.username)
     
         } catch (error) {
     
@@ -214,21 +216,27 @@ export default function Dashboard() {
     <div className=' w-full h-fit flex flex-col gap-2 py-8 font-thin'>
 
         <div className=' grid grid-cols-1 lg:grid-cols-[350px_1fr] place-items-center md:place-items-start gap-4'>
-            <div className='relative flex items-center justify-center  w-full max-w-[350px] h-auto  rounded-lg shadow-sm p-4'>
-                <img src="/assets/bigcard.png" alt="card" className=' w-full max-h-[400px] h-full'/>
+            <div className='relative flex items-center justify-center  w-full max-w-[350px] h-full max-h-[520px] rounded-lg shadow-sm p-4 overflow-hidden'
+            style={{backgroundImage: 'url(/assets/Background.png)'}}
+            >
 
-                <div className=' absolute w-full h-auto flex flex-col justify-between gap-2 p-10 text-xs text-amber-950 '>
+              <div className=' z-0 absolute w-full h-full bg-zinc-950/30'>
 
-                    <h2 className=' text-2xl font-black'>Username</h2>
-                    <div className=' flex items-center gap-2'>
+              </div>
+                {/* <img src="/assets/bigcard.png" alt="card" className=' w-full max-h-[400px] h-full'/> */}
+
+                <div className=' relative z-20 w-full h-auto flex flex-col justify-between gap-2 text-xs text-amber-50 '>
+
+                    <h2 className=' text-2xl font-black'>{username}</h2>
+                    {/* <div className=' flex items-center gap-2'>
                         <p>Events:</p>
                         <h2 className=' ~text-xl/2xl font-medium text-amber-700'>{event}</h2>
-                    </div>
-                    <p className=' text-zinc-500'>Invites your your friends.</p>
+                    </div> */}
+                    <p className=' text-zinc-50'>Invites your your friends.</p>
 
                     <div className=' flex flex-col'>
                         {status === true && (
-                        <button onClick={copyReferral} className=' bg-amber-950 px-3 py-1 mt-2 w-fit text-[.7rem] text-amber-50 flex items-center gap-1 rounded-sm'><Copy size={12}/>Referral</button>
+                        <button onClick={copyReferral} className=' bg-[#A8DC08] px-3 py-1 mt-2 w-fit text-[.7rem] text-amber-950 flex items-center gap-1 rounded-sm font-bold'><Copy size={12}/>Referral</button>
                         )}
                     </div>
 
@@ -246,7 +254,7 @@ export default function Dashboard() {
                       <DialogHeader>
                         <DialogTitle>Play now</DialogTitle>
                         <DialogDescription>
-                          Once you continue game id will be copied, dont forget to enter your game id when you are in the game.
+                         Are you sure you want to play?
                         </DialogDescription>
                       </DialogHeader>
 

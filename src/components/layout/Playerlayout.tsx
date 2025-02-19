@@ -48,7 +48,7 @@ export default function Playerlayout({
     const [name, setName] = useState('')
     
     
-    const breadcrumd = user.find((item) => path.includes(item.path))?.name
+    const breadcrumd = user.find((item) => path.includes(item.path))
 
     useEffect(() => {
       const getAvatar = localStorage.getItem('avatar')
@@ -191,14 +191,14 @@ export default function Playerlayout({
             </div>
           </div>
           
-
+{/* 
           <div className=' flex items-center gap-2 text-amber-950'>
-              <p>{name}</p>
+              <p>{breadcrumd?.name}</p>
               <div className=' h-5 aspect-square rounded-full bg-amber-950'>
 
               </div>
 
-            </div>
+            </div> */}
 
         </nav>
       </div>
@@ -235,7 +235,7 @@ export default function Playerlayout({
           </Sheet>
 
               <p className=' text-lg font-black'>
-                {path.split('/')[2]?.charAt(0).toUpperCase() + path.split('/')[2]?.slice(1)}
+                {breadcrumd?.name}
               </p>
           </div>
           
@@ -247,8 +247,8 @@ export default function Playerlayout({
                   <DropdownMenuTrigger className=' focus:ring-0'>
                     <div className=' flex items-center gap-2'>
                       <p>{name}</p>
-                      <div className=' h-8 aspect-square rounded-full bg-amber-950'>
-
+                      <div className=' h-8 aspect-square rounded-full'>
+                        <img src="/assets/coin.png" alt="coin" width={50} height={50} />
                       </div>
 
                     </div>

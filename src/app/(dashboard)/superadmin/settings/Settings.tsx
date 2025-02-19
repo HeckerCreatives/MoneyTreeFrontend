@@ -2,6 +2,8 @@ import Changepasswordadmin from '@/components/forms/Changepasswordadmin'
 import Conversionrate from '@/components/forms/Conversionrate'
 import React from 'react'
 import Socialmedias from './Socialmedias'
+import Masterkey from '@/components/forms/Masterkey'
+import Masterkeyhistory from './Masterkeyhistory'
 
 export default function Settings() {
   return (
@@ -12,6 +14,8 @@ export default function Settings() {
            <Changepasswordadmin/>
            <Conversionrate/>
            <Socialmedias/>
+           <Masterkey/>
+           <Masterkeyhistory/>
         </div>
 
     </div>
