@@ -233,7 +233,7 @@ export default function Dashboard() {
                     </div> */}
 
                     <div className=' flex flex-col gap-2'>
-                      <p className=' text-zinc-50'>Invites your your friends.</p>
+                      {/* <p className=' text-zinc-50'>Invites your your friends.</p> */}
                       <div className=' flex flex-col'>
                           {status === true && (
                           <button onClick={copyReferral} className=' bg-[#A8DC08] px-3 py-1 w-fit text-sm text-amber-950 flex items-center gap-1 rounded-sm font-bold'><Copy size={15}/>Referral</button>
