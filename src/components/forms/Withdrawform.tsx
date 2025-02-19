@@ -113,7 +113,7 @@ export default function Withdrawform( prop: Props) {
       
   return (
     <Dialog>
-    <DialogTrigger className='bg-[#A8DC08] text-amber-50 font-bold py-1 rounded-sm hover:bg-[#A8DC08]/90 mt-1'>
+    <DialogTrigger className='bg-[#A8DC08] text-amber-950 font-bold py-1 rounded-sm hover:bg-[#A8DC08]/90 mt-1'>
         Withdraw
     </DialogTrigger>
     <DialogContent className=' md:w-full w-[90%] text-xs rounded-lg bg-cream text-amber-950'>

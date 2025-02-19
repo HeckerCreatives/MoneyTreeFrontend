@@ -87,7 +87,7 @@ export default function Masterkey() {
     };
 
   return (
-    <div className=' w-full h-fit max-w-[300px] bg-cream p-6 rounded-md'>
+    <div className=' w-full h-fit max-w-[300px] bg-amber-50 p-6 rounded-md'>
         <h2 className='text-lg font-semibold'>Master Key</h2>
         <form onSubmit={handleSubmit(save)} className=' flex flex-col gap-2'>
             <label htmlFor="" className=' text-sm text-zinc-500 mt-4'>Secret Key</label>

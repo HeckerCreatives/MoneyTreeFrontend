@@ -16,6 +16,7 @@ import refreshStore from '@/store/refresh';
 import toast from 'react-hot-toast';
 import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
+import rateStore from '@/store/rate';
 
 
 type Prop = {
@@ -37,6 +38,7 @@ export default function MybanksOwn( prop: Prop) {
     const { loading, setLoading, clearLoading } = loadingStore()
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
+    const {rate} = rateStore()
     const percentage = (prop.totalaccumulated / prop.limittotal) * 100
 
     const findBank = banks.find((item) => item.id === prop.bankname)
@@ -120,10 +122,10 @@ export default function MybanksOwn( prop: Prop) {
 
             <div className=' flex flex-col gap-2 text-amber-950 p-4'>
                 <h2 className=' ~text-sm/lg font-black'>{prop.bankname}</h2>
-                {/* <h2 className=' ~text-xs/sm font-semibold'>Daily earnings: Php{prop.dailyaccumulated.toLocaleString()}</h2> */}
-                <h2 className=' ~text-xs/sm font-semibold'>Total earned: Php{prop.totalaccumulated.toLocaleString()}</h2>
+                <h2 className=' ~text-xs/sm font-semibold'>Daily earnings: Php{prop.dailyaccumulated.toLocaleString()} / ${(prop.dailyaccumulated / rate).toLocaleString()}</h2>
+                <h2 className=' ~text-xs/sm font-semibold'>Total earned: Php{prop.totalaccumulated.toLocaleString()} / ${(prop.totalaccumulated / rate).toLocaleString()}</h2>
 
-                <Countdown
+                {/* <Countdown
                     className=' mt-2'
                     date={Date.now() + (prop.remainingtime * 1000)} 
                     renderer={({ days, hours, minutes, seconds }) => (
@@ -131,9 +133,7 @@ export default function MybanksOwn( prop: Prop) {
                         Ends in: {days} days : {hours} : {minutes} : {seconds}
                     </span>
                     )}
-                />
-
-
+                /> */}
 
                 <Dialog open={dialog} onOpenChange={setDialog}>
                     <DialogTrigger className=' flex items-center '>

@@ -223,25 +223,27 @@ export default function Dashboard() {
               <div className=' z-0 absolute w-full h-full bg-zinc-950/30'>
 
               </div>
-                {/* <img src="/assets/bigcard.png" alt="card" className=' w-full max-h-[400px] h-full'/> */}
 
-                <div className=' relative z-20 w-full h-auto flex flex-col justify-between gap-2 text-xs text-amber-50 '>
+                <div className=' relative z-20 w-full h-full flex flex-col justify-between gap-2 text-xs text-amber-50 '>
 
-                    <h2 className=' text-2xl font-black'>{username}</h2>
+                    {/* <h2 className=' text-2xl font-black'>{username}</h2> */}
                     {/* <div className=' flex items-center gap-2'>
                         <p>Events:</p>
                         <h2 className=' ~text-xl/2xl font-medium text-amber-700'>{event}</h2>
                     </div> */}
-                    <p className=' text-zinc-50'>Invites your your friends.</p>
 
-                    <div className=' flex flex-col'>
-                        {status === true && (
-                        <button onClick={copyReferral} className=' bg-[#A8DC08] px-3 py-1 mt-2 w-fit text-[.7rem] text-amber-950 flex items-center gap-1 rounded-sm font-bold'><Copy size={12}/>Referral</button>
-                        )}
+                    <div className=' flex flex-col gap-2'>
+                      <p className=' text-zinc-50'>Invites your your friends.</p>
+                      <div className=' flex flex-col'>
+                          {status === true && (
+                          <button onClick={copyReferral} className=' bg-[#A8DC08] px-3 py-1 w-fit text-sm text-amber-950 flex items-center gap-1 rounded-sm font-bold'><Copy size={15}/>Referral</button>
+                          )}
+                      </div>
                     </div>
+                    
 
                     <div className=' flex items-center justify-center'>
-                      <img src="/assets/logo.png" width={200} height={200} className=' ' />
+                      <img src="/assets/logo.png" width={300} height={300} className=' ' />
                     </div>
 
 

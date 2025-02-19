@@ -5,7 +5,6 @@ export const registeruser = z.object({
     phonenumber: z.string().max(11).nonempty('Phone is empty'),
     password: z.string().max(20).nonempty('Password is empty'),
     confirm: z.string().max(20).nonempty('Confirm your password').optional(),
-    // referral: z.string()
 })
  .refine((data) => data.password === data.confirm , {
       message:"Passwords don't match",
@@ -16,8 +15,6 @@ export const paymentFormSchema = z.object({
     paymentMethod: z.string().nonempty('Please select a payment method'),
     accountName: z.string().nonempty('Account name is required'),
     accountNumber: z.string().nonempty('Account number is required'),
-
-    //.min(10, 'Account number must be at least 10 digits')
     amount: z.number().min(500, 'Minimum withdraw is 500 php'),
  });
 

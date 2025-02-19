@@ -183,7 +183,7 @@ export default function BanksStore(prop: Bank) {
 
 
                 <Drawer>
-                <DrawerTrigger disabled={prop.locked} className='bg-[#A8DC08] px-4 py-2 text-sm font-bold text-amber-50 rounded-sm mt-6'>
+                <DrawerTrigger disabled={prop.locked} className='bg-[#A8DC08] px-4 py-2 text-sm font-bold text-amber-950 rounded-sm mt-6'>
                     {prop.locked ? 'Coming Soon!' : 'Buy now'}
                 </DrawerTrigger>
                 <DrawerContent className=' flex flex-col items-center justify-center h-[80%] md:h-[50%] bg-cream border-amber-100'>

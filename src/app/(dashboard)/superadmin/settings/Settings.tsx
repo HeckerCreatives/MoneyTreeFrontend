@@ -4,6 +4,7 @@ import React from 'react'
 import Socialmedias from './Socialmedias'
 import Masterkey from '@/components/forms/Masterkey'
 import Masterkeyhistory from './Masterkeyhistory'
+import Masterkeys from './Masterkeys'
 
 export default function Settings() {
   return (
@@ -14,8 +15,7 @@ export default function Settings() {
            <Changepasswordadmin/>
            <Conversionrate/>
            <Socialmedias/>
-           <Masterkey/>
-           <Masterkeyhistory/>
+          <Masterkeys/>
         </div>
 
     </div>
