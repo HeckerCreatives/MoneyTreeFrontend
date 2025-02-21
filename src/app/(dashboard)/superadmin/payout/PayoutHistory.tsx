@@ -205,6 +205,60 @@ export default function Payouthistory() {
     }
   };
 
+  const deletePayout = async (id: string) => {
+    setLoading(true);
+    setRefresh('true')
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/payout/deletepayout`,
+        {
+          payoutid: id,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      toast.success('Payout sucessfully deleted.');
+      clearLoading();
+      setRefresh('false')
+      setOpen(false)
+
+    } catch (error) {
+      setLoading(false);
+      setRefresh('false')
+      setOpen(false)
+
+
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError<{ message: string; data: string }>;
+        if (axiosError.response && axiosError.response.status === 401) {
+          toast.error(`${axiosError.response.data.data}`);
+          router.push('/')
+        }
+
+        if (axiosError.response && axiosError.response.status === 400) {
+          toast.error(`${axiosError.response.data.data}`);
+        }
+
+        if (axiosError.response && axiosError.response.status === 402) {
+          toast.error(`${axiosError.response.data.data}`);
+        }
+
+        if (axiosError.response && axiosError.response.status === 403) {
+          toast.error(`${axiosError.response.data.data}`);
+        }
+
+        if (axiosError.response && axiosError.response.status === 404) {
+          toast.error(`${axiosError.response.data.data}`);
+        }
+      }
+    }
+  };
+
 
    
 
@@ -300,11 +354,22 @@ export default function Payouthistory() {
                             </SelectContent>
                           </Select>
 
-                          <Button onClick={() => processPayout(item.id)} disabled={loading} className=' mt-4'>
-                            {loading === true && (
-                              <span className='loader'></span>
-                            )}
-                            Continue</Button>
+                          <div className=' w-full flex flex-col gap-1'>
+                            <Button onClick={() => processPayout(item.id)} disabled={loading} className=' mt-4'>
+                              {loading === true && (
+                                <span className='loader'></span>
+                              )}
+                              Continue</Button>
+
+                              <p className=' w-full text-center text-xs'>or</p>
+
+                              <Button disabled={loading} onClick={() => deletePayout(item.id)} variant={'destructive'}>
+                              {loading === true && (
+                                <span className='loader'></span>
+                              )}
+                                Delete payout</Button>
+                          </div>
+
 
                           </div>
                         </DialogContent>
@@ -477,11 +542,23 @@ export default function Payouthistory() {
                            </SelectContent>
                          </Select>
 
-                         <Button onClick={() => processPayout(item.id)} disabled={loading} className=' mt-4'>
-                           {loading === true && (
-                             <span className='loader'></span>
-                           )}
-                           Continue</Button>
+                         <div className=' w-full flex flex-col gap-1'>
+                          <Button onClick={() => processPayout(item.id)} disabled={loading} className=' mt-4'>
+                            {loading === true && (
+                              <span className='loader'></span>
+                            )}
+                            Continue</Button>
+
+                            <p className=' w-full text-center text-xs'>or</p>
+
+                            <Button disabled={loading} onClick={() => deletePayout(item.id)} variant={'destructive'}>
+                            {loading === true && (
+                              <span className='loader'></span>
+                            )}
+                              Delete payout</Button>
+                         </div>
+
+                         
 
                          </div>
                        </DialogContent>

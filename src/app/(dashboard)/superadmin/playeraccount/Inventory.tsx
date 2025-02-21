@@ -135,8 +135,8 @@ export default function Inventory() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">bank Name</TableHead>
-                <TableHead className="">TotalAccumulated</TableHead>
-                <TableHead className="">Duration</TableHead>
+                <TableHead className="">Total Accumulated</TableHead>
+                <TableHead className="">Daily Accumulated</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -151,16 +151,12 @@ export default function Inventory() {
                 </TableCell>
 
                 <TableCell className=' '>
-                   <Countdown
-                         className=' mt-4'
-                        date={Date.now() + (item.remainingtime * 1000)} 
-                        renderer={({ days, hours, minutes, seconds }) => (
-                        <span className=' text-xs'>
-                            {days} : {hours} : {minutes} : {seconds}
-                        </span>
-                        )}
-                    />
+                  <div className='flex flex-col'>
+                    ₱{item.dailyaccumulated.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.dailyaccumulated / rate).toLocaleString()}</span>
+                  </div>
                 </TableCell>
+
+                
                 
                 </TableRow>
               ))}

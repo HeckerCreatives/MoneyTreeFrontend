@@ -47,8 +47,8 @@ export const superadmin = [
     // {name: 'Leaderboard', icon: <Users size={15}/>, 
     // path:'/superadmin/leaderboard', subpath:[]},
     
-     {name: 'Maintenance', icon: <Wrench size={15}/>, 
-     path:'/superadmin/maintenance', subpath:[]},
+    //  {name: 'Maintenance', icon: <Wrench size={15}/>, 
+    //  path:'/superadmin/maintenance', subpath:[]},
      {name: 'Settings', icon: <Settings size={15}/>, 
      path:'/superadmin/settings', subpath:[]},
 ]

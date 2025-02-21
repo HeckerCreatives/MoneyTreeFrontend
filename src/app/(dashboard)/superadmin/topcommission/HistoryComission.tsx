@@ -42,6 +42,7 @@ export default function Topcommission() {
     const {rate, setRate, clearRate} = rateStore()
     const [start, setStart] = useState('')
     const [end, setEnd] = useState('')
+    const [search, setSearch] = useState('')
  
 
 
@@ -49,7 +50,7 @@ export default function Topcommission() {
         setLoading(true)
         const getList = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/gettopcommissions?startDate=${start}&endDate=${end}`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/gettopcommissions?startDate=${start}&endDate=${end}&search=${search}`,{
             withCredentials:true
             })
 
@@ -67,7 +68,7 @@ export default function Topcommission() {
           }
         }
         getList()
-    },[start, end])
+    },[start, end, search])
 
 
   return (
@@ -76,20 +77,26 @@ export default function Topcommission() {
 
         <p className=' text-sm font-medium'>Top commssion list</p>
 
-        <div className=' flex flex-wrap items-center gap-4'>
-            <div className=' flex flex-col'>
-                <label htmlFor="" className=' text-xs'>Start date</label>
-                <Input value={start} onChange={(e) => setStart(e.target.value)} type='date'/>
+        <div className=' flex flex-wrap items-center justify-between'>
+            <div className=' flex flex-wrap items-center gap-4'>
+                <div className=' flex flex-col'>
+                    <label htmlFor="" className=' text-xs'>Start date</label>
+                    <Input value={start} onChange={(e) => setStart(e.target.value)} type='date'/>
+                </div>
+
+                <div className=' flex flex-col'>
+                    <label htmlFor="" className=' text-xs'>End date</label>
+                    <Input value={end} onChange={(e) => setEnd(e.target.value)} type='date'/>
+                </div>
+
+                <RefreshCcw size={15} className=' cursor-pointer' onClick={() => {setStart(''), setEnd('')}}/>
+
             </div>
 
-            <div className=' flex flex-col'>
-                <label htmlFor="" className=' text-xs'>End date</label>
-                <Input value={end} onChange={(e) => setEnd(e.target.value)} type='date'/>
-            </div>
-
-            <RefreshCcw size={15} className=' cursor-pointer' onClick={() => {setStart(''), setEnd('')}}/>
-
+            <Input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder='Search' className=' w-fit' />
         </div>
+
+       
             <Table>
                 {loading === true && (
                     <TableCaption>

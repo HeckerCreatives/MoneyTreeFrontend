@@ -10,9 +10,9 @@ export default function Faq() {
             <div className=" h-full w-full">
                  <div className=" flex flex-col gap-4 items-center text-amber-950">
                     <h2 className=" text-2xl font-bold" >FAQ</h2>
-                    <p className=" text-center w-[80%]">
+                    {/* <p className=" text-center w-[80%]">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni error optio repellendus vel facilis sequi, reprehenderit dolor mollitia nobis, labore provident delectus consectetur saepe facere quidem obcaecati deserunt officiis voluptatibus?
-                    </p>
+                    </p> */}
 
                     <img src="/assets/logo.png" className=" w-[80%]" />
                     </div>

@@ -22,8 +22,7 @@ interface List {
     creaturename: string
     type: string,
     fromusername: string,
-    trainerrank: string,
-    trainername: string,
+    bankname: string
 
 }
 
@@ -85,7 +84,7 @@ export default function Comissionhistory() {
                 <TableHead className="">Date</TableHead>
                 <TableHead>Amount</TableHead>
                 <TableHead>From</TableHead>
-                <TableHead>Pet Name</TableHead>
+                <TableHead>Bank Name</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -95,7 +94,7 @@ export default function Comissionhistory() {
                     <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount / rate).toLocaleString()}</span></TableCell>
 
                     <TableCell>{item.fromusername}</TableCell>
-                    <TableCell>{item.trainername}</TableCell>
+                    <TableCell>{item.bankname}</TableCell>
                    
                     </TableRow>
                 ))}
