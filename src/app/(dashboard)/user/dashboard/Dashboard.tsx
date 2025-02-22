@@ -132,27 +132,6 @@ export default function Dashboard() {
     getData()
   },[])
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/maintenance/geteventmainte?maintenancetype=eventgame`,{
-        withCredentials:true
-        })
-
-        setEvent(response.data.data.value === '0' ? 'Off' : 'On')
-        
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          const axiosError = error as AxiosError<{ message: string, data: string }>;
-          if (axiosError.response && axiosError.response.status === 401) {
-           
-            }    
-          } 
-      }
-    }
-    getData()
-},[])
-
     //get referral
     useEffect(() => {
       const getReferral = async () => {
