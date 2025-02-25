@@ -93,13 +93,13 @@ export default function Mybanks() {
             </div>
 
             {Object.values(list).length === 0 && (
-                  <div className=' w-full h-[200px] flex items-center justify-center'>
+                  <div className=' w-full h-[200px] flex items-center justify-center '>
                     <p className=' text-sm '>No banks yet!</p>
                   </div>
                 )}
 
             {Object.values(list).length !== 0 && (
-                <div className=' w-full flex items-center justify-center mt-6'>
+                <div className=' w-full flex items-center justify-center mt-6 '>
                   <Pagination currentPage={currentpage} total={totalpage} onPageChange={handlePageChange}/>
                 </div>
             )}
