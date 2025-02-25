@@ -73,7 +73,21 @@ export default function Mybanks() {
             <div className=' w-full grid grid-cols-[repeat(auto-fill,minmax(300px,.3fr))] gap-4 h-fit place-items-center place-content-center'>
 
               {Object.values(list).map((item, index) => (
-                <MybanksOwn key={index} bankid={item.bankid} type={item.type} duration={item.duration} totalaccumulated={item.totalaccumulated} dailyaccumulated={item.dailyaccumulated} limittotal={item.limittotal} limitdaily={item.limitdaily} earnings={item.earnings} remainingtime={item.remainingtime} bankname={item.bankname}/>   
+                <MybanksOwn
+                key={index}
+                bankid={item.bankid}
+                type={item.type}
+                duration={item.duration}
+                totalaccumulated={item.totalaccumulated ?? 0}
+                dailyaccumulated={item.dailyaccumulated ?? 0}
+                limittotal={item.limittotal ?? 0}
+                limitdaily={item.limitdaily ?? 0}
+                earnings={item.earnings ?? 0}
+                remainingtime={item.remainingtime}
+                bankname={item.bankname}
+              />
+              
+                // <MybanksOwn key={index} bankid={item.bankid} type={item.type} duration={item.duration} totalaccumulated={item.totalaccumulated} dailyaccumulated={item.dailyaccumulated} limittotal={item.limittotal} limitdaily={item.limitdaily} earnings={item.earnings} remainingtime={item.remainingtime} bankname={item.bankname}/>   
               ))}
 
             </div>
