@@ -124,7 +124,7 @@ export default function MybanksOwn( prop: Prop) {
                 <h2 className=' ~text-sm/lg font-black'>{prop.bankname}</h2>
                 {/* <h2 className=' ~text-xs/sm font-semibold'>Daily earnings: Php{prop.dailyaccumulated.toLocaleString()} / ${(prop.dailyaccumulated / rate).toLocaleString()}</h2> */}
                 <h2 className=' ~text-xs/sm font-semibold'>Daily earnings: Php{prop.dailyaccumulated.toLocaleString()} </h2>
-                <h2 className=' ~text-xs/sm font-semibold'>Total earned: Php{prop.totalaccumulated.toLocaleString()} / Php{prop.limittotal.toLocaleString()}</h2>
+                <h2 className=' ~text-xs/sm font-semibold'>Total earned: Php{prop.totalaccumulated.toLocaleString()} / Php {prop.limittotal.toLocaleString()}</h2>
 
                 {/* <Countdown
                     className=' mt-2'
