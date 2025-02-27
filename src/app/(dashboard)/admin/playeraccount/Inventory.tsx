@@ -104,7 +104,7 @@ export default function Inventory() {
 
       <div className=' w-full p-6 bg-cream shadow-sm rounded-md'>
 
-        <div className=' flex flex-wrap items-center gap-4 mb-6'>
+        {/* <div className=' flex flex-wrap items-center gap-4 mb-6'>
             <Input type='text' placeholder='Search e.g user123' value={search} onChange={(e) => setSearch(e.target.value)} className=' w-[250px] bg-gray-100 '/>
 
             <Select value={current} onValueChange={setCurrent} >
@@ -120,7 +120,7 @@ export default function Inventory() {
             </Select>
 
 
-        </div>
+        </div> */}
 
 
         <Table>
