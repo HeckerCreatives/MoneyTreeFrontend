@@ -109,7 +109,10 @@ export default function Superadminlayout({
 
     
   return (
-    <div className=' w-full max-w-[1920px] h-[100dvh] grid grid-cols-1 lg:grid-cols-[100px_1fr] items-center bg-amber-50 p-4 overflow-hidden'>
+    <div className=' w-full max-w-[1920px] h-[100dvh] grid grid-cols-1 lg:grid-cols-[100px_1fr] items-center bg-amber-50 p-4 overflow-hidden'
+    style={{backgroundImage: "url('/assets/Background.png')" , backgroundPosition:'bottom', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
+    
+    >
 
       <div className=' relative z-40 w-full h-full hidden lg:flex items-center justify-center bg-amber-950 rounded-md '>
         <nav className=' px-4 w-full max-w-[1520px] h-full flex flex-col items-center justify-between relative p-4'>
@@ -151,9 +154,9 @@ export default function Superadminlayout({
       </div>
         
 
-        <div className=" w-full relative h-screen flex flex-col items-center overflow-y-auto overflow-x-hidden bg-amber-50 lg:px-8"
+        <div className=" w-full relative h-screen flex flex-col items-center overflow-y-auto overflow-x-hidden lg:px-8"
         >
-          <header className=' sticky top-0 z-50 bg-amber-50 text-xs font-semibold w-full flex text-amber-950 items-center justify-between py-2 border-b-2 border-amber-950/20'>
+          <header className=' px-4 rounded-md sticky top-0 z-50 bg-amber-50 text-xs font-semibold w-full flex text-amber-950 items-center justify-between py-2 border-b-2 border-amber-950/20'>
           <div className=' flex items-center gap-4'>
             <Sheet>
             <SheetTrigger className=' lg:hidden block bg-amber-950 p-1 rounded-sm text-amber-50'>

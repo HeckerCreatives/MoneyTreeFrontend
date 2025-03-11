@@ -93,9 +93,23 @@ export default function Complan() {
             <div className=' w-full h-auto grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-items-center gap-4 '>
               
                 
-                     {store.map((item, index) => (
-                            <Complancard key={index} _id={item._id} name={item.name} type={item.type} min={item.min} max={item.max} duration={item.duration} profit={item.profit} b1t1={item.b1t1} islocked={false}/>
-                        ))}
+            {store
+            .filter((item) => item.type !== "money_vault" && item.type !== "treasure_chest")
+            .map((item, index) => (
+              <Complancard 
+                key={index} 
+                _id={item._id} 
+                name={item.name} 
+                type={item.type} 
+                min={item.min} 
+                max={item.max} 
+                duration={item.duration} 
+                profit={item.profit} 
+                b1t1={item.b1t1} 
+                islocked={false} 
+              />
+          ))}
+
                
 
             </div>

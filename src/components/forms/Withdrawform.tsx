@@ -34,7 +34,7 @@ type Props = {
 }
 
 export default function Withdrawform( prop: Props) {
-    const [payment, setPayment] = useState('')
+    const [payment, setPayment] = useState('gcash')
     const { loading, setLoading, clearLoading } = loadingStore()
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
@@ -172,51 +172,23 @@ export default function Withdrawform( prop: Props) {
 
           <>
           {payment === 'gcash' ? (
-             <Select onValueChange={(value) => setValue('amount',  Number(value))}>
-             <SelectTrigger className="w-full bg-white text-amber-950">
-               <SelectValue placeholder="Select amount" />
-             </SelectTrigger>
-             <SelectContent className=' bg-amber-50 text-amber-950'>
-               <SelectItem value="500">₱500</SelectItem>
-               <SelectItem value="600">₱600</SelectItem>
-               <SelectItem value="700">₱700</SelectItem>
-               <SelectItem value="800">₱800</SelectItem>
-               <SelectItem value="900">₱900</SelectItem>
-               <SelectItem value="1000">₱1,000</SelectItem>
-               <SelectItem value="2000">₱2,000</SelectItem>
-               <SelectItem value="3000">₱3,000</SelectItem>
-               <SelectItem value="4000">₱4,000</SelectItem>
-               <SelectItem value="1000">₱5,000</SelectItem>
-              
-             </SelectContent>
-           </Select>
+              <Input max={5000} type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
           ) : (
-            <Select onValueChange={(value) => setValue('amount',  Number(value))}>
+            <Select onValueChange={(value) => setValue('amount', Number(value))}>
               <SelectTrigger className="w-full bg-white text-amber-950">
                 <SelectValue placeholder="Select amount" />
               </SelectTrigger>
-              <SelectContent className=' bg-amber-50 text-amber-950'>
-                <SelectItem value="500">₱500</SelectItem>
-                <SelectItem value="1000">₱1,000</SelectItem>
-                <SelectItem value="2000">₱2,000</SelectItem>
-                <SelectItem value="3000">₱3,000</SelectItem>
-                <SelectItem value="5000">₱5,000</SelectItem>
-                <SelectItem value="10000">₱10,000</SelectItem>
-                <SelectItem value="15000">₱15,000</SelectItem>
-                <SelectItem value="20000">₱20,000</SelectItem>
-                <SelectItem value="30000">₱30,000</SelectItem>
-                <SelectItem value="50000">₱50,000</SelectItem>
-                <SelectItem value="70000">₱70,000</SelectItem>
-                <SelectItem value="100000">₱100,000</SelectItem>
-                <SelectItem value="150000">₱150,000</SelectItem>
-                <SelectItem value="200000">₱200,000</SelectItem>
-                <SelectItem value="300000">₱300,000</SelectItem>
-                <SelectItem value="500000">₱500,000</SelectItem>
+              <SelectContent className="bg-amber-50 text-amber-950">
+                {[500, 1000, 2000, 3000, 5000, 10000, 15000, 20000, 30000, 50000, 70000, 
+                  100000, 150000, 200000, 300000, 500000, 600000, 700000, 800000, 900000, 
+                  1000000, 2000000, 3000000, 4000000, 5000000].map((amount) => (
+                  <SelectItem key={amount} value={amount.toString()}>
+                    ₱{amount.toLocaleString()}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           )}
-         
-
         
           </>
 
@@ -225,8 +197,17 @@ export default function Withdrawform( prop: Props) {
           
         ):(
 
+          <>
+           {payment === 'gcash' ? (
+            <Input max={5000} type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
+
+          ) : (
+            <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
+          )}
+          </>
+
           
-        <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
+        // <Input max={5000} type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
 
         )}
         

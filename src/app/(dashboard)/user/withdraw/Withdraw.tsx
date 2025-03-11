@@ -52,6 +52,8 @@ export default function Withdraw() {
         getWallets()
     },[])
 
+    console.log(rate)
+
 
   return (
     <div className="w-full flex flex-col gap-8 font-light py-8">
@@ -64,7 +66,7 @@ export default function Withdraw() {
                         <p className=' text-sm/lg font-bold'>Game Wallet Ballance</p>
                         <p className=' text-xs text-zinc-500 mt-2'>Total earnings</p>
                         <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.gamebalance.toLocaleString()}</h2>
-                        <h2 className=' text-[.7rem] '>${(wallet?.gamebalance || 0 / rate).toLocaleString()}</h2>
+                        <h2 className=' text-[.7rem] '>${((wallet?.gamebalance || 0) / rate).toLocaleString()}</h2>
 
                         <Withdrawform wallet={'Game Wallet Ballance'} type={'gamebalance'}/>
                     </div>
@@ -80,7 +82,7 @@ export default function Withdraw() {
                         <p className=' text-sm/lg font-bold'>Commission Wallet Ballance</p>
                         <p className=' text-xs mt-2'>Total earnings</p>
                         <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.commissionbalance.toLocaleString()}</h2>
-                        <h2 className=' text-[.7rem] '>${(wallet?.commissionbalance || 0 / rate).toLocaleString()}</h2>
+                        <h2 className=' text-[.7rem] '>${((wallet?.commissionbalance || 0) / rate).toLocaleString()}</h2>
 
 
                         <Withdrawform wallet={'Commission Wallet Ballance'} type={'commissionbalance'}/>

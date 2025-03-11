@@ -72,7 +72,7 @@ export default function Masterkeyhistory() {
     }
   return (
     <div className=' bg-cream flex flex-col gap-6 p-4  min-w-[300px]'>
-        <p>Master key history</p>
+        <p>Usage History</p>
          <Table className=' w-full'>
                 {loading === true && (
                     <TableCaption>

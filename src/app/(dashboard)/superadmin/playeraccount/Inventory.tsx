@@ -24,6 +24,7 @@ import {
 import Countdown from 'react-countdown';
 import loadingStore from '@/store/loading';
 import rateStore from '@/store/rate';
+import GrantMaturity from '@/components/common/GrantMaturity';
   
 
 interface List {
@@ -36,6 +37,9 @@ interface List {
     limitdaily: number,
     earnings: number,
     remainingtime: number
+    bank: string
+    duration: string
+  
 
 }
 
@@ -137,6 +141,7 @@ export default function Inventory() {
                 <TableHead className="">bank Name</TableHead>
                 <TableHead className="">Total Accumulated</TableHead>
                 <TableHead className="">Daily Accumulated</TableHead>
+                <TableHead className="">Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -155,6 +160,11 @@ export default function Inventory() {
                     ₱{item.dailyaccumulated.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.dailyaccumulated / rate).toLocaleString()}</span>
                   </div>
                 </TableCell>
+
+                <TableCell>
+                  <GrantMaturity id={item.bank} userid={''}/>
+                </TableCell>
+
 
                 
                 

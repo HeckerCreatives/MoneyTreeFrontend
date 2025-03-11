@@ -135,8 +135,24 @@ export default function Payin() {
     getList()
 },[user])
 
- // Watch the username value
  const selectedUsername = watch("username");
+
+ const amount = watch('amount', 0);
+
+ // Function to format number with commas
+ const formatNumber = (value: number) => {
+   return value.toLocaleString();
+ };
+
+ // Handle input change
+ const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+   let rawValue = event.target.value.replace(/,/g, ''); // Remove existing commas
+   let numericValue = Number(rawValue);
+
+   if (!isNaN(numericValue)) {
+     setValue('amount', numericValue, { shouldValidate: true }); // Update form state
+   }
+ };
 
   return (
     <div className='w-full flex flex-col gap-8 font-light py-8'>
@@ -207,11 +223,13 @@ export default function Payin() {
               <div>
                 <p className=' label'>Amount</p>
                 <Input
-                defaultValue={0}
-                  type='number'
-                  placeholder=''
-                  className='bg-gray-100'
-                  {...register('amount', { valueAsNumber: true })}
+                  type="text" // Use text to allow formatted display
+                  placeholder=""
+                  className="bg-gray-100"
+                  defaultValue={amount}
+                  value={amount ? formatNumber(amount) : ''}
+                  onChange={handleAmountChange}
+                  onBlur={() => setValue('amount', amount || 0, { shouldValidate: true })} // Ensure valid number on blur
                 />
                 {errors.amount && (
                   <p className='error text-red-600 mt-2'>{errors.amount.message}</p>

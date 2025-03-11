@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input'
 import rateStore from '@/store/rate'
 import refreshStore from '@/store/refresh'
 import loadingtableStore from '@/store/tableloading'
+import DeletePayinHistory from '@/components/common/DeletePayinHistory'
 
 interface List {
     id: string
@@ -99,6 +100,7 @@ export default function Payinhistory() {
                 <TableHead className="">Date</TableHead>
                 <TableHead>Amount</TableHead>
                 <TableHead>Username</TableHead>
+                <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -108,6 +110,9 @@ export default function Payinhistory() {
                     <TableCell className=' flex flex-col'>₱{item.value.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.value as any / rate).toLocaleString()}</span></TableCell>
 
                     <TableCell>{item.username}</TableCell>
+                    <TableCell>
+                      <DeletePayinHistory id={item.id} userid={item.userid}/>
+                    </TableCell>
                     {/* <TableCell>{item.firstname}</TableCell>
                     <TableCell>{item.lastname}</TableCell> */}
                    

@@ -5,6 +5,7 @@ import Socialmedias from './Socialmedias'
 import Masterkey from '@/components/forms/Masterkey'
 import Masterkeyhistory from './Masterkeyhistory'
 import Masterkeys from './Masterkeys'
+import Weather from '@/components/common/Weather'
 
 export default function Settings() {
   return (
@@ -15,6 +16,8 @@ export default function Settings() {
            <Changepasswordadmin/>
            <Conversionrate/>
            <Socialmedias/>
+          <Weather/>
+
           <Masterkeys/>
         </div>
 

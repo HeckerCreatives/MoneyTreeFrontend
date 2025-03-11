@@ -233,11 +233,11 @@ export default function Settings() {
   return (
     <div className="w-full flex flex-col gap-8 font-light">
     
-        <h2 className=' text-xl font-bold mt-8 text-white'>Settings</h2>
+        {/* <h2 className=' text-xl font-bold mt-8 text-amber-950'>Account</h2> */}
 
-        <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[400px_1fr_1fr] gap-4'>
+        <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[400px_1fr_1fr] gap-4 mt-8'>
             
-           <Changepassword/>
+           {/* <Changepassword/> */}
 
             <div className=' w-full h-auto flex flex-col gap-4 bg-cream shadow-sm p-6 text-amber-950'>
                 <h2 className=' text-lg font-semibold'>Personal Info</h2>

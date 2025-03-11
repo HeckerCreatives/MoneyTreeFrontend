@@ -137,7 +137,7 @@ export function RegisterForm() {
 
             <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-6 px-4">
-              <div className="grid gap-3">
+              <div className="grid gap-2">
                 <div className="grid gap-1">
                   <Label htmlFor="username">Username</Label>
                   <Input

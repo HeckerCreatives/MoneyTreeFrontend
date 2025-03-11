@@ -28,7 +28,7 @@ export const faqs = [
     },
     {
       question: "How do I withdraw my earnings?",
-      answer: "To withdraw earnings, players must have at least 500 PHP or 10 USD in their Game Wallet, with no limit for GCash and Gotyme. For Commission Wallet, withdrawals range from 500 PHP to 500,000 PHP. Withdrawal requests can be made every Thursday, 12:00 PM to 11:59 PM, and funds are released the following Thursday, 12:00 AM to 11:59 AM. To request, go to the withdrawal section on your dashboard, fill in the details, and click 'Request'."
+      answer: "To withdraw your earnings, ensure you meet the minimum amount required for your chosen Saving Plan (₱500 minimum purchase). For commission withdrawals, the amount must fall within the commission brackets (₱500 to ₱5,000,000), and a 10% admin fee will be deducted. Encashment cut-off is every 8th and 22nd of the month, while pay-outs are released every 15th and 30th. To request a withdrawal, go to the withdrawal section on your dashboard, fill in the required details, and click 'Request'. Make sure to check the cut-off and pay-out schedules to avoid delays."
     },
     {
       question: "Can I have multiple accounts?",
@@ -43,10 +43,12 @@ export const faqs = [
       answer: `Money Tree offers various savings options to suit your needs, with five saving plan,:
 Nest Stash, Wealth Jar, Piggy Bank, Money Vault, and Treasure Chest. Each plan offers different returns based on your chosen investment.
 
-      Nest Stash: Earn 20% profit in just 7 days with investments ranging from ₱500 to ₱5,000.
-      Wealth Jar: Enjoy a 50% profit in 14 days with investments between ₱1,000 and ₱10,000.
-      Piggy Bank: Maximize your returns with a 120% profit in 28 days, requiring an investment of ₱5,000 to ₱50,000.
-      Choose the savings bank that aligns with your financial goals and start growing your savings today!
+      Nest Stash: Earn 20% profit in just 15 days with a minimum investment of ₱500.
+      Wealth Jar: Enjoy a 60% profit in 30 days with a minimum investment of ₱500.
+      Piggy Bank: Maximize your returns with a 150% profit in 45 days with a minimum investment of ₱500.
+
+      Choose the savings plan that aligns with your financial goals and start growing your savings today!
+
 
       `
     }

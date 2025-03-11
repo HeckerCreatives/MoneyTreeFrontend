@@ -77,13 +77,13 @@ export default function Gameplay() {
                             <CarouselContent className=''>
                                
 
-                                <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/5'>
+                                <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/3'>
                                     <div className=' w-full flex flex-col h-auto'
                                     >
                                         <div className=' w-full aspect-square flex items-center justify-center rounded-md'
                                         style={{backgroundImage: 'url(/assets/BG.png)', backgroundPosition:'center', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
                                         >
-                                            <img src="/assets/Nest.png" alt="nest" width={150} />
+                                            <img src="/assets/Nest.png" alt="nest" width={170} />
 
                                         </div>
 
@@ -95,13 +95,13 @@ export default function Gameplay() {
                                     </div>
                                 </CarouselItem>
 
-                                <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/5'>
+                                <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/3'>
                                     <div className=' w-full flex flex-col h-auto'
                                     >
                                         <div className=' w-full aspect-square flex items-center justify-center rounded-md'
                                         style={{backgroundImage: 'url(/assets/BG.png)', backgroundPosition:'center', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
                                         >
-                                            <img src="/assets/jar.png" alt="jar" width={150} />
+                                            <img src="/assets/jar.png" alt="jar" width={170} />
 
                                         </div>
 
@@ -113,25 +113,25 @@ export default function Gameplay() {
                                     </div>
                                 </CarouselItem>
 
-                                <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/5'>
+                                <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/3'>
                                     <div className=' w-full flex flex-col h-auto'
                                     >
                                         <div className=' w-full aspect-square flex items-center justify-center rounded-md'
                                         style={{backgroundImage: 'url(/assets/BG.png)', backgroundPosition:'center', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
                                         >
-                                            <img src="/assets/Piggy.png" alt="piggy bank" width={150} />
+                                            <img src="/assets/Piggy.png" alt="piggy bank" width={170} />
 
                                         </div>
 
                                         <div className=' flex flex-col gap-1 mt-2'>
                                             <h2 className=' text-xl font-bold text-amber-900'>Piggy Bank</h2>
-                                            <p className=' text-sm text-amber-700'>The Piggy Bank plan is perfect for individuals who are ready to commit to saving over a longer period. With a one-month duration, it offers a higher return, making it ideal for those looking to grow larger sums of money while saving steadily over time.
+                                            <p className=' text-sm text-amber-700'>The Piggy Bank plan is perfect for individuals who are ready to commit to saving over a longer period. With a 45-day duration and a 150% return, it offers the highest yield among the saving plans, making it ideal for those looking to grow larger sums of money while saving steadily over time.
                                             </p>
                                         </div>
                                     </div>
                                 </CarouselItem>
 
-                                <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/5'>
+                                {/* <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/5'>
                                     <div className=' w-full flex flex-col h-auto'
                                     >
                                         <div className=' w-full aspect-square flex items-center justify-center rounded-md'
@@ -143,12 +143,11 @@ export default function Gameplay() {
 
                                         <div className=' flex flex-col gap-1 mt-2'>
                                             <h2 className=' text-xl font-bold text-amber-900'>Money Vault <span className=' text-xs'>(Coming Soon!)</span></h2>
-                                            {/* <p className=' text-sm text-amber-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> */}
                                         </div>
                                     </div>
-                                </CarouselItem>
+                                </CarouselItem> */}
 
-                                <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/5'>
+                                {/* <CarouselItem className='  basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/5'>
                                     <div className=' w-full flex flex-col h-auto'
                                     >
                                         <div className=' w-full aspect-square flex items-center justify-center rounded-md'
@@ -160,10 +159,9 @@ export default function Gameplay() {
 
                                         <div className=' flex flex-col gap-1 mt-2'>
                                             <h2 className=' text-xl font-bold text-amber-900'>Treasure Chest <span className=' text-xs'>(Coming Soon!)</span></h2>
-                                            {/* <p className=' text-sm text-amber-700'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> */}
                                         </div>
                                     </div>
-                                </CarouselItem>
+                                </CarouselItem> */}
                                
                             </CarouselContent>
                          
