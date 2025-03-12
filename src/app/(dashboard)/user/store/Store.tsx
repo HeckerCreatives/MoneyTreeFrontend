@@ -68,7 +68,9 @@ export default function Store() {
 
             <div className=' w-full grid grid-cols-[repeat(auto-fill,minmax(325px,1fr))] gap-4 h-fit place-items-center '>
 
-              {store.map((item, index) => (
+              {store
+              .filter((item) => item.type !== "money_vault" && item.type !== "treasure_chest")
+              .map((item, index) => (
                 <BanksStore key={index} _id={item._id} type={item.type} name={item.name} min={item.min} max={item.max} profit={item.profit} duration={item.duration} b1t1={item.b1t1}locked={['Money Vault', 'Treasure Chest'].includes(item.name)}/>
               ))}
 

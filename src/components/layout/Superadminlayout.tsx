@@ -48,7 +48,7 @@ export default function Superadminlayout({
     const [name, setName] = useState('')
     
     
-    const breadcrumd = user.find((item) => path.includes(item.path))?.name
+    const breadcrumd = superadmin.find((item) => path.includes(item.path))
 
 
  
@@ -105,6 +105,8 @@ export default function Superadminlayout({
       }
     }
   }
+
+  console.log(breadcrumd)
 
 
     
@@ -185,7 +187,7 @@ export default function Superadminlayout({
           </Sheet>
 
               <p className=' text-lg font-black'>
-                {path.split('/')[2]?.charAt(0).toUpperCase() + path.split('/')[2]?.slice(1)}
+                {breadcrumd?.name}
               </p>
           </div>
           

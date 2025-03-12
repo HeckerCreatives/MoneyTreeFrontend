@@ -17,18 +17,18 @@ import refreshStore from '@/store/refresh'
 import { useRouter } from 'next/navigation'
 import axios, { AxiosError } from 'axios'
 import toast from 'react-hot-toast'
-  
+
 interface Bank {
     _id: string
     type:string
     name: string
     min: number
     max: number
-    profit:any 
+    profit:any
     duration: number
     b1t1: string
     locked: boolean
-} 
+}
 
 export default function BanksStore(prop: Bank) {
     const [val, setVal] = useState(0);
@@ -45,7 +45,8 @@ export default function BanksStore(prop: Bank) {
         try {
             const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/buybank`,{
                 type: prop.type, // bank type // piggy_bank, money_vault, and treasure_chest
-                amount: val
+                amount: prop.min
+                // amount: val
             },{
                 withCredentials: true,
                 headers:{
@@ -79,26 +80,26 @@ export default function BanksStore(prop: Bank) {
                     }
 
                     if (axiosError.response && axiosError.response.status === 400) {
-                        toast.error(`${axiosError.response.data.data}`)     
-                            
+                        toast.error(`${axiosError.response.data.data}`)
+
                     }
 
                     if (axiosError.response && axiosError.response.status === 402) {
-                        toast.error(`${axiosError.response.data.data}`)          
-                                
+                        toast.error(`${axiosError.response.data.data}`)
+
                     }
 
                     if (axiosError.response && axiosError.response.status === 403) {
-                        toast.error(`${axiosError.response.data.data}`)              
-                        
+                        toast.error(`${axiosError.response.data.data}`)
+
                     }
 
                     if (axiosError.response && axiosError.response.status === 404) {
-                        toast.error(`${axiosError.response.data.data}`)             
+                        toast.error(`${axiosError.response.data.data}`)
                     }
-            } 
-      
-            
+            }
+
+
         }
     }
     // const canBuy = async () => {
@@ -106,12 +107,12 @@ export default function BanksStore(prop: Bank) {
     //     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/trainer/getusertrainer?type=${prop.rank}`,{
     //     withCredentials:true
     //     })
-    
+
     //     setLoading(false)
     //     if(response.data.message === 'success'){
     //         buyPet()
     //     }
-                
+
     //     } catch (error) {
     //     setLoading(false)
     //     if (axios.isAxiosError(error)) {
@@ -123,24 +124,24 @@ export default function BanksStore(prop: Bank) {
     //         }
 
     //         if (axiosError.response && axiosError.response.status === 400) {
-    //             toast.error(`${axiosError.response.data.data}`)     
-                    
+    //             toast.error(`${axiosError.response.data.data}`)
+
     //         }
 
     //         if (axiosError.response && axiosError.response.status === 402) {
-    //             toast.error(`${axiosError.response.data.data}`)          
-                        
+    //             toast.error(`${axiosError.response.data.data}`)
+
     //         }
 
     //         if (axiosError.response && axiosError.response.status === 403) {
-    //             toast.error(`${axiosError.response.data.data}`)              
-                
+    //             toast.error(`${axiosError.response.data.data}`)
+
     //         }
 
     //         if (axiosError.response && axiosError.response.status === 404) {
-    //             toast.error(`${axiosError.response.data.data}`)             
+    //             toast.error(`${axiosError.response.data.data}`)
     //         }
-    // } 
+    // }
 
     //     }
     // }
@@ -168,18 +169,20 @@ export default function BanksStore(prop: Bank) {
                     <>
                      <p>Profit: xxx %</p>
                     <p>Duration: xx days</p>
-                    <p>Starts with: xxxxxx php</p>
+                    <p>Price: xxxxxx php</p>
+                    {/* <p>Starts with: xxxxxx php</p> */}
                     </>
-                   
+
                 ): (
                     <>
                     <p>Profit: {prop.profit * 100} %</p>
                    <p>Duration: {prop.duration} days</p>
-                   <p>Starts with: {prop.min.toLocaleString()} php</p>
+                   {/* <p>Starts with: {prop.min.toLocaleString()} php</p> */}
+                   <p>Price: {prop.min.toLocaleString()} php</p>
                    </>
                 )
                 }
-                
+
 
 
                 <Drawer>
@@ -201,11 +204,11 @@ export default function BanksStore(prop: Bank) {
                             <h2 className=' text-lg font-black'>{prop.name}</h2>
                             <p>Profit: {prop.profit * 100} %</p>
                             <p>Duration: {prop.duration} days</p>
-                            <p>Minimum: {prop.min.toLocaleString()} php</p>
-                            <p>Maximum: {prop.max.toLocaleString()} php</p>
+                            <p>Price: {prop.min.toLocaleString()} php</p>
+                            {/* <p>Maximum: {prop.max.toLocaleString()} php</p> */}
 
-                            <label htmlFor="" className=' text-xs mt-2 mb-1'>Enter amount</label>
-                            <Input type='number' min={500} value={val} onChange={(e) => setVal(e.target.valueAsNumber)} placeholder='Amount'/>
+                            {/* <label htmlFor="" className=' text-xs mt-2 mb-1'>Enter amount</label>
+                            <Input type='number' min={500} value={val} onChange={(e) => setVal(e.target.valueAsNumber)} placeholder='Amount'/> */}
 
                             <div className=' w-full flex items-center gap-4 mt-6'>
                             <Button onClick={buyBank} className=' w-full '>
@@ -218,11 +221,11 @@ export default function BanksStore(prop: Bank) {
                             </DrawerClose>
                             </div>
 
-                            
+
 
                         </div>
                     </div>
-                    
+
                 </DrawerContent>
                 </Drawer>
 

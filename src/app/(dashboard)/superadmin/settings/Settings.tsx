@@ -1,3 +1,4 @@
+'use client'
 import Changepasswordadmin from '@/components/forms/Changepasswordadmin'
 import Conversionrate from '@/components/forms/Conversionrate'
 import React from 'react'

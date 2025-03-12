@@ -1,3 +1,4 @@
+'use client'
 import Playerlayout from '@/components/layout/Playerlayout'
 import React from 'react'
 import Dashboard from './Dashboard'

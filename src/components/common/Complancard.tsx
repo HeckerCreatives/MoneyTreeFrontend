@@ -185,14 +185,14 @@ export default function Complancard(prop: Props) {
                         {errors.duration && <p className='text-[.6em] text-red-500'>{errors.duration.message}</p>}
 
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Mininum (php)</label>
+                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Price (php)</label>
                         <Input  type='number' className=' text-xs' {...register('min', {valueAsNumber: true})}/>
                         {errors.min && <p className='text-[.6em] text-red-500'>{errors.min.message}</p>}
 
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Maximum (php)</label>
+                        {/* <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Maximum (php)</label>
                         <Input  type='number' className=' text-xs' {...register('max', {valueAsNumber: true})}/>
-                        {errors.max && <p className='text-[.6em] text-red-500'>{errors.max.message}</p>}
+                        {errors.max && <p className='text-[.6em] text-red-500'>{errors.max.message}</p>} */}
 
 
                         <Button disabled={prop.name.includes('Money') || prop.name.includes('Treasure')}  className={`w-full mt-4`}>

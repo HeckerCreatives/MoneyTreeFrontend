@@ -103,6 +103,10 @@ const copyGameid = () => {
   toast.success('Game id copied')
 }
 
+const gamerUrl = `${process.env.NEXT_PUBLIC_GAME_LINK}/${gameid}`
+
+
+console.log(gameid)
 
   return (
     <div className=' w-full h-fit flex flex-col bg-white rounded-xl shadow-sm p-6'>
@@ -139,7 +143,7 @@ const copyGameid = () => {
 
               <div className=' flex items-center justify-end gap-2'>
                 <button onClick={() => setOpen(!open)} className=' px-4 py-2 bg-gray-200 rounded-md ~text-xs/sm'>Cancel</button>
-                <a onClick={copyGameid} href={`${process.env.NEXT_PUBLIC_GAME_LINK}`} target='_blank' className=' px-4 w-fit text-sm text-white font-medium bg-dark py-2 rounded-lg'>Continue</a>
+                <a onClick={copyGameid} href={gamerUrl} target='_blank' className=' px-4 w-fit text-sm text-white font-medium bg-dark py-2 rounded-lg'>Continue</a>
 
               </div>
 

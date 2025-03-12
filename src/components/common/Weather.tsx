@@ -4,6 +4,15 @@ import React, { useEffect, useState } from 'react'
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import toast from 'react-hot-toast';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
+import refreshStore from '@/store/refresh';
+  
 
 interface Weather
 {
@@ -17,6 +26,7 @@ export default function Weather() {
     const [data, setData] = useState<Weather[]>([])
     const [name, setName] = useState('')
     const [sound, setSound] = useState('')
+    const {refresh, setRefresh} = refreshStore()
 
     useEffect(() => {
         const getData = async () => {
@@ -26,6 +36,7 @@ export default function Weather() {
             })
 
             setData(response.data.data)
+            setName(response.data.data[0].name)
             
           } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -37,9 +48,10 @@ export default function Weather() {
           }
         }
         getData()
-    },[ ])
+    },[refresh ])
 
     const update = async () => {
+        setRefresh('true')
         try {
             const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/weather/editweather`,{
                 name: name, sound: sound, id: data[0]._id
@@ -56,6 +68,8 @@ export default function Weather() {
                 error: `Error while saving weather.`,
             });
             if(response.data.message === 'success'){
+                setRefresh('false')
+
             }
 
         } catch (error) {
@@ -98,11 +112,22 @@ export default function Weather() {
         <p className=' text-lg font-semibold'>Weather</p>
 
         <div className=' flex flex-col gap-1'>
-            <label htmlFor="">Name</label>
-            <Input defaultValue={data[0]?.name} onChange={(e) => setName(e.target.value)}/>
+            <label htmlFor="" className=' text-xs'>Name</label>
+            {/* <Input defaultValue={data[0]?.name} onChange={(e) => setName(e.target.value)}/> */}
 
-            <label htmlFor="">Sound</label>
-            <Input defaultValue={data[0]?.sound} onChange={(e) => setSound(e.target.value)}/>
+            <Select value={name} onValueChange={setName}>
+            <SelectTrigger className="">
+                <SelectValue placeholder="Weather" />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="sunny">Sunny</SelectItem>
+                <SelectItem value="windy">Windy</SelectItem>
+                <SelectItem value="rainy">Rainy</SelectItem>
+            </SelectContent>
+            </Select>
+            {/* <label htmlFor="">Sound</label>
+            <Input defaultValue={data[0]?.sound} onChange={(e) => setSound(e.target.value)}/> */}
 
             <Button onClick={update} className=' mt-4'>Save</Button>
         </div>
