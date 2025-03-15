@@ -39,7 +39,7 @@ export default function Comissionhistory() {
         setLoading(true)
         const getList = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/playerwallethistory?type=commissionbalance&page=${currentpage}&limit=10`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/playerwallethistory?type=unilevelbalance&page=${currentpage}&limit=10`,{
             withCredentials:true
             })
 
@@ -69,7 +69,7 @@ export default function Comissionhistory() {
 
   return (
      <div className=' w-full flex flex-col gap-4 h-[500px] rounded-xl shadow-sm mt-4'>
-        <p className=' text-sm font-medium'>Commission History (Lvl 2-10)</p>
+        <p className=' text-sm font-medium'>Unilevel History (Lvl 2-10)</p>
             <Table>
                 {loading === true && (
                     <TableCaption>
@@ -85,6 +85,7 @@ export default function Comissionhistory() {
                 <TableHead>Amount</TableHead>
                 <TableHead>From</TableHead>
                 <TableHead>Bank Name</TableHead>
+                <TableHead>Type</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -95,6 +96,7 @@ export default function Comissionhistory() {
 
                     <TableCell>{item.fromusername}</TableCell>
                     <TableCell>{item.bankname}</TableCell>
+                    <TableCell>{item.type}</TableCell>
                    
                     </TableRow>
                 ))}

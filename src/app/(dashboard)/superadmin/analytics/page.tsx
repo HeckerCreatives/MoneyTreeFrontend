@@ -21,6 +21,8 @@ interface AdminWallets {
   payoutcommission: number,
   payout: number,
   adminfeewallet: number
+  referral: number,
+  unilevel: number,
 }
 
 export default function page() {
@@ -66,7 +68,8 @@ export default function page() {
           <Card name={'User Top Up'} amount={wallets?.payin || 0} color={'bg-emerald-400'} subcolor={'bg-emerald-300'}/>
           <Card name={'Total Payout'} amount={wallets?.payout || 0} color={'bg-purple-400'} subcolor={'bg-purple-300'}/>
           <Card name={'Payout Game'} amount={wallets?.payoutgame || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
-          <Card name={'Payout Commission'} amount={wallets?.payoutcommission || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
+          <Card name={'Referral Commission Payout '} amount={wallets?.referral || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
+          <Card name={'Unilevel Commission Payout'} amount={wallets?.unilevel || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
           <Card name={'Total Company Profit'} amount={totalsales - (wallets?.payout || 0)} color={'bg-blue-400'} subcolor={'bg-blue-300'}/>
           <Card name={'Game Profit'} amount={wallets?.products || 0} color={'bg-green-400'} subcolor={'bg-green-300'}/>
 

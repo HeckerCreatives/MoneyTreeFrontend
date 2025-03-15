@@ -106,7 +106,6 @@ const copyGameid = () => {
 const gamerUrl = `${process.env.NEXT_PUBLIC_GAME_LINK}/${gameid}`
 
 
-console.log(gameid)
 
   return (
     <div className=' w-full h-fit flex flex-col bg-white rounded-xl shadow-sm p-6'>

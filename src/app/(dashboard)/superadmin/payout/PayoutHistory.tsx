@@ -66,6 +66,8 @@ interface List {
   type:string
   createdAt:string
   phonenumber: string
+
+  
 }
 
 
@@ -271,7 +273,8 @@ export default function Payouthistory() {
       <Tabs defaultValue="gamebalance" className="w-full">
       <TabsList>
         <TabsTrigger onClick={() => setTab('gamebalance')} value="gamebalance">Game</TabsTrigger>
-        <TabsTrigger onClick={() => setTab('commissionbalance')} value="commissionbalance">Comission</TabsTrigger>
+        <TabsTrigger onClick={() => setTab('directreferralbalance')} value="directreferralbalance">Referral</TabsTrigger>
+        <TabsTrigger onClick={() => setTab('unilevelbalance')} value="unilevelbalance">Unilevel</TabsTrigger>
       </TabsList>
       <TabsContent value="gamebalance" className=' flex flex-col gap-4'>
       <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
@@ -461,10 +464,197 @@ export default function Payouthistory() {
         
        </div>
       </TabsContent>
-      <TabsContent value="commissionbalance" className=' flex flex-col gap-4'>
+      <TabsContent value="directreferralbalance" className=' flex flex-col gap-4'>
       <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
-        <p className=' text-sm font-medium'>Comission Payout List</p>
+        <p className=' text-sm font-medium'>Referral Payout List</p>
+
+        {/* <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/> */}
+        </div>
+            <Table>
+                {loading === true && (
+                    <TableCaption>
+                        <span className=' loaderdark'></span>
+                    </TableCaption>
+                )}
+                {list.length === 0 && (
+                <TableCaption>No data.</TableCaption>
+                )}
+            <TableHeader>
+            <TableRow>
+                <TableHead className="">Date</TableHead>
+                <TableHead>Username</TableHead>
+                <TableHead>First name</TableHead>
+                <TableHead>Last name</TableHead>
+                <TableHead>Payment method</TableHead>
+                <TableHead>Account no.</TableHead>
+                <TableHead>Account name</TableHead>
+                <TableHead>Gross amount</TableHead>
+                <TableHead>Net amount</TableHead>
+
+                <TableHead>Withdrawal fee</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Action</TableHead>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                {list.map((item, index) => (
+                   <TableRow key={index}>
+                   <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
+                   <TableCell>{item.username}</TableCell>
+                   <TableCell>{item.firstname}</TableCell>
+                   <TableCell>{item.lastname}</TableCell>
+                   <TableCell>{item.paymentmethod}</TableCell>
+                   <TableCell>{item.accountnumber}</TableCell>
+                   <TableCell>{item.accountname}</TableCell>
+                   <TableCell className=' '>
+                     <div className='flex flex-col'>
+                       ₱{item.grossamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.grossamount / rate).toLocaleString()}</span>
+                     </div>
+                   </TableCell>
+                   <TableCell className=' '>
+                     <div className='flex flex-col'>
+                       ₱{item.netamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netamount / rate).toLocaleString()}</span>
+                     </div>
+                   </TableCell>
+                   <TableCell className=' '>
+                     <div className='flex flex-col'>
+                       ₱{item.withdrawalfee.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.withdrawalfee / rate).toLocaleString()}</span>
+                     </div>
+                   </TableCell>
+
+                   <TableCell>{item.status}</TableCell>
+                   <TableCell>
+                     <Dialog open={open} onOpenChange={setOpen}>
+                       <DialogTrigger className='text-[.6rem] primary-green text-white px-2 py-1 rounded-sm font-medium flex items-center gap-1 justify-center'><RotateCcw size={12}/>Process</DialogTrigger>
+                       <DialogContent>
+                         <DialogHeader>
+                           <DialogTitle>Process Payout</DialogTitle>
+                           <DialogDescription>
+                              This action cannot be undone. Process payout <span className=' text-amber-800'>{item.id}</span> from <span className=' text-amber-800'>{item.username}</span>, gross amount of <span className=' text-amber-800'>{item.grossamount.toLocaleString()} php </span> and net amount of  <span className=' text-amber-800'>{item.netamount.toLocaleString()}php</span>
+                            </DialogDescription>
+                         </DialogHeader>
+                         <div className=' w-full flex flex-col gap-4'>
+                         <Select value={status} onValueChange={setStatus}>
+                           <SelectTrigger className="w-[180px]">
+                             <SelectValue placeholder="Status" />
+                           </SelectTrigger>
+                           <SelectContent>
+                             <SelectItem value="done">Approved</SelectItem>
+                             <SelectItem value="reject">Reject</SelectItem>
+                           </SelectContent>
+                         </Select>
+
+                         <div className=' w-full flex flex-col gap-1'>
+                          <Button onClick={() => processPayout(item.id)} disabled={loading} className=' mt-4'>
+                            {loading === true && (
+                              <span className='loader'></span>
+                            )}
+                            Continue</Button>
+
+                            <p className=' w-full text-center text-xs'>or</p>
+
+                            <Button disabled={loading} onClick={() => deletePayout(item.id)} variant={'destructive'}>
+                            {loading === true && (
+                              <span className='loader'></span>
+                            )}
+                              Delete payout</Button>
+                         </div>
+
+                         
+
+                         </div>
+                       </DialogContent>
+                     </Dialog>
+
+                   </TableCell>
+                  
+                  
+                   </TableRow>
+                ))}
+                
+            </TableBody>
+            </Table>
+
+            {list.length !== 0 && (
+                <div className=' w-full flex items-center justify-center mt-6'>
+                    <Pagination currentPage={currentpage} total={totalpage} onPageChange={handlePageChange}/>
+                </div>
+            )}
+        
+       </div>
+       <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
+        <div className=' w-full flex items-center justify-between '>
+        <p className=' text-sm font-medium'>ComissionPayout History</p>
+        </div>
+            <Table>
+                {loading === true && (
+                    <TableCaption>
+                        <span className=' loaderdark'></span>
+                    </TableCaption>
+                )}
+                {history.length === 0 && (
+                <TableCaption>No data.</TableCaption>
+                )}
+            <TableHeader>
+            <TableRow>
+                  <TableHead className="">Date</TableHead>
+                  <TableHead>Username</TableHead>
+                  <TableHead>Payment method</TableHead>
+                  <TableHead>Account no.</TableHead>
+                  <TableHead>Account name</TableHead>
+                  <TableHead>Gross amount</TableHead>
+                  <TableHead>Net amount</TableHead>
+                  <TableHead>Withdrawal fee</TableHead>
+                  <TableHead>Status</TableHead>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+            {history.map((item, index) => (
+                    <TableRow key={index}>
+                    <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
+                    <TableCell>{item.username}</TableCell>
+                    <TableCell>{item.paymentmethod}</TableCell>
+                    <TableCell>{item.accountnumber}</TableCell>
+                    <TableCell>{item.accountname}</TableCell>
+                    <TableCell className=' '>
+                      <div className='flex flex-col'>
+                        ₱{item.grossamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.grossamount / rate).toLocaleString()}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell className=' '>
+                      <div className='flex flex-col'>
+                        ₱{item.netamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netamount / rate).toLocaleString()}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell className=' '>
+                      <div className='flex flex-col'>
+                        ₱{item.withdrawalfee.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.withdrawalfee / rate).toLocaleString()}</span>
+                      </div>
+                    </TableCell>
+
+                    <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
+                   
+                   
+                   
+                    </TableRow>
+                ))}
+                
+            </TableBody>
+            </Table>
+
+            {history.length !== 0 && (
+                <div className=' w-full flex items-center justify-center mt-6'>
+                    <Pagination currentPage={currentpage2} total={totalpage2} onPageChange={handlePageChange2}/>
+                </div>
+            )}
+        
+       </div>
+      </TabsContent>
+      <TabsContent value="unilevelbalance" className=' flex flex-col gap-4'>
+      <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
+        <div className=' w-full flex items-center justify-between '>
+        <p className=' text-sm font-medium'>Unilevel Payout List</p>
 
         {/* <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/> */}
         </div>

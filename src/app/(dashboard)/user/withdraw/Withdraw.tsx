@@ -12,9 +12,11 @@ import rateStore from '@/store/rate'
   
 
 interface Wallet {
-    gamebalance: 0,
-    fiatbalance: 0,
-    commissionbalance: 0
+    gamebalance: number,
+    fiatbalance: number,
+    commissionbalance: number
+    directreferralbalance: number,
+    unilevelbalance: number,
 }
 
 
@@ -52,7 +54,6 @@ export default function Withdraw() {
         getWallets()
     },[])
 
-    console.log(rate)
 
 
   return (
@@ -63,7 +64,7 @@ export default function Withdraw() {
                 <img src="/assets/card.png" alt="card" className=' max-w-[400px] w-full max-h-[200px] h-full'/>
                 <div className=' p-6 absolute w-full '>
                     <div className=' flex flex-col'>
-                        <p className=' text-sm/lg font-bold'>Game Wallet Ballance</p>
+                        <p className=' text-sm/lg font-bold'>Game Wallet Balance</p>
                         <p className=' text-xs text-zinc-500 mt-2'>Total earnings</p>
                         <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.gamebalance.toLocaleString()}</h2>
                         <h2 className=' text-[.7rem] '>${((wallet?.gamebalance || 0) / rate).toLocaleString()}</h2>
@@ -79,15 +80,31 @@ export default function Withdraw() {
                 <img src="/assets/card.png" alt="card" className=' max-w-[400px] w-full max-h-[220px] h-full'/>
                 <div className=' p-6 absolute w-full items-center justify-center text-amber-950'>
                     <div className=' flex flex-col'>
-                        <p className=' text-sm/lg font-bold'>Commission Wallet Ballance</p>
+                        <p className=' text-sm/lg font-bold'>Referral Commission Wallet Balance
+                        </p>
                         <p className=' text-xs mt-2'>Total earnings</p>
-                        <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.commissionbalance.toLocaleString()}</h2>
-                        <h2 className=' text-[.7rem] '>${((wallet?.commissionbalance || 0) / rate).toLocaleString()}</h2>
+                        <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.directreferralbalance.toLocaleString()}</h2>
+                        <h2 className=' text-[.7rem] '>${((wallet?.directreferralbalance || 0) / rate).toLocaleString()}</h2>
 
 
-                        <Withdrawform wallet={'Commission Wallet Ballance'} type={'commissionbalance'}/>
+                        <Withdrawform wallet={'Referral Commission Wallet Balanc'} type={'referral'}/>
                     </div>
 
+                </div>
+
+            </div>
+
+            <div className=' relative flex items-center justify-center w-full max-w-[400px] h-[170px] shadow-sm rounded-md'>
+                <img src="/assets/card.png" alt="card" className=' max-w-[400px] w-full max-h-[220px] h-full'/>
+                <div className=' p-6 absolute w-full items-center justify-center text-amber-950'>
+                    <div className=' flex flex-col'>
+                        <p className=' text-sm/lg font-bold'>Unilevel Commission Wallet Balance
+                        </p>
+                        <p className=' text-xs mt-2'>Total earnings</p>
+                        <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.unilevelbalance.toLocaleString()}</h2>
+                        <h2 className=' text-[.7rem] '>${((wallet?.unilevelbalance || 0) / rate).toLocaleString()}</h2>
+                        <Withdrawform wallet={'Unilevel Commission Wallet Balanc'} type={'unilevel'}/>
+                    </div>
                 </div>
 
             </div>

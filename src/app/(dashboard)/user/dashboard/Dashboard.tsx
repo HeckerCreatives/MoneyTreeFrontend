@@ -239,14 +239,11 @@ export default function Dashboard() {
                          Are you sure you want to play?
                         </DialogDescription>
                       </DialogHeader>
+                        <div className=' flex items-center justify-end gap-2'>
+                          <button onClick={() => setOpen(!open)} className=' px-4 py-2 bg-gray-200 rounded-md ~text-xs/sm'>Cancel</button>
+                          <a onClick={copyGameid} href={`${process.env.NEXT_PUBLIC_GAME_LINK}?userID=${gameid}`} target='_blank' className=' px-4 w-fit text-sm text-white font-medium bg-[#A8DC08] py-2 rounded-lg'>Continue</a>
 
-                      <div className=' flex items-center justify-end gap-2'>
-                        <button onClick={() => setOpen(!open)} className=' px-4 py-2 bg-gray-200 rounded-md ~text-xs/sm'>Cancel</button>
-                        <a onClick={copyGameid} href={`${process.env.NEXT_PUBLIC_GAME_LINK}?userID=${gameid}`} target='_blank' className=' px-4 w-fit text-sm text-white font-medium bg-[#A8DC08] py-2 rounded-lg'>Continue</a>
-
-                      </div>
-
-
+                        </div>
                     </DialogContent>
                   </Dialog>
                 </div>
@@ -260,9 +257,9 @@ export default function Dashboard() {
               <Card name="Game Total Earnings" amount={stats?.game || 0} color="bg-green-400" subcolor="bg-green-300" />
               <Card name="Game Wallet Earnings" amount={unclaimed} color="bg-emerald-400" subcolor="bg-emerald-300" />
 
-              <Card name="Referral Commissions" amount={stats?.referral || 0} color="bg-teal-400" subcolor="bg-teal-300" />
-              <Card name="Unilevel Commissions" amount={stats?.unilevel || 0} color="bg-cyan-400" subcolor="bg-cyan-300" />
-              <Card name="Commission Wallet Earnings" amount={wallet?.commissionbalance || 0} color="bg-sky-400" subcolor="bg-sky-300" />
+              <Card name="Referral Commissions Wallet Earnings" amount={stats?.referral || 0} color="bg-teal-400" subcolor="bg-teal-300" />
+              <Card name="Unilevel Commissions Wallet Earnings" amount={stats?.unilevel || 0} color="bg-cyan-400" subcolor="bg-cyan-300" />
+              {/* <Card name="Commission Wallet Earnings" amount={wallet?.commissionbalance || 0} color="bg-sky-400" subcolor="bg-sky-300" /> */}
               <Card name="Total Earnings" amount={(stats?.referral || 0) + (stats?.unilevel || 0) + (stats?.game || 0)} color="bg-indigo-400" subcolor="bg-indigo-300" />
           </div>
 

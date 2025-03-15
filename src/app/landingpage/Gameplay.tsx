@@ -107,7 +107,7 @@ export default function Gameplay() {
 
                                         <div className=' flex flex-col gap-1 mt-2'>
                                             <h2 className=' text-xl font-bold text-amber-900'>Wealth Jar</h2>
-                                            <p className=' text-sm text-amber-700'>The Wealth Jar plan is designed for those looking to save for two weeks. It offers steady growth, allowing you to grow your savings at a reliable pace. Ideal for people who want a balance between time and return on their investment.
+                                            <p className=' text-sm text-amber-700'>The Wealth Jar plan is designed for individuals looking to save for 30 days. It offers steady growth, allowing you to grow your savings at a reliable pace. This plan is ideal for those who want a balance between time and return on their investment, making it a great option for short-term savings goal.
                                             </p>
                                         </div>
                                     </div>

@@ -71,7 +71,7 @@ export default function Store() {
               {store
               .filter((item) => item.type !== "money_vault" && item.type !== "treasure_chest")
               .map((item, index) => (
-                <BanksStore key={index} _id={item._id} type={item.type} name={item.name} min={item.min} max={item.max} profit={item.profit} duration={item.duration} b1t1={item.b1t1}locked={['Money Vault', 'Treasure Chest'].includes(item.name)}/>
+                <BanksStore key={index} _id={item._id} type={item.type} name={item.name} min={item.min} max={item.max} profit={item.profit} duration={item.duration} b1t1={item.b1t1} locked={['Money Vault', 'Treasure Chest'].includes(item.name)}/>
               ))}
 
               

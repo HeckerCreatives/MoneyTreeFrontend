@@ -45,7 +45,7 @@ export default function BanksStore(prop: Bank) {
         try {
             const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/buybank`,{
                 type: prop.type, // bank type // piggy_bank, money_vault, and treasure_chest
-                amount: prop.min
+                amount: val
                 // amount: val
             },{
                 withCredentials: true,
@@ -148,6 +148,10 @@ export default function BanksStore(prop: Bank) {
 
     const findBank = banks.find((item) => item.id === prop.name)
 
+    useEffect(()=>{
+setVal(prop.min)
+    },[prop])
+
   return (
     <div  className={`relative w-fit h-auto flex items-center justify-center ${prop.locked && 'grayscale'}`}
     style={{backgroundImage: `url('/assets/BG.png')`, backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'center'}}
@@ -179,6 +183,9 @@ export default function BanksStore(prop: Bank) {
                    <p>Duration: {prop.duration} days</p>
                    {/* <p>Starts with: {prop.min.toLocaleString()} php</p> */}
                    <p>Price: {prop.min.toLocaleString()} php</p>
+                   {prop.b1t1 === '1' && (
+                   <p className=' text-sm font-bold text-blue-600 mt-2'>Saving Plus</p>
+                   )}
                    </>
                 )
                 }
@@ -207,8 +214,8 @@ export default function BanksStore(prop: Bank) {
                             <p>Price: {prop.min.toLocaleString()} php</p>
                             {/* <p>Maximum: {prop.max.toLocaleString()} php</p> */}
 
-                            {/* <label htmlFor="" className=' text-xs mt-2 mb-1'>Enter amount</label>
-                            <Input type='number' min={500} value={val} onChange={(e) => setVal(e.target.valueAsNumber)} placeholder='Amount'/> */}
+                            <label htmlFor="" className=' text-xs mt-2 mb-1'>Enter amount</label>
+                            <Input type='number' min={500} value={val} onChange={(e) => setVal(e.target.valueAsNumber)} placeholder='Amount'/>
 
                             <div className=' w-full flex items-center gap-4 mt-6'>
                             <Button onClick={buyBank} className=' w-full '>

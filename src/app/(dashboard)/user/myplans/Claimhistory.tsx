@@ -84,7 +84,7 @@ export default function ClaimHistory() {
                 <TableHead className="">Date</TableHead>
                 <TableHead>Bank name</TableHead>
                 <TableHead>Type</TableHead>
-                <TableHead>Rank</TableHead>
+                <TableHead>Amount</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
