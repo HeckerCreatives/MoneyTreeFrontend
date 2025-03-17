@@ -34,6 +34,7 @@ import rateStore from '@/store/rate'
 import refreshStore from '@/store/refresh'
 import loadingtableStore from '@/store/tableloading'
 import { Button } from '@/components/ui/button'
+import Card from '@/components/common/Card'
 
 
 
@@ -66,8 +67,12 @@ interface List {
   type:string
   createdAt:string
   phonenumber: string
+}
 
-  
+interface Totals {
+  totalrequestgame: number
+  totalrequestdirect: number,
+  totalrequestunilevel: number,
 }
 
 
@@ -87,6 +92,7 @@ export default function Payouthistory() {
     const [tab, setTab] = useState('gamebalance')
     const [status, setStatus] = useState('done')
     const [open, setOpen] = useState(false)
+    const [totalrequests, setTotalRequests] = useState<Totals>()
 
 
 
@@ -261,6 +267,32 @@ export default function Payouthistory() {
     }
   };
 
+  
+  useEffect(() => {
+    setLoading(true);
+
+    const getTotals = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/payout/gettotalrequest`,
+          { withCredentials: true }
+        );
+        setTotalRequests(response.data.data)
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          const axiosError = error as AxiosError<{ message: string; data: string }>;
+          if (axiosError.response && axiosError.response.status === 401) {
+            
+          }
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+    getTotals()
+
+  }, []);
+
 
    
 
@@ -268,8 +300,14 @@ export default function Payouthistory() {
   return (
 
     <div className=' flex flex-col gap-12 w-full py-8'>
-
-
+      <div className=' w-full flex items-center justify-center'>
+        <div className=' w-fit grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4'>
+          <Card name={'Game Payout'} amount={totalrequests?.totalrequestgame || 0} color={''} subcolor={''}/>
+          <Card name={'Referral Payout'} amount={totalrequests?.totalrequestdirect || 0} color={''} subcolor={''}/>
+          <Card name={'Unilevel Payout'} amount={totalrequests?.totalrequestunilevel || 0} color={''} subcolor={''}/>
+        </div>
+      </div>
+     
       <Tabs defaultValue="gamebalance" className="w-full">
       <TabsList>
         <TabsTrigger onClick={() => setTab('gamebalance')} value="gamebalance">Game</TabsTrigger>
@@ -585,7 +623,7 @@ export default function Payouthistory() {
        </div>
        <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
-        <p className=' text-sm font-medium'>ComissionPayout History</p>
+        <p className=' text-sm font-medium'>Referral Payout History</p>
         </div>
             <Table>
                 {loading === true && (
@@ -772,7 +810,7 @@ export default function Payouthistory() {
        </div>
        <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
-        <p className=' text-sm font-medium'>ComissionPayout History</p>
+        <p className=' text-sm font-medium'>Unilevel Payout History</p>
         </div>
             <Table>
                 {loading === true && (

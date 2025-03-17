@@ -100,7 +100,8 @@ export default function WalletHistory() {
         <SelectContent>
             <SelectItem value="fiatbalance">Wallet Balance History</SelectItem>
             <SelectItem value="gamebalance">Game Balance History</SelectItem>
-            <SelectItem value="commissionbalance">Commission History</SelectItem>
+            <SelectItem value="directreferralbalance">Referral History</SelectItem>
+            <SelectItem value="unilevelbalance">Unilevel History</SelectItem>
         </SelectContent>
         </Select>
 

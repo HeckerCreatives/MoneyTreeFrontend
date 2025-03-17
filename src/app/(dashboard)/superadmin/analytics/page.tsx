@@ -63,15 +63,15 @@ export default function page() {
   return (
     <Superadminlayout>
         <div className=' w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-items-center mt-12 gap-4'>
-          <Card name={'Total Sales'} amount={totalsales} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
-          <Card name={'Company Commission'} amount={wallets?.commission || 0} color={'bg-teal-400'} subcolor={'bg-teal-300'}/>
-          <Card name={'User Top Up'} amount={wallets?.payin || 0} color={'bg-emerald-400'} subcolor={'bg-emerald-300'}/>
-          <Card name={'Total Payout'} amount={wallets?.payout || 0} color={'bg-purple-400'} subcolor={'bg-purple-300'}/>
-          <Card name={'Payout Game'} amount={wallets?.payoutgame || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
-          <Card name={'Referral Commission Payout '} amount={wallets?.referral || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
-          <Card name={'Unilevel Commission Payout'} amount={wallets?.unilevel || 0} color={'bg-rose-400'} subcolor={'bg-rose-300'}/>
-          <Card name={'Total Company Profit'} amount={totalsales - (wallets?.payout || 0)} color={'bg-blue-400'} subcolor={'bg-blue-300'}/>
-          <Card name={'Game Profit'} amount={wallets?.products || 0} color={'bg-green-400'} subcolor={'bg-green-300'}/>
+          <Card name={'Total Sales'} amount={totalsales} color={''} subcolor={''}/>
+          <Card name={'Company Commission'} amount={wallets?.commission || 0} color={''} subcolor={''}/>
+          <Card name={'User Top Up'} amount={wallets?.payin || 0} color={''} subcolor={''}/>
+          <Card name={'Total Payout'} amount={wallets?.payout || 0} color={''} subcolor={''}/>
+          <Card name={'User Game Wallet'} amount={wallets?.payoutgame || 0} color={''} subcolor={''}/>
+          <Card name={'User Referral Commission'} amount={wallets?.referral || 0} color={''} subcolor={''}/>
+          <Card name={'User Unilevel Commission'} amount={wallets?.unilevel || 0} color={''} subcolor={''}/>
+          <Card name={'Total Company Profit'} amount={totalsales - (wallets?.payout || 0)} color={''} subcolor={''}/>
+          <Card name={'Game Profit'} amount={wallets?.products || 0} color={''} subcolor={''}/>
 
         
           <div className={` relative flex items-center justify-center w-full max-w-[375px] h-fit  font-normal shadow-sm rounded-xl  text-amber-950 hover:scale-105 transition-all duration-200`}    

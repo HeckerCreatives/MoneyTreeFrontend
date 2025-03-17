@@ -153,7 +153,7 @@ setVal(prop.min)
     },[prop])
 
   return (
-    <div  className={`relative w-fit h-auto flex items-center justify-center ${prop.locked && 'grayscale'}`}
+    <div  className={`relative w-fit h-auto flex items-center justify-center rounded-md overflow-hidden ${prop.locked && 'grayscale'}`}
     style={{backgroundImage: `url('/assets/BG.png')`, backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'center'}}
     >
 
@@ -161,7 +161,7 @@ setVal(prop.min)
 
         </div>
         {/* <img src="/assets/storecard.png" alt="" /> */}
-        <div className=' relative z-10 w-full flex gap-4 items-center justify-center h-full  p-6'>
+        <div className=' relative z-10 w-full flex gap-4 items-center justify-center h-full min-h-[215px]  p-6'>
             <div className=' w-fit'>
                 <img src={findBank?.img} alt="bank" width={100} height={100} className=' w-[180px] aspect-square' />
 
@@ -213,6 +213,10 @@ setVal(prop.min)
                             <p>Duration: {prop.duration} days</p>
                             <p>Price: {prop.min.toLocaleString()} php</p>
                             {/* <p>Maximum: {prop.max.toLocaleString()} php</p> */}
+
+                            {prop.b1t1 === '1' && (
+                            <p className=' text-sm font-bold text-blue-600'>Saving Plus</p>
+                            )}
 
                             <label htmlFor="" className=' text-xs mt-2 mb-1'>Enter amount</label>
                             <Input type='number' min={500} value={val} onChange={(e) => setVal(e.target.valueAsNumber)} placeholder='Amount'/>

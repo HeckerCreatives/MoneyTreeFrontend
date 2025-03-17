@@ -178,9 +178,9 @@ export default function PlayerAccount() {
     <div className=' w-full h-fit flex flex-col gap-2 py-8 font-thin'>
 
         <h2 className=' text-xl font-bold text-black'>Player Account</h2>
-        <div className=' grid grid-cols-1 xl:grid-cols-[450px_1fr] gap-4'>
-            <div className=' w-full grid grid-cols-1  gap-8 h-auto bg-cream rounded-xl shadow-sm'>
-                <div className='relative w-full h-full flex flex-col justify-between p-6 text-xs'>
+        <div className=' grid grid-cols-1 xl:grid-cols-[380px_1fr] gap-4'>
+            <div className=' w-full grid grid-cols-1  gap-8 max-h-[160px] bg-cream rounded-xl shadow-sm'>
+                <div className='relative w-full max-h-[160px] flex flex-col justify-between p-6 text-xs'>
 
                     <div className=' flex flex-col'>
                         <h2 className=' ~text-xl/2xl font-medium'>{data?.username} <span className={` text-sm ${data?.status === 'active' ? 'text-green-500' : 'text-red-500'}`}>({data?.status})</span></h2>
@@ -210,13 +210,12 @@ export default function PlayerAccount() {
                
             </div>
 
-            <div className=' w-full h-full grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-2'>
+            <div className=' w-full h-full grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-2'>
             
                 <Card name={'Wallet Balance'} amount={wallet.find((item) => item.type === 'fiatbalance')?.amount || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
-                <Card name={'Comission Balance'} amount={wallet.find((item) => item.type === 'commissionbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
-                <Card name={'Game Balance'} amount={wallet.find((item) => item.type === 'gamebalance')?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
-
-
+                <Card name={'Game Wallet Balance'} amount={wallet.find((item) => item.type === 'gamebalance')?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
+                <Card name={'Referral Commission Balance'} amount={wallet.find((item) => item.type === 'directreferralbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
+                <Card name={'Unilevel Commission Balance'} amount={wallet.find((item) => item.type === 'unilevelbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
             </div>
 
         </div>

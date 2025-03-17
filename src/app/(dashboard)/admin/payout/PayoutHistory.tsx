@@ -217,7 +217,8 @@ export default function Payouthistory() {
       <Tabs defaultValue="gamebalance" className="w-full">
       <TabsList className=' bg-cream'>
         <TabsTrigger onClick={() => setTab('gamebalance')} value="gamebalance">Game</TabsTrigger>
-        <TabsTrigger onClick={() => setTab('commissionbalance')} value="commissionbalance">Comission</TabsTrigger>
+               <TabsTrigger onClick={() => setTab('directreferralbalance')} value="directreferralbalance">Referral</TabsTrigger>
+               <TabsTrigger onClick={() => setTab('unilevelbalance')} value="unilevelbalance">Unilevel</TabsTrigger>
       </TabsList>
       <TabsContent value="gamebalance" className=' flex flex-col gap-4'>
      
@@ -291,7 +292,7 @@ export default function Payouthistory() {
         
        </div>
       </TabsContent>
-      <TabsContent value="commissionbalance" className=' flex flex-col gap-4'>
+      <TabsContent value="directreferralbalance" className=' flex flex-col gap-4'>
      
        <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
@@ -361,6 +362,76 @@ export default function Payouthistory() {
         
        </div>
       </TabsContent>
+      <TabsContent value="unilevelbalance" className=' flex flex-col gap-4'>
+     
+     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
+      <div className=' w-full flex items-center justify-between '>
+      <p className=' text-sm font-medium'>ComissionPayout History</p>
+      </div>
+          <Table>
+              {loading === true && (
+                  <TableCaption>
+                      <span className=' loaderdark'></span>
+                  </TableCaption>
+              )}
+              {history.length === 0 && (
+              <TableCaption>No data.</TableCaption>
+              )}
+          <TableHeader>
+          <TableRow>
+                <TableHead className="">Date</TableHead>
+                <TableHead>Username</TableHead>
+                <TableHead>Payment method</TableHead>
+                <TableHead>Account no.</TableHead>
+                <TableHead>Account name</TableHead>
+                <TableHead>Gross amount</TableHead>
+                <TableHead>Net amount</TableHead>
+                <TableHead>Withdrawal fee</TableHead>
+                <TableHead>Status</TableHead>
+              </TableRow>
+          </TableHeader>
+          <TableBody>
+          {history.map((item, index) => (
+                  <TableRow key={index}>
+                  <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
+                  <TableCell>{item.username}</TableCell>
+                  <TableCell>{item.paymentmethod}</TableCell>
+                  <TableCell>{item.accountnumber}</TableCell>
+                  <TableCell>{item.accountname}</TableCell>
+                  <TableCell className=' '>
+                    <div className='flex flex-col'>
+                      ₱{item.grossamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.grossamount / rate).toLocaleString()}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell className=' '>
+                    <div className='flex flex-col'>
+                      ₱{item.netamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netamount / rate).toLocaleString()}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell className=' '>
+                    <div className='flex flex-col'>
+                      ₱{item.withdrawalfee.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.withdrawalfee / rate).toLocaleString()}</span>
+                    </div>
+                  </TableCell>
+
+                  <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
+                 
+                 
+                 
+                  </TableRow>
+              ))}
+              
+          </TableBody>
+          </Table>
+
+          {history.length !== 0 && (
+              <div className=' w-full flex items-center justify-center mt-6'>
+                  <Pagination currentPage={currentpage2} total={totalpage2} onPageChange={handlePageChange2}/>
+              </div>
+          )}
+      
+     </div>
+    </TabsContent>
       
     </Tabs>
 

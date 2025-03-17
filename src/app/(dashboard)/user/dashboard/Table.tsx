@@ -40,7 +40,7 @@ export default function Tables() {
         <SelectItem value='tab2'>Unilevel History (Lvl 2-10)</SelectItem>
         <SelectItem value='tab3'>Referral History (Lvl 1)</SelectItem>
         <SelectItem value='tab4'>Game Wallet Earning History</SelectItem>
-        <SelectItem value='tab5'>Commission Withdraw History</SelectItem>
+        {/* <SelectItem value='tab5'>Commission Withdraw History</SelectItem> */}
         <SelectItem value='tab6'>Game Withdraw History</SelectItem>
         {/* <SelectItem value='tab7'>Transfer Funds History</SelectItem> */}
       </SelectContent>

@@ -124,7 +124,7 @@ export default function LongChart() {
             <SelectItem value="Payin">User Top Up</SelectItem>
             <SelectItem value="Game Profit">Game Profit</SelectItem>
             {/* <SelectItem value="Payout Commission">Payout Commission</SelectItem> */}
-            <SelectItem value="Payout Game">Payout Game</SelectItem>
+            <SelectItem value="Total Payout">Total Payout</SelectItem>
           </SelectContent>
         </Select>
       </div>
