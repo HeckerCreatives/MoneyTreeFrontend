@@ -67,7 +67,7 @@ export default function page() {
     <Superadminlayout>
         <div className=' w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-items-center mt-12 gap-4'>
           <Card name={'Total Sales'} amount={totalsales} color={''} subcolor={''}/>
-          <Card name={'Company Commission'} amount={wallets?.commission || 0} color={''} subcolor={''}/>
+          <Card name={'Total User Commission'} amount={(wallets?.direct ?? 0) + (wallets?.unilevelbalance ?? 0)} color={''} subcolor={''}/>
           <Card name={'User Top Up'} amount={wallets?.payin || 0} color={''} subcolor={''}/>
           <Card name={'Total Payout'} amount={wallets?.payout || 0} color={''} subcolor={''}/>
           <Card name={'User Game Wallet'} amount={wallets?.gamewalletbalance || 0} color={''} subcolor={''}/>
