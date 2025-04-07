@@ -69,7 +69,7 @@ export default function Comissionhistory() {
 
   return (
      <div className=' w-full flex flex-col gap-4 h-[500px] rounded-xl shadow-sm mt-4'>
-        <p className=' text-sm font-medium'>Unilevel History (Lvl 2-10)</p>
+        <p className=' text-sm font-medium'>Unilevel History (Lvl 2-15)</p>
             <Table>
                 {loading === true && (
                     <TableCaption>
