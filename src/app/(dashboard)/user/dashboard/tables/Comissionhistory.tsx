@@ -39,7 +39,7 @@ export default function Comissionhistory() {
         setLoading(true)
         const getList = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/playerwallethistory?type=unilevelbalance&page=${currentpage}&limit=10`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/playerwallethistory?type=commissionbalance&page=${currentpage}&limit=10`,{
             withCredentials:true
             })
 
