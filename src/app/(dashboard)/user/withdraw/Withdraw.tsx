@@ -69,7 +69,7 @@ export default function Withdraw() {
                         <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.gamebalance.toLocaleString()}</h2>
                         <h2 className=' text-[.7rem] '>${((wallet?.gamebalance || 0) / rate).toLocaleString()}</h2>
 
-                        <Withdrawform wallet={'Game Wallet Ballance'} type={'gamebalance'}/>
+                        <Withdrawform wallet={'Game Wallet Balance'} type={'gamebalance'}/>
                     </div>
 
                 </div>
@@ -87,7 +87,7 @@ export default function Withdraw() {
                         <h2 className=' text-[.7rem] '>${((wallet?.directreferralbalance || 0) / rate).toLocaleString()}</h2>
 
 
-                        <Withdrawform wallet={'Referral Commission Wallet Balanc'} type={'referral'}/>
+                        <Withdrawform wallet={'Referral Commission Wallet Balance'} type={'referral'}/>
                     </div>
 
                 </div>
@@ -103,7 +103,7 @@ export default function Withdraw() {
                         <p className=' text-xs mt-2'>Total earnings</p>
                         <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.unilevelbalance.toLocaleString()}</h2>
                         <h2 className=' text-[.7rem] '>${((wallet?.unilevelbalance || 0) / rate).toLocaleString()}</h2>
-                        <Withdrawform wallet={'Unilevel Commission Wallet Balanc'} type={'unilevel'}/>
+                        <Withdrawform wallet={'Unilevel Commission Wallet Balance'} type={'unilevel'}/>
                     </div>
                 </div>
 

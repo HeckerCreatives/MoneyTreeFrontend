@@ -27,18 +27,6 @@ import loadingStore from '@/store/loading';
 import rateStore from '@/store/rate';
 import { Button } from '@/components/ui/button';
 
-const items = [
-  { id: 1, content: '1', img:'/assets/Dog1.png' },
-  { id: 2, content: '2', img:'/assets/Bird1.png' },
-  { id: 3, content: '3', img:'/assets/Cat1.png' },
-  { id: 4, content: '4', img:'/assets/Fish1.png' },
-  { id: 5, content: '5', img:'/assets/Dog2.png' },
-  { id: 6, content: '6', img:'/assets/Bird2.png' },
-  { id: 7, content: '7', img:'/assets/Cat2.png' },
-  { id: 8, content: '8', img:'/assets/Fish2.png' },
-  { id: 9, content: '9', img:'/assets/Dog3.png' },
-  { id: 10, content: '10', img:'/assets/Bird3.png' },
-];
 
 interface List {
   _id: string
@@ -46,6 +34,7 @@ interface List {
   createdAt: string
   level: number,
   totalAmount: number
+  referrerUsername: string
 
 }
 
@@ -108,7 +97,7 @@ export default function Invites() {
     <div className="w-full flex md:flex-row flex-col gap-8 py-8">
 
       <div className=' flex flex-row md:flex-col gap-2 whitespace-nowrap overflow-x-auto md:overflow-hidden px-2'>
-        {Array.from({length: 10}).map((_, index) => (
+        {Array.from({length: 15}).map((_, index) => (
           <button onClick={() => setCurrent(index)} key={index} className=' w-[72px] min-w-[72px] relative flex items-center justify-center'>
           {current === index ? (
             <>
@@ -144,6 +133,7 @@ export default function Invites() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Date</TableHead>
+                <TableHead className="">Sponsor</TableHead>
                 <TableHead>Username</TableHead>
                 <TableHead>Lvl</TableHead>
                 <TableHead className="">Amount</TableHead>
@@ -153,6 +143,7 @@ export default function Invites() {
               {list.map((item, index) => (
                 <TableRow key={item._id}>
                 <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
+                <TableCell>{item.referrerUsername}</TableCell>
                 <TableCell>{item.username}</TableCell>
                 <TableCell>Lvl {item.level}</TableCell>
 

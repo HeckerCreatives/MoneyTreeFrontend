@@ -15,7 +15,7 @@ export const user = [
     {name: 'Store', icon: <ShoppingBag size={20}/>, 
     path:'/user/store', subpath:[]},
 
-    {name: 'My Plan', icon: <FaBox size={20}/>, 
+    {name: 'My Harvest Plan', icon: <FaBox size={20}/>, 
     path:'/user/myplans', subpath:[]},
 
     {name: 'Faq', icon: <Info size={20}/>, 

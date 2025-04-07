@@ -244,7 +244,7 @@ export default function Settings() {
 
                 <form onSubmit={handleSubmit(onSubmit)} className=' flex flex-col gap-1 text-amber-950'>
                     <label htmlFor="" className=' text-sm text-zinc-500'>Username</label>
-                    <Input placeholder='Username' className='' {...register('username')}/>
+                    <Input disabled placeholder='Username' className='' {...register('username')}/>
 
                     <div className=' flex items-center gap-2 w-full'>
                         <div className=' w-full flex flex-col'>

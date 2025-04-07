@@ -37,9 +37,9 @@ export default function Tables() {
       </SelectTrigger>
       <SelectContent>
         <SelectItem value='tab1'>Load Balance History</SelectItem>
-        <SelectItem value='tab2'>Unilevel History (Lvl 2-10)</SelectItem>
-        <SelectItem value='tab3'>Referral History (Lvl 1)</SelectItem>
-        <SelectItem value='tab4'>Game Wallet Earning History</SelectItem>
+        <SelectItem value='tab2'>Unilevel Commision Wallet History (Lvl 2-15)</SelectItem>
+        <SelectItem value='tab3'>Referral Commision Wallet History (Lvl 1)</SelectItem>
+        <SelectItem value='tab4'>Game Wallet Profit History</SelectItem>
         {/* <SelectItem value='tab5'>Commission Withdraw History</SelectItem> */}
         <SelectItem value='tab6'>Game Withdraw History</SelectItem>
         {/* <SelectItem value='tab7'>Transfer Funds History</SelectItem> */}

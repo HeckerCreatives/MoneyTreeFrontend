@@ -212,10 +212,10 @@ export default function PlayerAccount() {
 
             <div className=' w-full h-full grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-2'>
             
-                <Card name={'Wallet Balance'} amount={wallet.find((item) => item.type === 'fiatbalance')?.amount || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
-                <Card name={'Game Wallet Balance'} amount={wallet.find((item) => item.type === 'gamebalance')?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
-                <Card name={'Referral Commission Balance'} amount={wallet.find((item) => item.type === 'directreferralbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
-                <Card name={'Unilevel Commission Balance'} amount={wallet.find((item) => item.type === 'unilevelbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
+                <Card name={'Money Wallet'} amount={wallet.find((item) => item.type === 'fiatbalance')?.amount || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
+                <Card name={' Game Wallet Profit'} amount={wallet.find((item) => item.type === 'gamebalance')?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
+                <Card name={'Referral Commission Wallet'} amount={wallet.find((item) => item.type === 'directreferralbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
+                <Card name={'Unilevel Commission Wallet'} amount={wallet.find((item) => item.type === 'unilevelbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
             </div>
 
         </div>

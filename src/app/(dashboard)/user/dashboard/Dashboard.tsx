@@ -252,41 +252,20 @@ export default function Dashboard() {
             </div>
 
             <div className="w-full grid gap-4 p-4 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-items-center">
-              <Card name="Wallet Balance" amount={wallet?.fiatbalance || 0} color="bg-amber-400" subcolor="bg-amber-300" />
-              <Card name="Total Withdrawables" amount={(wallet?.gamebalance || 0) + (wallet?.commissionbalance || 0)} color="bg-lime-400" subcolor="bg-lime-300" />
-              <Card name="Game Total Earnings" amount={stats?.game || 0} color="bg-green-400" subcolor="bg-green-300" />
-              <Card name="Game Wallet Earnings" amount={unclaimed} color="bg-emerald-400" subcolor="bg-emerald-300" />
+              <Card name=" Money Wallet" amount={wallet?.fiatbalance || 0} color="bg-amber-400" subcolor="bg-amber-300" />
+              <Card name="Withdrawable Profit" amount={(wallet?.gamebalance || 0) + (wallet?.commissionbalance || 0)} color="bg-lime-400" subcolor="bg-lime-300" />
+              <Card name="Game Harvest Profit" amount={stats?.game || 0} color="bg-green-400" subcolor="bg-green-300" />
+              <Card name="Game Wallet Profit" amount={unclaimed} color="bg-emerald-400" subcolor="bg-emerald-300" />
 
-              <Card name="Referral Commissions Wallet Earnings" amount={stats?.referral || 0} color="bg-teal-400" subcolor="bg-teal-300" />
-              <Card name="Unilevel Commissions Wallet Earnings" amount={stats?.unilevel || 0} color="bg-cyan-400" subcolor="bg-cyan-300" />
+              <Card name="Referral Commissions Wallet" amount={stats?.referral || 0} color="bg-teal-400" subcolor="bg-teal-300" />
+              <Card name="Unilevel Commissions Wallet" amount={stats?.unilevel || 0} color="bg-cyan-400" subcolor="bg-cyan-300" />
               {/* <Card name="Commission Wallet Earnings" amount={wallet?.commissionbalance || 0} color="bg-sky-400" subcolor="bg-sky-300" /> */}
-              <Card name="Total Earnings" amount={(stats?.referral || 0) + (stats?.unilevel || 0) + (stats?.game || 0)} color="bg-indigo-400" subcolor="bg-indigo-300" />
+              <Card name="Total Profit" amount={(stats?.referral || 0) + (stats?.unilevel || 0) + (stats?.game || 0)} color="bg-indigo-400" subcolor="bg-indigo-300" />
           </div>
-
-{/* 
-            <div className="w-full grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 p-4">
-              <Card name="Wallet Balance" amount={wallet?.fiatbalance || 0} color="bg-amber-400" subcolor="bg-amber-300" />
-              <Card name="Total Withdrawables" amount={(wallet?.gamebalance || 0) + (wallet?.commissionbalance || 0)} color="bg-lime-400" subcolor="bg-lime-300" />
-              <Card name="Game Total Earnings" amount={stats?.game || 0} color="bg-green-400" subcolor="bg-green-300" />
-              <Card name="Game Wallet Earnings" amount={unclaimed} color="bg-emerald-400" subcolor="bg-emerald-300" />
-
-              <Card name="Referral Commissions" amount={stats?.referral || 0} color="bg-teal-400" subcolor="bg-teal-300" />
-              <Card name="Unilevel Commissions" amount={stats?.unilevel || 0} color="bg-cyan-400" subcolor="bg-cyan-300" />
-              <Card name="Commission Wallet Earnings" amount={wallet?.commissionbalance || 0} color="bg-sky-400" subcolor="bg-sky-300" />
-              <Card name="Total Earnings" amount={(stats?.referral || 0) + (stats?.unilevel || 0) + (stats?.game || 0)} color="bg-indigo-400" subcolor="bg-indigo-300" />
-          </div> */}
-
 
 
 
         </div>
-
-        {/* <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-          <Card name={'Referral Commissions'} amount={stats?.referral || 0} color={'bg-teal-400'} subcolor={'bg-teal-300'}/>
-          <Card name={'Unilevel Commissions'} amount={stats?.unilevel || 0} color={'bg-cyan-400'} subcolor={'bg-cyan-300'}/>
-          <Card name={'Commission Wallet Earnings'} amount={wallet?.commissionbalance || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
-          <Card name={'Total Earnings'} amount={(stats?.referral || 0) + (stats?.unilevel || 0) + (stats?.game || 0)} color={'bg-indigo-400'} subcolor={'bg-indigo-300'}/>
-        </div> */}
 
     </div>
   )

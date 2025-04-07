@@ -31,6 +31,7 @@ interface List {
   createdAt: string
   level: number,
   totalAmount: number
+  referrerUsername: string
 
 }
 
@@ -106,7 +107,7 @@ const id = params.get('id')
                 <SelectValue placeholder="Select Level" />
             </SelectTrigger>
             <SelectContent>
-                {Array.from({ length: 10 }).map((_, index) => (
+                {Array.from({ length: 15 }).map((_, index) => (
                     <SelectItem key={index} value={`${index}`}>Level {index + 1}</SelectItem>
                 ))}
                 
@@ -129,6 +130,7 @@ const id = params.get('id')
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Date</TableHead>
+                <TableHead>Sponsor</TableHead>
                 <TableHead>Username</TableHead>
                 <TableHead>Lvl</TableHead>
                 <TableHead className="">Amount</TableHead>
@@ -138,6 +140,7 @@ const id = params.get('id')
               {list.map((item, index) => (
                 <TableRow key={item._id}>
                 <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
+                <TableCell>{item.referrerUsername}</TableCell>
                 <TableCell>{item.username}</TableCell>
                 <TableCell>Lvl {item.level}</TableCell>
 

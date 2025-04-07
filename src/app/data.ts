@@ -8,7 +8,7 @@ export const navigation = [
 export const faqs = [
     {
       question: "What is Money Tree?",
-      answer: `Money Tree is a play-to-earn game where players take care of a tree to earn coins. To do this, you must first fill the water container. Once it's full, press the "USE" button to water the tree. After watering, tap the "Harvest" button to collect the coins that appear.The game is simple, fun, and offers an engaging way to earn rewards while playing. Keep watering and harvesting to maximize your earnings!`
+      answer: `Money Tree is a play-to-earn game where players take care of a tree to earn coins. To do this, you must first fill the water container. Once it's full, press the "USE" button to water the tree. After watering, tap the "Harvest" button to collect the coins that appear. The game is simple, fun, and offers an engaging way to earn rewards while playing. Keep watering and harvesting to maximize your earnings!`
     },
     {
       question: "How to earn?",

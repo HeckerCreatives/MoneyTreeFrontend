@@ -46,6 +46,7 @@ export default function Playerlayout({
     const {rate, setRate, clearRate} = rateStore()
     const {page, setPage} = pageStore()
     const [name, setName] = useState('')
+    const [referrer, setReferrer] = useState('')
     
     
     const breadcrumd = user.find((item) => path.includes(item.path))
@@ -146,6 +147,7 @@ export default function Playerlayout({
         })
 
         setName(response.data.data.username)
+        setReferrer(response.data.data.referral)
       } catch (error) {
 
         if (axios.isAxiosError(error)) {
@@ -238,7 +240,9 @@ export default function Playerlayout({
           </Sheet>
 
               <p className=' text-lg font-black'>
-                {breadcrumd?.name}
+                {breadcrumd?.name} 
+
+               <span className=' text-amber-800'> {(path.includes('/user/sponsor') && referrer !== null) && `(${referrer})`}</span> 
               </p>
           </div>
           
