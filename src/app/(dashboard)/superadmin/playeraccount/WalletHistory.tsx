@@ -101,7 +101,8 @@ export default function WalletHistory() {
             <SelectItem value="fiatbalance"> Money Wallet History</SelectItem>
             <SelectItem value="gamebalance">Game Harvest Profit History</SelectItem>
             <SelectItem value="directreferralbalance">Referral Commission Wallet History</SelectItem>
-            <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem>
+            <SelectItem value="commissionbalance">Unilevel Commission Wallet History</SelectItem>
+            {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
         </SelectContent>
         </Select>
 
