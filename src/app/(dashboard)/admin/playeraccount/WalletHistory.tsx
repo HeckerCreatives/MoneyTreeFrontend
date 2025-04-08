@@ -98,10 +98,10 @@ export default function WalletHistory() {
             <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
-            <SelectItem value="fiatbalance">Wallet Balance History</SelectItem>
-                        <SelectItem value="gamebalance">Game Balance History</SelectItem>
-                        <SelectItem value="directreferralbalance">Referral History</SelectItem>
-                        <SelectItem value="unilevelbalance">Unilevel History</SelectItem>
+             <SelectItem value="fiatbalance"> Money Wallet History</SelectItem>
+             <SelectItem value="gamebalance">Game Harvest Profit History</SelectItem>
+             <SelectItem value="directreferralbalance">Referral Commission Wallet History</SelectItem>
+             <SelectItem value="commissionbalance">Unilevel Commission Wallet History</SelectItem>
         </SelectContent>
         </Select>
 
