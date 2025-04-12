@@ -97,7 +97,7 @@ export default function Invites() {
     <div className="w-full flex md:flex-row flex-col gap-8 py-8">
 
       <div className=' flex flex-row md:flex-col gap-2 whitespace-nowrap overflow-x-auto md:overflow-hidden px-2'>
-        {Array.from({length: 15}).map((_, index) => (
+        {Array.from({length: 14}).map((_, index) => (
           <button onClick={() => setCurrent(index)} key={index} className=' w-[72px] min-w-[72px] relative flex items-center justify-center'>
           {current === index ? (
             <>
