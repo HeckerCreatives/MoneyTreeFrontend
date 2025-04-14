@@ -213,7 +213,7 @@ setVal(prop.min)
                             <h2 className=' text-lg font-black'>{prop.name}</h2>
                             <p>Profit: {prop.profit * 100} %</p>
                             <p>Duration: {prop.duration} days</p>
-                            <p>Price: {prop.min.toLocaleString()} php</p>
+                            <p>Minimum Price: {prop.min.toLocaleString()} php</p>
                             {/* <p>Maximum: {prop.max.toLocaleString()} php</p> */}
 
                             {prop.b1t1 === '1' && (
