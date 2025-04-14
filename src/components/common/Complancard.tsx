@@ -185,7 +185,7 @@ export default function Complancard(prop: Props) {
                         {errors.duration && <p className='text-[.6em] text-red-500'>{errors.duration.message}</p>}
 
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Price (php)</label>
+                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Minimum Price (php)</label>
                         <Input  type='number' className=' text-xs' {...register('min', {valueAsNumber: true})}/>
                         {errors.min && <p className='text-[.6em] text-red-500'>{errors.min.message}</p>}
 

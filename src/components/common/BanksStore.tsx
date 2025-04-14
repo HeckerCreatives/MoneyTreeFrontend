@@ -37,6 +37,7 @@ export default function BanksStore(prop: Bank) {
     const { loading, setLoading, clearLoading } = loadingStore()
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
+    const [drawer, setDrawer] = useState(false)
 
     const buyBank = async () => {
         setDialog(false)
@@ -63,6 +64,7 @@ export default function BanksStore(prop: Bank) {
                 setLoading(false)
                 router.push('?state=false')
                 setRefresh('false')
+                setDrawer(false)
 
 
             }
@@ -182,7 +184,7 @@ setVal(prop.min)
                     <p>Profit: {prop.profit * 100} %</p>
                    <p>Duration: {prop.duration} days</p>
                    {/* <p>Starts with: {prop.min.toLocaleString()} php</p> */}
-                   <p>Price: {prop.min.toLocaleString()} php</p>
+                   <p>Minimum Price: {prop.min.toLocaleString()} php</p>
                    {prop.b1t1 === '1' && (
                    <p className=' text-sm font-bold text-blue-600 mt-2'>Saving Plus</p>
                    )}
@@ -192,7 +194,7 @@ setVal(prop.min)
 
 
 
-                <Drawer>
+                <Drawer open={drawer} onOpenChange={setDrawer}>
                 <DrawerTrigger disabled={prop.locked} className='bg-[#A8DC08] px-4 py-2 text-sm font-bold text-amber-950 rounded-sm mt-6'>
                     {prop.locked ? 'Coming Soon!' : 'Buy now'}
                 </DrawerTrigger>
