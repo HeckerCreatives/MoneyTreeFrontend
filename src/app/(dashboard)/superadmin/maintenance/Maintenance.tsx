@@ -23,6 +23,8 @@ export default function Maintenance() {
 
     const event = list.find((item) => item.type === 'eventgame')
     const buyonetakeone = list.find((item) => item.type === 'b1t1')
+    const payout = list.find((item) => item.type === 'payout')
+    const full = list.find((item) => item.type === 'fullgame')
 
     useEffect(() => {
         setLoading(true)
@@ -72,8 +74,8 @@ export default function Maintenance() {
     },[ refresh])
 
     useEffect(() => {
-        setChecked1(event?.value == '0' ? false : true)
-        setChecked3(buyonetakeone?.value == '0' ? false : true)
+        setChecked1(payout?.value == '0' ? false : true)
+        setChecked2(full?.value == '0' ? false : true)
     },[list])
 
     const updateMaintenance = async (data: string, open: boolean) => {
@@ -92,8 +94,8 @@ export default function Maintenance() {
 
             const response = await toast.promise(request, {
                 loading: `Updating ${data === 'eventgame' ? 'event game' : 'buy one take one'} maintenance...`,
-                success: `${data === 'eventgame' ? 'Event game' : 'Buy one take one'} successfully ${open ? 'on' : 'off'}. `,
-                error: `Error while updating ${data === 'eventgame' ? 'event game' : 'buy one take one'} maintenance.`,
+                success: `${data === 'payout' ? 'Maintenance Payout' : ' Full Maintenance'} successfully ${open ? 'on' : 'off'}. `,
+                error: `Error while updating ${data === 'payout' ? 'Maintenance Payout' : ' Full Maintenance'} maintenance.`,
             });
             if (response.data.message === 'success') {
                 setRefresh('false');
@@ -183,12 +185,22 @@ export default function Maintenance() {
     <div className="w-full flex flex-col gap-4 font-light my-8">
 
         <div className=' flex flex-wrap items-center gap-4'>
-            <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full max-w-[280px]'>
-                <h2 className=' text-lg font-semibold'>Events ({!checked1 ? 'off' : 'on'})</h2>
+            <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full max-w-[280px] h-[130px] justify-between'>
+                <h2 className='  ~text-xl/2xl font-semibold'>Payout Maintenance  ({!checked1 ? 'off' : 'on'})</h2>
                 <Switch checked={checked1} 
                 onCheckedChange={(newChecked) => {
                     setChecked1(newChecked); 
-                    updateMaintenance('eventgame', newChecked); 
+                    updateMaintenance('payout', newChecked); 
+                }}
+                />
+            </div>
+
+            <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full max-w-[280px] h-[130px] justify-between'>
+                <h2 className=' ~text-xl/2xl font-semibold'>Full Maintenance ({!checked2 ? 'off' : 'on'})</h2>
+                <Switch checked={checked2} 
+                onCheckedChange={(newChecked) => {
+                    setChecked1(newChecked); 
+                    updateMaintenance('fullgame', newChecked); 
                 }}
                 />
             </div>
