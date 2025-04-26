@@ -15,7 +15,7 @@ export const paymentFormSchema = z.object({
     paymentMethod: z.string().nonempty('Please select a payment method'),
     accountName: z.string().nonempty('Account name is required'),
     accountNumber: z.string().nonempty('Account number is required'),
-    amount: z.number().min(500, 'Minimum withdraw is 500 php'),
+    amount: z.number().min(1, 'Please enter a valid amount'),
  });
 
 

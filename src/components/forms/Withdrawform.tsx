@@ -178,33 +178,35 @@ export default function Withdrawform( prop: Props) {
           <>
           {payment === 'gcash' ? (
               // <Input max={5000} type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
-              <Select onValueChange={(value) => setValue('amount', Number(value))}>
-              <SelectTrigger className="w-full bg-white text-amber-950">
-                <SelectValue placeholder="Select amount" />
-              </SelectTrigger>
-              <SelectContent className="bg-amber-50 text-amber-950">
-                {amounts.map((amount) => (
-                  <SelectItem key={amount} value={amount.toString()}>
-                    ₱{amount.toLocaleString()}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            //   <Select onValueChange={(value) => setValue('amount', Number(value))}>
+            //   <SelectTrigger className="w-full bg-white text-amber-950">
+            //     <SelectValue placeholder="Select amount" />
+            //   </SelectTrigger>
+            //   <SelectContent className="bg-amber-50 text-amber-950">
+            //     {amounts.map((amount) => (
+            //       <SelectItem key={amount} value={amount.toString()}>
+            //         ₱{amount.toLocaleString()}
+            //       </SelectItem>
+            //     ))}
+            //   </SelectContent>
+            // </Select>
+            <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
           ) : (
-            <Select onValueChange={(value) => setValue('amount', Number(value))}>
-              <SelectTrigger className="w-full bg-white text-amber-950">
-                <SelectValue placeholder="Select amount" />
-              </SelectTrigger>
-              <SelectContent className="bg-amber-50 text-amber-950">
-                {[500, 1000, 2000, 3000, 5000, 10000, 15000, 20000, 30000, 50000, 70000, 
-                  100000, 150000, 200000, 300000, 500000, 600000, 700000, 800000, 900000, 
-                  1000000, 2000000, 3000000, 4000000, 5000000].map((amount) => (
-                  <SelectItem key={amount} value={amount.toString()}>
-                    ₱{amount.toLocaleString()}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            // <Select onValueChange={(value) => setValue('amount', Number(value))}>
+            //   <SelectTrigger className="w-full bg-white text-amber-950">
+            //     <SelectValue placeholder="Select amount" />
+            //   </SelectTrigger>
+            //   <SelectContent className="bg-amber-50 text-amber-950">
+            //     {[500, 1000, 2000, 3000, 5000, 10000, 15000, 20000, 30000, 50000, 70000, 
+            //       100000, 150000, 200000, 300000, 500000, 600000, 700000, 800000, 900000, 
+            //       1000000, 2000000, 3000000, 4000000, 5000000].map((amount) => (
+            //       <SelectItem key={amount} value={amount.toString()}>
+            //         ₱{amount.toLocaleString()}
+            //       </SelectItem>
+            //     ))}
+            //   </SelectContent>
+            // </Select>
+            <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
           )}
         
           </>
