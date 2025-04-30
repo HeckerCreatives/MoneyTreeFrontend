@@ -60,7 +60,7 @@ export default function PlayerCount() {
                 
                         <div className=' w-full h-full flex  absolute'>
                             <div className=' w-full flex flex-col gap-2 text-sm p-4'>
-                                <p className=' '>User Account</p>
+                                <p className=' '>Registered Users</p>
                                 {loading === true ? (
                                 <h2 className=' ~text-sm/lg font-semibold mt-2'>---</h2>
                                 ):(
