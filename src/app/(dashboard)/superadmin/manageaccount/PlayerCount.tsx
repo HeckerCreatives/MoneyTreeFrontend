@@ -70,7 +70,7 @@ export default function PlayerCount() {
                                     </div>
 
                                 )}
-                                <p className=' text-zinc-700 text-[.7rem]'>Total users</p>
+                                <p className=' text-zinc-700 text-[.7rem]'>Total registered users</p>
                 
                             </div>
                 
