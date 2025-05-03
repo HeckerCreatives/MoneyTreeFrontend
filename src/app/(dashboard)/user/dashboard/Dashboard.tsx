@@ -254,15 +254,15 @@ export default function Dashboard() {
             </div>
 
             <div className="w-full grid gap-4 p-4 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-items-center">
-              <Card name=" Money Wallet" amount={wallet?.fiatbalance || 0} color="bg-amber-400" subcolor="bg-amber-300" />
-              <Card name="Withdrawable Profit" amount={(wallet?.gamebalance || 0) + (wallet?.directreferralbalance || 0) + (wallet?.unilevelbalance || 0)} color="bg-lime-400" subcolor="bg-lime-300" />
-              <Card name="Game Harvest Profit" amount={wallet?.gamebalance || 0} color="bg-green-400" subcolor="bg-green-300" />
-              <Card name="Game Wallet Profit" amount={unclaimed} color="bg-emerald-400" subcolor="bg-emerald-300" />
+              <Card name=" Money Wallet" amount={wallet?.fiatbalance || 0} color="bg-amber-400" subcolor="bg-amber-300" editable={false} />
+              <Card name="Withdrawable Profit" amount={(wallet?.gamebalance || 0) + (wallet?.directreferralbalance || 0) + (wallet?.unilevelbalance || 0)} color="bg-lime-400" subcolor="bg-lime-300" editable={false} />
+              <Card name="Game Harvest Profit" amount={wallet?.gamebalance || 0} color="bg-green-400" subcolor="bg-green-300" editable={false} />
+              <Card name="Game Wallet Profit" amount={unclaimed} color="bg-emerald-400" subcolor="bg-emerald-300" editable={false} />
 
-              <Card name="Referral Commissions Wallet" amount={wallet?.directreferralbalance || 0} color="bg-teal-400" subcolor="bg-teal-300" />
-              <Card name="Unilevel Commissions Wallet" amount={wallet?.unilevelbalance || 0} color="bg-cyan-400" subcolor="bg-cyan-300" />
+              <Card name="Referral Commissions Wallet" amount={wallet?.directreferralbalance || 0} color="bg-teal-400" subcolor="bg-teal-300" editable={false} />
+              <Card name="Unilevel Commissions Wallet" amount={wallet?.unilevelbalance || 0} color="bg-cyan-400" subcolor="bg-cyan-300" editable={false} />
               {/* <Card name="Commission Wallet Earnings" amount={wallet?.commissionbalance || 0} color="bg-sky-400" subcolor="bg-sky-300" /> */}
-              <Card name="Total Profit" amount={(stats?.referral || 0) + (stats?.unilevel || 0) + (stats?.game || 0)} color="bg-indigo-400" subcolor="bg-indigo-300" />
+              <Card name="Total Profit" amount={(stats?.referral || 0) + (stats?.unilevel || 0) + (stats?.game || 0)} color="bg-indigo-400" subcolor="bg-indigo-300" editable={false} />
           </div>
 
 

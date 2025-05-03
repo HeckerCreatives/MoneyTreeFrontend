@@ -21,6 +21,8 @@ import loadingStore from '@/store/loading'
 import rateStore from '@/store/rate'
 import refreshStore from '@/store/refresh'
 import { Button } from '@/components/ui/button'
+import BuyHistory from '../../superadmin/playeraccount/BuyHistory'
+import PayoutHistory from '../../superadmin/playeraccount/payoutHistory'
 
   
 
@@ -32,6 +34,8 @@ interface Wallet {
 interface User {
     username: string
     status: string
+    referral: string
+    referralid: string
 }
 
 export default function PlayerAccount() {
@@ -184,6 +188,11 @@ export default function PlayerAccount() {
        
                            <div className=' flex flex-col'>
                                <h2 className=' ~text-xl/2xl font-medium'>{data?.username} <span className={` text-sm ${data?.status === 'active' ? 'text-green-500' : 'text-red-500'}`}>({data?.status})</span></h2>
+                               {data?.referralid !== '' ? (
+                                <a target='_blank' href={`/superadmin/playeraccount/?id=${data?.referralid}`} className=' text-xs underline cursor-pointer'>Referral: {data?.referral}</a>
+                                ) : (
+                                <p className=' text-xs'>Referral: {data?.referral}</p>
+                                )}
                                <Dialog open={open} onOpenChange={(setOpen)}>
                                <DialogTrigger className={`${data?.status === 'active' ? ' primary-red flex items-center justify-center ' : 'primary-green flex items-center justify-center ' } w-[150px] mt-4`}>{data?.status === 'active' ? 'Ban' : 'Unban' }</DialogTrigger>
                                <DialogContent className=' bg-cream'>
@@ -212,10 +221,10 @@ export default function PlayerAccount() {
        
                    <div className=' w-full h-full grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-2'>
                    
-                       <Card name={'Wallet Balance'} amount={wallet.find((item) => item.type === 'fiatbalance')?.amount || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'}/>
-                       <Card name={'Game Wallet Balance'} amount={wallet.find((item) => item.type === 'gamebalance')?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'}/>
-                       <Card name={'Referral Commission Balance'} amount={wallet.find((item) => item.type === 'directreferralbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
-                       <Card name={'Unilevel Commission Balance'} amount={wallet.find((item) => item.type === 'unilevelbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'}/>
+                       <Card name={'Wallet Balance'} amount={wallet.find((item) => item.type === 'fiatbalance')?.amount || 0} color={'bg-amber-400'} subcolor={'bg-amber-300'} editable={false}/>
+                       <Card name={'Game Wallet Balance'} amount={wallet.find((item) => item.type === 'gamebalance')?.amount || 0} color={'bg-sky-400'} subcolor={'bg-sky-300'} editable={false}/>
+                       <Card name={'Referral Commission Balance'} amount={wallet.find((item) => item.type === 'directreferralbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false}/>
+                       <Card name={'Unilevel Commission Balance'} amount={wallet.find((item) => item.type === 'unilevelbalance')?.amount || 0} color={'bg-lime-400'} subcolor={'bg-lime-300'} editable={false}/>
                    </div>
        
                </div>
@@ -225,6 +234,8 @@ export default function PlayerAccount() {
             <TabsTrigger value="Invites">Invites</TabsTrigger>
             <TabsTrigger value="Inventory">Inventory</TabsTrigger>
             <TabsTrigger value="WalletHistory">Wallet History</TabsTrigger>
+           <TabsTrigger value="BuyHistory">Purchase History</TabsTrigger>
+            <TabsTrigger value="PayoutHistory">Payout History</TabsTrigger>
         </TabsList>
         <TabsContent value="Invites">
             <Invites/>
@@ -235,6 +246,12 @@ export default function PlayerAccount() {
 
         <TabsContent value="WalletHistory">
             <WalletHistory/>
+        </TabsContent>
+        <TabsContent value="BuyHistory">
+            <BuyHistory/>
+        </TabsContent>
+        <TabsContent value="PayoutHistory">
+            <PayoutHistory/>
         </TabsContent>
         </Tabs>
 

@@ -33,19 +33,15 @@ import { Trash2 } from 'lucide-react'
   
 
 interface List {
-    createdAt: string
-    amount: number
-    username: string
-    creaturename: string
-    type: string,
-    fromusername: string,
-    trainerrank: string,
-    trainername: string,
-    id: string
+    date: string,
+    grossamount: number,
+    withdrawalfee: number,
+    netammount: number,
+    status: string
 
 }
 
-export default function WalletHistory() {
+export default function PayoutHistory() {
     const router = useRouter()
     const [list, setList] = useState<List[]>([])
     const [totalpage, setTotalPage] = useState(0)
@@ -54,7 +50,7 @@ export default function WalletHistory() {
     const {rate, setRate, clearRate} = rateStore()
     const params = useSearchParams()
     const id = params.get('id')
-    const [type, setType] = useState('fiatbalance')
+    const [type, setType] = useState('unilevelbalance')
  
 
 
@@ -62,12 +58,12 @@ export default function WalletHistory() {
         setLoading(true)
         const getList = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/getplayerwallethistoryforadmin?playerid=${id}&page=${currentpage}&limit=10&type=${type}`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/payout/getrequesthistoryplayersuperadmin?playerid=${id}&page=${currentpage}&limit=10&type=${type}`,{
             withCredentials:true
             })
 
             setList(response.data.data.history)
-            setTotalPage(response.data.data.pages)
+            setTotalPage(response.data.data.totalPages)
             setLoading(false)
 
             
@@ -153,19 +149,20 @@ export default function WalletHistory() {
 
   return (
      <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm mt-4 p-6'>
-        <Select value={type} onValueChange={setType}>
-        <SelectTrigger className="w-[200px]">
-            <SelectValue placeholder="Select" />
-        </SelectTrigger>
-        <SelectContent>
-            <SelectItem value="fiatbalance"> Money Wallet History</SelectItem>
-            <SelectItem value="gamebalance">Game Harvest Profit History</SelectItem>
-            <SelectItem value="directreferralbalance">Referral Commission Wallet History</SelectItem>
-            <SelectItem value="commissionbalance">Unilevel Commission Wallet History</SelectItem>
-            {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
-        </SelectContent>
-        </Select>
 
+         <Select value={type} onValueChange={setType}>
+           <SelectTrigger className="w-[200px]">
+               <SelectValue placeholder="Select" />
+           </SelectTrigger>
+           <SelectContent>
+               <SelectItem value="unilevelbalance"> Unilevel History</SelectItem>
+               <SelectItem value="directreferralbalance">Referral History</SelectItem>
+               <SelectItem value="gamebalance">Game History</SelectItem>
+       
+               {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
+           </SelectContent>
+           </Select>
+    
         <p className=' text-sm font-medium'>{history(type)}</p>
             <Table>
                 {loading === true && (
@@ -179,39 +176,38 @@ export default function WalletHistory() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Date</TableHead>
-                <TableHead>Amount</TableHead>
-                <TableHead>From</TableHead>
-                <TableHead>Action</TableHead>
+                <TableHead>Gross Amount</TableHead>
+                <TableHead>Net Amount</TableHead>
+                <TableHead>Withdrawal Amount</TableHead>
+                <TableHead>Status</TableHead>
+                {/* <TableHead>Action</TableHead> */}
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {list.map((item, index) => (
                     <TableRow key={index}>
-                    <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
-                    <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount / rate).toLocaleString()}</span></TableCell>
-
-                    <TableCell>{item.fromusername}</TableCell>
-                    <TableCell>
-                    <Dialog >
-                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>Are you absolutely sure?</DialogTitle>
-                          <DialogDescription>
-                            This action cannot be undone. This will permanently delete the history.
-                          </DialogDescription>
-                        </DialogHeader>
-
-                        <div className=' w-full flex items-end justify-end'>
-                          <button disabled={loading} 
-                          onClick={() => deletHistory(item.id)} 
-                          className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
-
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+                    <TableCell className="">{new Date(item.date).toLocaleString()}</TableCell>
+                     <TableCell className=' '>
+                      <div className='flex flex-col'>
+                        ₱{item.grossamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.grossamount / rate).toLocaleString()}</span>
+                      </div>
                     </TableCell>
-                   
+
+                    <TableCell className=' '>
+                      <div className='flex flex-col'>
+                        ₱{item.netammount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netammount / rate).toLocaleString()}</span>
+                      </div>
+                    </TableCell>
+
+                    <TableCell className=' '>
+                      <div className='flex flex-col'>
+                        ₱{item.withdrawalfee.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.withdrawalfee / rate).toLocaleString()}</span>
+                      </div>
+                    </TableCell>
+                  
+
+                    <TableCell>{item.status}</TableCell>
+                 
                    
                     </TableRow>
                 ))}

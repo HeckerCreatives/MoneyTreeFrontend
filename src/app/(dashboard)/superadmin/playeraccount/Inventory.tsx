@@ -13,18 +13,18 @@ import axios, { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Pagination from '@/components/common/Pagination';
-import { Input } from '@/components/ui/input';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "@/components/ui/select"
-import Countdown from 'react-countdown';
 import loadingStore from '@/store/loading';
 import rateStore from '@/store/rate';
 import GrantMaturity from '@/components/common/GrantMaturity';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Trash2 } from 'lucide-react';
   
 
 interface List {
@@ -100,6 +100,57 @@ export default function Inventory() {
     setCurrentPage(page)
   }
 
+  const deletPlan = async ( petid: string) => {
+    setLoading(true);
+    try {
+        const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/deleteplayerinventoryforadmin`, {
+          // playerid: id,
+          bankid: petid
+        }, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'Application/json'
+            }
+        });
+
+        const response = await toast.promise(request, {
+            loading: `Deleting plan...`,
+            success: `Successfully deleted `,
+            error: `Error while deleting plan.`,
+        });
+        if (response.data.message === 'success') {
+            setLoading(false);
+            window.location.reload()
+        }
+    } catch (error) {
+        setLoading(false);
+
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError<{ message: string, data: string }>;
+            if (axiosError.response && axiosError.response.status === 401) {
+                toast.error(`${axiosError.response.data.data}`);
+                router.push('/');
+            }
+
+            if (axiosError.response && axiosError.response.status === 400) {
+                toast.error(`${axiosError.response.data.data}`);
+            }
+
+            if (axiosError.response && axiosError.response.status === 402) {
+                toast.error(`${axiosError.response.data.data}`);
+            }
+
+            if (axiosError.response && axiosError.response.status === 403) {
+                toast.error(`${axiosError.response.data.data}`);
+            }
+
+            if (axiosError.response && axiosError.response.status === 404) {
+                toast.error(`${axiosError.response.data.data}`);
+            }
+        }
+    }
+};
+
 
 
 
@@ -161,8 +212,26 @@ export default function Inventory() {
                   </div>
                 </TableCell>
 
-                <TableCell>
+                <TableCell className=' flex items-center gap-2'>
                   <GrantMaturity id={item.bank} userid={''}/>
+                  <Dialog >
+                                     <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-2 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
+                                     <DialogContent>
+                                       <DialogHeader>
+                                         <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                         <DialogDescription>
+                                           This action cannot be undone. This will permanently delete history.
+                                         </DialogDescription>
+                                       </DialogHeader>
+               
+                                       <div className=' w-full flex items-end justify-end'>
+                                         <button disabled={loading} 
+                                          onClick={() => deletPlan( item.bank)} 
+                                         className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
+               
+                                       </div>
+                                     </DialogContent>
+                                   </Dialog>
                 </TableCell>
 
 

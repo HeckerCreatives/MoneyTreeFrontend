@@ -22,7 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { RotateCcw } from 'lucide-react'
+import { RotateCcw, Trash2 } from 'lucide-react'
 import {
   Select,
   SelectContent,
@@ -92,6 +92,8 @@ export default function Payouthistory() {
     const [tab, setTab] = useState('gamebalance')
     const [status, setStatus] = useState('done')
     const [open, setOpen] = useState(false)
+    const [open2, setOpen2] = useState(false)
+    const [open3, setOpen3] = useState(false)
     const [totalrequests, setTotalRequests] = useState<Totals>()
 
 
@@ -213,6 +215,87 @@ export default function Payouthistory() {
     }
   };
 
+  // const deletePayout = async (id: string) => {
+  //   setLoading(true);
+  //   setRefresh('true')
+  //   try {
+  //     const response = await axios.post(
+  //       `${process.env.NEXT_PUBLIC_API_URL}/payout/deletepayout`,
+  //       {
+  //         payoutid: id,
+  //       },
+  //       {
+  //         withCredentials: true,
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //       }
+  //     );
+
+  //     toast.success('Payout sucessfully deleted.');
+  //     clearLoading();
+  //     setRefresh('false')
+  //     setOpen(false)
+
+  //   } catch (error) {
+  //     setLoading(false);
+  //     setRefresh('false')
+  //     setOpen(false)
+
+
+  //     if (axios.isAxiosError(error)) {
+  //       const axiosError = error as AxiosError<{ message: string; data: string }>;
+  //       if (axiosError.response && axiosError.response.status === 401) {
+  //         toast.error(`${axiosError.response.data.data}`);
+  //         router.push('/')
+  //       }
+
+  //       if (axiosError.response && axiosError.response.status === 400) {
+  //         toast.error(`${axiosError.response.data.data}`);
+  //       }
+
+  //       if (axiosError.response && axiosError.response.status === 402) {
+  //         toast.error(`${axiosError.response.data.data}`);
+  //       }
+
+  //       if (axiosError.response && axiosError.response.status === 403) {
+  //         toast.error(`${axiosError.response.data.data}`);
+  //       }
+
+  //       if (axiosError.response && axiosError.response.status === 404) {
+  //         toast.error(`${axiosError.response.data.data}`);
+  //       }
+  //     }
+  //   }
+  // };
+
+  
+  useEffect(() => {
+    setLoading(true);
+
+    const getTotals = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/payout/gettotalrequest`,
+          { withCredentials: true }
+        );
+        setTotalRequests(response.data.data)
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          const axiosError = error as AxiosError<{ message: string; data: string }>;
+          if (axiosError.response && axiosError.response.status === 401) {
+            
+          }
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+    getTotals()
+
+  }, []);
+
+
   const deletePayout = async (id: string) => {
     setLoading(true);
     setRefresh('true')
@@ -230,10 +313,12 @@ export default function Payouthistory() {
         }
       );
 
-      toast.success('Payout sucessfully deleted.');
+      toast.success('Payout history sucessfully deleted .');
       clearLoading();
       setRefresh('false')
       setOpen(false)
+      setOpen2(false)
+      setOpen3(false)
 
     } catch (error) {
       setLoading(false);
@@ -267,32 +352,6 @@ export default function Payouthistory() {
     }
   };
 
-  
-  useEffect(() => {
-    setLoading(true);
-
-    const getTotals = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/payout/gettotalrequest`,
-          { withCredentials: true }
-        );
-        setTotalRequests(response.data.data)
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          const axiosError = error as AxiosError<{ message: string; data: string }>;
-          if (axiosError.response && axiosError.response.status === 401) {
-            
-          }
-        }
-      } finally {
-        setLoading(false);
-      }
-    }
-    getTotals()
-
-  }, []);
-
 
    
 
@@ -302,9 +361,9 @@ export default function Payouthistory() {
     <div className=' flex flex-col gap-12 w-full py-8'>
       <div className=' w-full flex items-center justify-center'>
         <div className=' w-fit grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4'>
-          <Card name={'Game Payout'} amount={totalrequests?.totalrequestgame || 0} color={''} subcolor={''}/>
-          <Card name={'Referral Payout'} amount={totalrequests?.totalrequestdirect || 0} color={''} subcolor={''}/>
-          <Card name={'Unilevel Payout'} amount={totalrequests?.totalrequestunilevel || 0} color={''} subcolor={''}/>
+          <Card name={'Game Payout'} amount={totalrequests?.totalrequestgame || 0} color={''} subcolor={''} editable={false}/>
+          <Card name={'Referral Payout'} amount={totalrequests?.totalrequestdirect || 0} color={''} subcolor={''} editable={false}/>
+          <Card name={'Unilevel Payout'} amount={totalrequests?.totalrequestunilevel || 0} color={''} subcolor={''} editable={false}/>
         </div>
       </div>
      
@@ -457,6 +516,7 @@ export default function Payouthistory() {
 
                   <TableHead>Withdrawal fee</TableHead>
                   <TableHead>Status</TableHead>
+                  <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -484,6 +544,26 @@ export default function Payouthistory() {
                     </TableCell>
 
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
+                    <TableCell>
+                    <Dialog open={open2} onOpenChange={setOpen2}>
+                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Are you absolutely sure?</DialogTitle>
+                          <DialogDescription>
+                            This action cannot be undone. This will permanently delete history.
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        <div className=' w-full flex items-end justify-end'>
+                          <button disabled={loading} 
+                          onClick={() => deletePayout(item.id)} 
+                          className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
+
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                    </TableCell>
 
                    
                    
@@ -645,6 +725,7 @@ export default function Payouthistory() {
                   <TableHead>Net amount</TableHead>
                   <TableHead>Withdrawal fee</TableHead>
                   <TableHead>Status</TableHead>
+                  <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -672,7 +753,26 @@ export default function Payouthistory() {
                     </TableCell>
 
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
-                   
+                    <TableCell>
+                    <Dialog open={open2} onOpenChange={setOpen2}>
+                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Are you absolutely sure?</DialogTitle>
+                          <DialogDescription>
+                            This action cannot be undone. This will permanently delete history.
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        <div className=' w-full flex items-end justify-end'>
+                          <button disabled={loading} 
+                          onClick={() => deletePayout(item.id)} 
+                          className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
+
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                    </TableCell>
                    
                    
                     </TableRow>
@@ -832,6 +932,7 @@ export default function Payouthistory() {
                   <TableHead>Net amount</TableHead>
                   <TableHead>Withdrawal fee</TableHead>
                   <TableHead>Status</TableHead>
+                  <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -859,7 +960,27 @@ export default function Payouthistory() {
                     </TableCell>
 
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
-                   
+                    
+                    <TableCell>
+                    <Dialog open={open2} onOpenChange={setOpen2}>
+                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Are you absolutely sure?</DialogTitle>
+                          <DialogDescription>
+                            This action cannot be undone. This will permanently delete history.
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        <div className=' w-full flex items-end justify-end'>
+                          <button disabled={loading} 
+                          onClick={() => deletePayout(item.id)} 
+                          className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
+
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                    </TableCell>
                    
                    
                     </TableRow>
