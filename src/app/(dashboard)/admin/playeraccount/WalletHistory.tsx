@@ -21,6 +21,20 @@ import {
 } from "@/components/ui/select"
 import rateStore from '@/store/rate'
 import loadingtableStore from '@/store/tableloading'
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
+import { Pen, Trash2 } from 'lucide-react'
+import { handleApiError } from '@/lib/errorHandler'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import BuyHistory from '../../superadmin/playeraccount/BuyHistory'
+import PayoutHistory from '../../superadmin/playeraccount/payoutHistory'
   
 
 interface List {
@@ -32,6 +46,7 @@ interface List {
     fromusername: string,
     trainerrank: string,
     trainername: string,
+    id: string
 
 }
 
@@ -45,6 +60,8 @@ export default function WalletHistory() {
     const params = useSearchParams()
     const id = params.get('id')
     const [type, setType] = useState('fiatbalance')
+    const [amount, setAmount] = useState(0)
+
  
 
 
@@ -90,6 +107,88 @@ export default function WalletHistory() {
         }
     }
 
+    const deletHistory = async (data: string) => {
+        setLoading(true);
+        try {
+            const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/deleteplayerwallethistoryforadmin`, {
+                historyid: data
+            }, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            const response = await toast.promise(request, {
+                loading: `Deleting history...`,
+                success: `Successfully deleted `,
+                error: `Error while deleting history.`,
+            });
+            if (response.data.message === 'success') {
+                setLoading(false);
+                window.location.reload()
+            }
+        } catch (error) {
+            setLoading(false);
+    
+            if (axios.isAxiosError(error)) {
+                const axiosError = error as AxiosError<{ message: string, data: string }>;
+                if (axiosError.response && axiosError.response.status === 401) {
+                    toast.error(`${axiosError.response.data.data}`);
+                    router.push('/');
+                }
+    
+                if (axiosError.response && axiosError.response.status === 400) {
+                    toast.error(`${axiosError.response.data.data}`);
+                }
+    
+                if (axiosError.response && axiosError.response.status === 402) {
+                    toast.error(`${axiosError.response.data.data}`);
+                }
+    
+                if (axiosError.response && axiosError.response.status === 403) {
+                    toast.error(`${axiosError.response.data.data}`);
+                }
+    
+                if (axiosError.response && axiosError.response.status === 404) {
+                    toast.error(`${axiosError.response.data.data}`);
+                }
+            }
+        }
+    };
+
+    const editHistory = async (data: string) => {
+        setLoading(true)
+    
+        try {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/editplayerwallethistoryforadmin`,{
+                historyid: data,
+              amount: amount
+            },
+                {
+                    withCredentials: true
+                }
+            )
+    
+            if(response.data.message === 'success'){
+              toast.success('Success')
+              setLoading(false)
+              window.location.reload()
+           
+    
+            } 
+    
+            
+            
+        } catch (error) {
+          setLoading(false)
+    
+            handleApiError(error)
+            
+        }
+    
+    }
+
 
   return (
      <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm mt-4 p-6'>
@@ -98,14 +197,19 @@ export default function WalletHistory() {
             <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
-             <SelectItem value="fiatbalance"> Money Wallet History</SelectItem>
-             <SelectItem value="gamebalance">Game Harvest Profit History</SelectItem>
-             <SelectItem value="directreferralbalance">Referral Commission Wallet History</SelectItem>
-             <SelectItem value="commissionbalance">Unilevel Commission Wallet History</SelectItem>
+            <SelectItem value="fiatbalance"> Money Wallet History</SelectItem>
+            <SelectItem value="gamebalance">Game Harvest Profit History</SelectItem>
+            <SelectItem value="directreferralbalance">Referral Commission Wallet History</SelectItem>
+            <SelectItem value="commissionbalance">Unilevel Commission Wallet History</SelectItem>
+            <SelectItem value="purchasehistory">Purchase History</SelectItem>
+            <SelectItem value="payouthistory">Payout History</SelectItem>
+            {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
         </SelectContent>
         </Select>
 
-        <p className=' text-sm font-medium'>{history(type)}</p>
+        {(type === 'fiatbalance' || type === 'gamebalance' || type === 'directreferralbalance' || type === 'commissionbalance') && (
+                    <>
+               <p className=' text-sm font-medium'>{history(type)}</p>
             <Table>
                 {loading === true && (
                     <TableCaption>
@@ -129,6 +233,7 @@ export default function WalletHistory() {
                     <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount / rate).toLocaleString()}</span></TableCell>
 
                     <TableCell>{item.fromusername}</TableCell>
+                  
                    
                     </TableRow>
                 ))}
@@ -140,6 +245,20 @@ export default function WalletHistory() {
                 <div className=' w-full flex items-center justify-center mt-6'>
                     <Pagination currentPage={currentpage} total={totalpage} onPageChange={handlePageChange}/>
                 </div>
+            )}
+        
+                    </>
+        )}
+
+       
+
+
+            {type === 'purchasehistory' && (
+            <BuyHistory/>
+            )}
+
+            {type === 'payouthistory' && (
+                <PayoutHistory/>
             )}
         
     </div>

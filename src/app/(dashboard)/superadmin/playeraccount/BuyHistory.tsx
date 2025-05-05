@@ -147,7 +147,7 @@ export default function BuyHistory() {
 
 
   return (
-     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm mt-4 p-6'>
+     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
 
          <Select value={type} onValueChange={setType}>
            <SelectTrigger className="w-[200px]">
