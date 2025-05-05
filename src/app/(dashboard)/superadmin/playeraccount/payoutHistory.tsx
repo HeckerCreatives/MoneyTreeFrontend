@@ -37,7 +37,8 @@ interface List {
     grossamount: number,
     withdrawalfee: number,
     netammount: number,
-    status: string
+    status: string,
+    id: string,
 
 }
 
@@ -51,6 +52,8 @@ export default function PayoutHistory() {
     const params = useSearchParams()
     const id = params.get('id')
     const [type, setType] = useState('unilevelbalance')
+        const [open2, setOpen2] = useState(false)
+    
  
 
 
@@ -146,6 +149,57 @@ export default function PayoutHistory() {
         }
     };
 
+    const deletePayout = async (id: string) => {
+        setLoading(true);
+        try {
+          const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_API_URL}/payout/deletepayout`,
+            {
+              payoutid: id,
+            },
+            {
+              withCredentials: true,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+    
+          toast.success('Payout history sucessfully deleted .');
+          clearLoading();
+          setOpen2(false)
+          window.location.reload()
+    
+        } catch (error) {
+          setLoading(false);
+    
+    
+          if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError<{ message: string; data: string }>;
+            if (axiosError.response && axiosError.response.status === 401) {
+              toast.error(`${axiosError.response.data.data}`);
+              router.push('/')
+            }
+    
+            if (axiosError.response && axiosError.response.status === 400) {
+              toast.error(`${axiosError.response.data.data}`);
+            }
+    
+            if (axiosError.response && axiosError.response.status === 402) {
+              toast.error(`${axiosError.response.data.data}`);
+            }
+    
+            if (axiosError.response && axiosError.response.status === 403) {
+              toast.error(`${axiosError.response.data.data}`);
+            }
+    
+            if (axiosError.response && axiosError.response.status === 404) {
+              toast.error(`${axiosError.response.data.data}`);
+            }
+          }
+        }
+      };
+
 
   return (
      <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
@@ -155,9 +209,9 @@ export default function PayoutHistory() {
                <SelectValue placeholder="Select" />
            </SelectTrigger>
            <SelectContent>
-               <SelectItem value="unilevelbalance"> Unilevel History</SelectItem>
-               <SelectItem value="directreferralbalance">Referral History</SelectItem>
-               <SelectItem value="gamebalance">Game History</SelectItem>
+               <SelectItem value="unilevelbalance"> Unilevel Withdraw History</SelectItem>
+               <SelectItem value="directreferralbalance">Referral Withdraw History</SelectItem>
+               <SelectItem value="gamebalance">Game Withdraw History</SelectItem>
        
                {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
            </SelectContent>
@@ -180,7 +234,7 @@ export default function PayoutHistory() {
                 <TableHead>Net Amount</TableHead>
                 <TableHead>Withdrawal Amount</TableHead>
                 <TableHead>Status</TableHead>
-                {/* <TableHead>Action</TableHead> */}
+                <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -207,6 +261,26 @@ export default function PayoutHistory() {
                   
 
                     <TableCell>{item.status}</TableCell>
+                       <TableCell>
+                                        <Dialog open={open2} onOpenChange={setOpen2}>
+                                          <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
+                                          <DialogContent>
+                                            <DialogHeader>
+                                              <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                              <DialogDescription>
+                                                This action cannot be undone. This will permanently delete history.
+                                              </DialogDescription>
+                                            </DialogHeader>
+                    
+                                            <div className=' w-full flex items-end justify-end'>
+                                              <button disabled={loading} 
+                                              onClick={() => deletePayout(item.id)} 
+                                              className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
+                    
+                                            </div>
+                                          </DialogContent>
+                                        </Dialog>
+                                        </TableCell>
                  
                    
                     </TableRow>

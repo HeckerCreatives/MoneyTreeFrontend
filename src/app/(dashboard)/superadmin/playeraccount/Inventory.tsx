@@ -189,7 +189,7 @@ export default function Inventory() {
             )}
             <TableHeader>
                 <TableRow>
-                <TableHead className="">bank Name</TableHead>
+                <TableHead className="">Bank Name</TableHead>
                 <TableHead className="">Total Accumulated</TableHead>
                 <TableHead className="">Daily Accumulated</TableHead>
                 <TableHead className="">Action</TableHead>
@@ -198,7 +198,7 @@ export default function Inventory() {
             <TableBody>
               {list.map((item, index) => (
                 <TableRow key={item.trainer}>
-                <TableCell>{item.type}</TableCell>
+                <TableCell className=' uppercase'>{item.type}</TableCell>
 
                 <TableCell className=' '>
                   <div className='flex flex-col'>

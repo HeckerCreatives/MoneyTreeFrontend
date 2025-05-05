@@ -197,11 +197,11 @@ export default function WalletHistory() {
             <SelectValue placeholder="Select" />
         </SelectTrigger>
         <SelectContent>
-            <SelectItem value="fiatbalance"> Money Wallet History</SelectItem>
-            <SelectItem value="gamebalance">Game Harvest Profit History</SelectItem>
-            <SelectItem value="directreferralbalance">Referral Commission Wallet History</SelectItem>
-            <SelectItem value="commissionbalance">Unilevel Commission Wallet History</SelectItem>
-            <SelectItem value="purchasehistory">Purchase History</SelectItem>
+            <SelectItem value="fiatbalance">Load Balance History</SelectItem>
+            <SelectItem value="gamebalance">Game Wallet Earning History</SelectItem>
+            <SelectItem value="commissionbalance">Commission History(Lvl 2-10)</SelectItem>
+            <SelectItem value="directreferralbalance">Referral History(Lvl 1)</SelectItem>
+            <SelectItem value="purchasehistory">Inventory History</SelectItem>
             <SelectItem value="payouthistory">Payout History</SelectItem>
             {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
         </SelectContent>
@@ -254,7 +254,7 @@ export default function WalletHistory() {
                       </DialogContent>
                     </Dialog>
 
-                    <Dialog>
+                    {/* <Dialog>
                     <DialogTrigger onClick={() => setAmount(item.amount)} className=' text-[.7rem] bg-blue-500 text-white p-1 rounded-md flex items-center gap-1'><Pen size={15}/></DialogTrigger>
                             <DialogContent>
                                 <DialogHeader>
@@ -288,7 +288,7 @@ export default function WalletHistory() {
 
                                 </div>
                             </DialogContent>
-                            </Dialog>
+                            </Dialog> */}
                     </TableCell>
                    
                    
