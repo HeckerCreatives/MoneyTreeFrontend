@@ -29,28 +29,20 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
-import { Pen, Trash2 } from 'lucide-react'
-import { handleApiError } from '@/lib/errorHandler'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import BuyHistory from './BuyHistory'
-import PayoutHistory from './payoutHistory'
+import { Trash2 } from 'lucide-react'
   
 
 interface List {
-    createdAt: string
-    amount: number
-    username: string
-    creaturename: string
-    type: string,
-    fromusername: string,
-    trainerrank: string,
-    trainername: string,
-    id: string
+    date: string,
+    grossamount: number,
+    withdrawalfee: number,
+    netammount: number,
+    status: string,
+    id: string,
 
 }
 
-export default function WalletHistory() {
+export default function PayoutHistory() {
     const router = useRouter()
     const [list, setList] = useState<List[]>([])
     const [totalpage, setTotalPage] = useState(0)
@@ -59,9 +51,9 @@ export default function WalletHistory() {
     const {rate, setRate, clearRate} = rateStore()
     const params = useSearchParams()
     const id = params.get('id')
-    const [type, setType] = useState('fiatbalance')
-    const [amount, setAmount] = useState(0)
-
+    const [type, setType] = useState('unilevelbalance')
+        const [open2, setOpen2] = useState(false)
+    
  
 
 
@@ -69,12 +61,12 @@ export default function WalletHistory() {
         setLoading(true)
         const getList = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/getplayerwallethistoryforadmin?playerid=${id}&page=${currentpage}&limit=10&type=${type}`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/payout/getrequesthistoryplayersuperadmin?playerid=${id}&page=${currentpage}&limit=10&type=${type}`,{
             withCredentials:true
             })
 
             setList(response.data.data.history)
-            setTotalPage(response.data.data.pages)
+            setTotalPage(response.data.data.totalPages)
             setLoading(false)
 
             
@@ -157,59 +149,75 @@ export default function WalletHistory() {
         }
     };
 
-    const editHistory = async (data: string) => {
-        setLoading(true)
-    
+    const deletePayout = async (id: string) => {
+        setLoading(true);
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/editplayerwallethistoryforadmin`,{
-                historyid: data,
-              amount: amount
+          const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_API_URL}/payout/deletepayout`,
+            {
+              payoutid: id,
             },
-                {
-                    withCredentials: true
-                }
-            )
+            {
+              withCredentials: true,
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
     
-            if(response.data.message === 'success'){
-              toast.success('Success')
-              setLoading(false)
-              window.location.reload()
-           
+          toast.success('Payout history sucessfully deleted .');
+          clearLoading();
+          setOpen2(false)
+          window.location.reload()
     
-            } 
-    
-            
-            
         } catch (error) {
-          setLoading(false)
+          setLoading(false);
     
-            handleApiError(error)
-            
+    
+          if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError<{ message: string; data: string }>;
+            if (axiosError.response && axiosError.response.status === 401) {
+              toast.error(`${axiosError.response.data.data}`);
+              router.push('/')
+            }
+    
+            if (axiosError.response && axiosError.response.status === 400) {
+              toast.error(`${axiosError.response.data.data}`);
+            }
+    
+            if (axiosError.response && axiosError.response.status === 402) {
+              toast.error(`${axiosError.response.data.data}`);
+            }
+    
+            if (axiosError.response && axiosError.response.status === 403) {
+              toast.error(`${axiosError.response.data.data}`);
+            }
+    
+            if (axiosError.response && axiosError.response.status === 404) {
+              toast.error(`${axiosError.response.data.data}`);
+            }
+          }
         }
-    
-    }
+      };
 
 
   return (
-     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm mt-4 p-6'>
-        <Select value={type} onValueChange={setType}>
-        <SelectTrigger className="w-[200px]">
-            <SelectValue placeholder="Select" />
-        </SelectTrigger>
-        <SelectContent>
-            <SelectItem value="fiatbalance">Load Balance History</SelectItem>
-                        <SelectItem value="gamebalance">Game Wallet Earning History</SelectItem>
-                        <SelectItem value="commissionbalance">Commission History(Lvl 2-14)</SelectItem>
-                        <SelectItem value="directreferralbalance">Referral History(Lvl 1)</SelectItem>
-                        <SelectItem value="purchasehistory">Inventory History</SelectItem>
-                        <SelectItem value="payouthistory">Payout History</SelectItem>
-            {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
-        </SelectContent>
-        </Select>
+     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
 
-        {(type === 'fiatbalance' || type === 'gamebalance' || type === 'directreferralbalance' || type === 'commissionbalance') && (
-                    <>
-               <p className=' text-sm font-medium'>{history(type)}</p>
+         <Select value={type} onValueChange={setType}>
+           <SelectTrigger className="w-[200px]">
+               <SelectValue placeholder="Select" />
+           </SelectTrigger>
+           <SelectContent>
+               <SelectItem value="unilevelbalance"> Unilevel Withdraw History</SelectItem>
+               <SelectItem value="directreferralbalance">Referral Withdraw History</SelectItem>
+               <SelectItem value="gamebalance">Game Withdraw History</SelectItem>
+       
+               {/* <SelectItem value="unilevelbalance">Unilevel Commission Wallet History</SelectItem> */}
+           </SelectContent>
+           </Select>
+    
+        <p className=' text-sm font-medium'>{history(type)}</p>
             <Table>
                 {loading === true && (
                     <TableCaption>
@@ -222,18 +230,37 @@ export default function WalletHistory() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Date</TableHead>
-                <TableHead>Amount</TableHead>
-                <TableHead>From</TableHead>
+                <TableHead>Gross Amount</TableHead>
+                <TableHead>Net Amount</TableHead>
+                <TableHead>Withdrawal Amount</TableHead>
+                <TableHead>Status</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {list.map((item, index) => (
                     <TableRow key={index}>
-                    <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
-                    <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount / rate).toLocaleString()}</span></TableCell>
+                    <TableCell className="">{new Date(item.date).toLocaleString()}</TableCell>
+                     <TableCell className=' '>
+                      <div className='flex flex-col'>
+                        ₱{item.grossamount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.grossamount / rate).toLocaleString()}</span>
+                      </div>
+                    </TableCell>
 
-                    <TableCell>{item.fromusername}</TableCell>
+                    <TableCell className=' '>
+                      <div className='flex flex-col'>
+                        ₱{item.netammount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.netammount / rate).toLocaleString()}</span>
+                      </div>
+                    </TableCell>
+
+                    <TableCell className=' '>
+                      <div className='flex flex-col'>
+                        ₱{item.withdrawalfee.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.withdrawalfee / rate).toLocaleString()}</span>
+                      </div>
+                    </TableCell>
                   
+
+                    <TableCell>{item.status}</TableCell>
+                      
                    
                     </TableRow>
                 ))}
@@ -245,20 +272,6 @@ export default function WalletHistory() {
                 <div className=' w-full flex items-center justify-center mt-6'>
                     <Pagination currentPage={currentpage} total={totalpage} onPageChange={handlePageChange}/>
                 </div>
-            )}
-        
-                    </>
-        )}
-
-       
-
-
-            {type === 'purchasehistory' && (
-            <BuyHistory/>
-            )}
-
-            {type === 'payouthistory' && (
-                <PayoutHistory/>
             )}
         
     </div>
