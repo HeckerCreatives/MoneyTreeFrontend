@@ -93,7 +93,7 @@ export default function Gamebalanacehistory() {
                     <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
                     <TableCell className=' '>
                         <div className='flex flex-col'>
-                        ₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount / rate).toLocaleString()}</span>
+                        ₱{item?.amount?.toLocaleString() || 0} <span className=' text-[.6rem] text-zinc-500'>${(item?.amount || 0 / rate).toLocaleString()}</span>
                         </div>
                     </TableCell>
                     <TableCell>{item.bankname}</TableCell>
