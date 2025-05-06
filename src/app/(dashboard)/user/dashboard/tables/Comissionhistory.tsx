@@ -96,7 +96,7 @@ export default function Comissionhistory() {
 
                     <TableCell>{item.fromusername}</TableCell>
                     <TableCell>{item.bankname}</TableCell>
-                    <TableCell>{item.type}</TableCell>
+                    <TableCell>Commission Balance</TableCell>
                    
                     </TableRow>
                 ))}

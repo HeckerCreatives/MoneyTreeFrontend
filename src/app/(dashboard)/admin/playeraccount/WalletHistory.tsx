@@ -199,7 +199,7 @@ export default function WalletHistory() {
         <SelectContent>
             <SelectItem value="fiatbalance">Load Balance History</SelectItem>
                         <SelectItem value="gamebalance">Game Wallet Earning History</SelectItem>
-                        <SelectItem value="commissionbalance">Commission History(Lvl 2-10)</SelectItem>
+                        <SelectItem value="commissionbalance">Commission History(Lvl 2-14)</SelectItem>
                         <SelectItem value="directreferralbalance">Referral History(Lvl 1)</SelectItem>
                         <SelectItem value="purchasehistory">Inventory History</SelectItem>
                         <SelectItem value="payouthistory">Payout History</SelectItem>

@@ -199,7 +199,7 @@ export default function WalletHistory() {
         <SelectContent>
             <SelectItem value="fiatbalance">Load Balance History</SelectItem>
             <SelectItem value="gamebalance">Game Wallet Earning History</SelectItem>
-            <SelectItem value="commissionbalance">Commission History(Lvl 2-10)</SelectItem>
+            <SelectItem value="commissionbalance">Commission History(Lvl 2-14)</SelectItem>
             <SelectItem value="directreferralbalance">Referral History(Lvl 1)</SelectItem>
             <SelectItem value="purchasehistory">Inventory History</SelectItem>
             <SelectItem value="payouthistory">Payout History</SelectItem>
@@ -231,7 +231,7 @@ export default function WalletHistory() {
                 {list.map((item, index) => (
                     <TableRow key={index}>
                     <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
-                    <TableCell className=' flex flex-col'>₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount / rate).toLocaleString()}</span></TableCell>
+                    <TableCell className=' flex flex-col'>₱{item?.amount?.toLocaleString() || 0} <span className=' text-[.6rem] text-zinc-500'>${(item?.amount || 0 / rate).toLocaleString()}</span></TableCell>
 
                     <TableCell>{item.fromusername}</TableCell>
                     <TableCell className=' flex items-center gap-2'>
