@@ -185,7 +185,7 @@ export default function BuyHistory() {
                 {list.map((item, index) => (
                     <TableRow key={index}>
                     <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
-                    <TableCell className=' flex flex-col'>₱{item?.amount.toLocaleString() || 0} <span className=' text-[.6rem] text-zinc-500'>${(item?.amount || 0 / rate).toLocaleString()}</span></TableCell>
+                    <TableCell className=' flex flex-col'>₱{item?.amount?.toLocaleString() || 0} <span className=' text-[.6rem] text-zinc-500'>${(item?.amount || 0 / rate).toLocaleString()}</span></TableCell>
 
                     <TableCell>{item.bankname}</TableCell>
                     {/* <TableCell>
