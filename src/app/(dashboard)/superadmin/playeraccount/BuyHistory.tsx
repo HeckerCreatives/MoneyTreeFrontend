@@ -37,6 +37,7 @@ interface List {
     type: string,
     amount: number,
     createdAt: string
+    id: string
 
 }
 
@@ -98,7 +99,7 @@ export default function BuyHistory() {
     const deletHistory = async (data: string) => {
         setLoading(true);
         try {
-            const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/wallethistory/deleteplayerwallethistoryforadmin`, {
+            const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/deleteplayerinventoryhistorysuperadmin`, {
                 historyid: data
             }, {
                 withCredentials: true,
@@ -176,6 +177,7 @@ export default function BuyHistory() {
                 <TableHead className="">Date</TableHead>
                 <TableHead>Amount</TableHead>
                 <TableHead>Plan</TableHead>
+                <TableHead>Action</TableHead>
                 {/* <TableHead>Action</TableHead> */}
                 </TableRow>
             </TableHeader>
@@ -206,6 +208,26 @@ export default function BuyHistory() {
                       </DialogContent>
                     </Dialog>
                     </TableCell> */}
+                     <TableCell>
+                    <Dialog >
+                      <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Are you absolutely sure?</DialogTitle>
+                          <DialogDescription>
+                            This action cannot be undone. This will permanently delete the history.
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        <div className=' w-full flex items-end justify-end'>
+                          <button disabled={loading} 
+                           onClick={() => deletHistory(item.id)} 
+                          className=' px-4 py-2 text-xs bg-red-500 text-white rounded-md'>Continue</button>
+
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                    </TableCell>
                    
                    
                     </TableRow>
