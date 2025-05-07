@@ -131,7 +131,6 @@ export default function Withdrawform( prop: Props) {
 
       <form onSubmit={handleSubmit(onSubmit)} className=' flex flex-col gap-1'>
         <label htmlFor="type" className=' label'>Select Payment Method</label>
-
         <Controller
           name="paymentMethod"
           control={control}
