@@ -173,7 +173,7 @@ export default function Withdrawform( prop: Props) {
 
         <label htmlFor="type" className=' label mt-2'>Amount</label>
 
-        {prop.type !== 'gamebalance' ? (
+        {prop.type === 'referral' ? (
 
           <>
           {payment === 'gcash' ? (
