@@ -173,24 +173,24 @@ export default function Withdrawform( prop: Props) {
 
         <label htmlFor="type" className=' label mt-2'>Amount</label>
 
-        {prop.type === 'referral' ? (
+        {prop.type !== 'gamebalance' ? (
 
           <>
           {payment === 'gcash' ? (
               // <Input max={5000} type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
-            //   <Select onValueChange={(value) => setValue('amount', Number(value))}>
-            //   <SelectTrigger className="w-full bg-white text-amber-950">
-            //     <SelectValue placeholder="Select amount" />
-            //   </SelectTrigger>
-            //   <SelectContent className="bg-amber-50 text-amber-950">
-            //     {amounts.map((amount) => (
-            //       <SelectItem key={amount} value={amount.toString()}>
-            //         ₱{amount.toLocaleString()}
-            //       </SelectItem>
-            //     ))}
-            //   </SelectContent>
-            // </Select>
-            <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
+               <Select onValueChange={(value) => setValue('amount', Number(value))}>
+               <SelectTrigger className="w-full bg-white text-amber-950">
+                 <SelectValue placeholder="Select amount" />
+               </SelectTrigger>
+               <SelectContent className="bg-amber-50 text-amber-950">
+                 {amounts.map((amount) => (
+                   <SelectItem key={amount} value={amount.toString()}>
+                     ₱{amount.toLocaleString()}
+                   </SelectItem>
+                 ))}
+               </SelectContent>
+             </Select>
+            // <Input type='number' placeholder='Amount'  {...register('amount', { valueAsNumber: true })}/>
           ) : (
              <Select onValueChange={(value) => setValue('amount', Number(value))}>
                <SelectTrigger className="w-full bg-white text-amber-950">
