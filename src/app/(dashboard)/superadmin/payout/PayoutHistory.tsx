@@ -853,7 +853,7 @@ export default function Payouthistory() {
                    <TableCell>{item.status}</TableCell>
                    <TableCell>
                      <Dialog open={open} onOpenChange={setOpen}>
-                       <DialogTrigger className='text-[.6rem] primary-green text-white px-2 py-1 rounded-sm font-medium flex items-center gap-1 justify-center'><RotateCcw size={12}/>Process</DialogTrigger>
+                       <DialogTrigger onClick={() => setPayoutId(item.id)} className='text-[.6rem] primary-green text-white px-2 py-1 rounded-sm font-medium flex items-center gap-1 justify-center'><RotateCcw size={12}/>Process</DialogTrigger>
                        <DialogContent>
                          <DialogHeader>
                            <DialogTitle>Process Payout</DialogTitle>
