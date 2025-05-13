@@ -95,6 +95,8 @@ export default function Payouthistory() {
     const [open2, setOpen2] = useState(false)
     const [open3, setOpen3] = useState(false)
     const [totalrequests, setTotalRequests] = useState<Totals>()
+        const [payoutid, setPayoutId] = useState('')
+    
 
 
 
@@ -167,7 +169,7 @@ export default function Payouthistory() {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/payout/processpayout`,
         {
-          payoutid: id,
+          payoutid: payoutid,
           status: status
         },
         {
@@ -303,7 +305,7 @@ export default function Payouthistory() {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/payout/deletepayout`,
         {
-          payoutid: id,
+          payoutid: payoutid,
         },
         {
           withCredentials: true,
@@ -435,7 +437,7 @@ export default function Payouthistory() {
                     <TableCell>{item.status}</TableCell>
                     <TableCell>
                       <Dialog open={open} onOpenChange={setOpen}>
-                        <DialogTrigger className='text-[.6rem] primary-green text-white px-2 py-1 rounded-sm font-medium flex items-center gap-1 justify-center'><RotateCcw size={12}/>Process</DialogTrigger>
+                        <DialogTrigger onClick={() => setPayoutId(item.id)} className='text-[.6rem] primary-green text-white px-2 py-1 rounded-sm font-medium flex items-center gap-1 justify-center'><RotateCcw size={12}/>Process</DialogTrigger>
                         <DialogContent>
                           <DialogHeader>
                             <DialogTitle>Process Payout</DialogTitle>
