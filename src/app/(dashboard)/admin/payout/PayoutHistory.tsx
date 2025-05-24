@@ -85,6 +85,7 @@ export default function Payouthistory() {
     const [tab, setTab] = useState('gamebalance')
     const [status, setStatus] = useState('done')
     const [open, setOpen] = useState(false)
+    const [payoutid, setPayoutId] = useState('')
 
 
 
@@ -157,7 +158,7 @@ export default function Payouthistory() {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/payout/processpayout`,
         {
-          payoutid: id,
+          payoutid: payoutid,
           status: status
         },
         {

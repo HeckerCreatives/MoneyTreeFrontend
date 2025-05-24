@@ -184,7 +184,7 @@ export default function Playerlayout({
                     <TooltipTrigger>
                     <a onClick={() => setPage(item.name)} href={item.path} className={` flex items-center gap-2 px-2 py-2 text-[.7rem] rounded-md font-medium ${path.includes(item.path) ? 'bg-amber-50 text-amber-950' : 'text-amber-50 hover:bg-amber-50 hover:text-amber-950'} transition-all duration-200`}>{item.icon}</a>
                     </TooltipTrigger>
-                    <TooltipContent side='left' className=' font-semibold bg-amber-100 text-amber-950 text-xs'>
+                    <TooltipContent side='left' className=' font-semibold bg-amber-50 text-amber-950 text-xs'>
                       <p>{item.name}</p>
                     </TooltipContent>
                   </Tooltip>
