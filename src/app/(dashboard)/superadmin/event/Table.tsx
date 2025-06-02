@@ -156,10 +156,10 @@ export default function Leaderboard() {
 
   return (
 
-    <div className=' w-full p-8 flex flex-col gap-4'>
+    <div className=' w-full p-2 py-4 lg:p-8 flex flex-col gap-4'>
         <Maintenance/>
 
-        <div className=' w-full flex flex-col gap-6 items-center justify-center lg:p-6 bg-cream rounded-md'>
+        <div className=' w-full flex flex-col gap-6 items-center justify-center p-4 lg:p-6 bg-cream rounded-md'>
 
            <div className=' w-full flex items-center'>
                   <h2 className=' text-xl font-bold text-black'>Leaderboard</h2>

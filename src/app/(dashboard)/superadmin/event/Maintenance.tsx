@@ -630,7 +630,7 @@ export default function Maintenance() {
   return (
     <div className="w-full flex flex-col gap-4 font-light">
 
-        <div className=' w-full grid grid-cols-[repeat(auto-fit,minmax(420px,1fr))] gap-4'>
+        <div className=' w-full grid-cols-[repeat(auto-fit,minmax(280px,1fr))] grid lg:grid-cols-[repeat(auto-fit,minmax(420px,1fr))] gap-4'>
         
 
             <div className=' h-auto flex flex-col gap-2 bg-cream p-4 rounded-md w-full '>
