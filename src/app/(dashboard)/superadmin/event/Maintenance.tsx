@@ -18,14 +18,14 @@ interface IngameEntry {
     value: number | string[];
 }
 
-type TierType = 'Nest Stast' | 'Wealth Jar' | 'Piggy Bank';
+type TierType = 'Free' | 'Nest Stast' | 'Wealth Jar' | 'Piggy Bank';
 
 type TierEntry = {
   type: 'tierentry';
   value: TierType[];
 };
 
-const TIER_OPTIONS: TierType[] = ['Nest Stast' ,'Wealth Jar' ,'Piggy Bank'];
+const TIER_OPTIONS: TierType[] = ['Free','Nest Stast' ,'Wealth Jar' ,'Piggy Bank'];
 
 
 export default function Maintenance() {
@@ -629,7 +629,7 @@ export default function Maintenance() {
   return (
     <div className="w-full flex flex-col gap-4 font-light">
 
-        <div className=' w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4'>
+        <div className=' w-full grid grid-cols-[repeat(auto-fit,minmax(420px,1fr))] gap-4'>
         
 
             <div className=' h-auto flex flex-col gap-2 bg-cream p-4 rounded-md w-full '>
