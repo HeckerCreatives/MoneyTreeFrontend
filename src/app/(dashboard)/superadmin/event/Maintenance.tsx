@@ -18,14 +18,14 @@ interface IngameEntry {
     value: number | string[];
 }
 
-type TierType = 'Free' | 'Nest Stast' | 'Wealth Jar' | 'Piggy Bank';
+type TierType = 'Free' | 'Nest Stash' | 'Wealth Jar' | 'Piggy Bank';
 
 type TierEntry = {
   type: 'tierentry';
   value: TierType[];
 };
 
-const TIER_OPTIONS: TierType[] = ['Free','Nest Stast' ,'Wealth Jar' ,'Piggy Bank'];
+const TIER_OPTIONS: TierType[] = ['Free','Nest Stash' ,'Wealth Jar' ,'Piggy Bank'];
 
 
 export default function Maintenance() {
@@ -198,6 +198,7 @@ export default function Maintenance() {
             if (response.data.message === 'success') {
                 setRefresh('false');
                 setLoading(false);
+                window.location.reload()
             }
         } catch (error) {
             setRefresh('true');
