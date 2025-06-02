@@ -254,41 +254,47 @@ export default function WalletHistory() {
                       </DialogContent>
                     </Dialog>
 
-                    {/* <Dialog>
-                    <DialogTrigger onClick={() => setAmount(item.amount)} className=' text-[.7rem] bg-blue-500 text-white p-1 rounded-md flex items-center gap-1'><Pen size={15}/></DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                <DialogTitle>Are you absolutely sure to edit this?</DialogTitle>
-                                <DialogDescription>
-                                   
-                                </DialogDescription>
-                                </DialogHeader>
+                    
 
-                                <div className=' w-full'>
-                                    <label htmlFor="">Amount</label>
-                                    <Input
-                                      type="text"
-                                      className="text-black mt-1"
-                                      value={amount.toLocaleString()}
-                                      onChange={(e) => {
-                                        const rawValue = e.target.value.replace(/,/g, '');
-                                        const numValue = Number(rawValue);
+                    {(type === 'commissionbalance' || type === 'directreferralbalance') && (
+                         <Dialog>
+                         <DialogTrigger onClick={() => setAmount(item.amount)} className=' text-[.7rem] bg-blue-500 text-white p-1 rounded-md flex items-center gap-1'><Pen size={15}/></DialogTrigger>
+                                 <DialogContent>
+                                     <DialogHeader>
+                                     <DialogTitle>Are you absolutely sure to edit this?</DialogTitle>
+                                     <DialogDescription>
+                                        
+                                     </DialogDescription>
+                                     </DialogHeader>
+     
+                                     <div className=' w-full'>
+                                         <label htmlFor="">Amount</label>
+                                         <Input
+                                           type="text"
+                                           className="text-black mt-1"
+                                           value={amount.toLocaleString()}
+                                           onChange={(e) => {
+                                             const rawValue = e.target.value.replace(/,/g, '');
+                                             const numValue = Number(rawValue);
+     
+                                             if (rawValue === '') {
+                                               setAmount(0);
+                                             } else if (!isNaN(numValue) && numValue >= 0) {
+                                               setAmount(numValue);
+                                             }
+                                           }}
+                                         />
+     
+                                         <Button disabled={loading} onClick={() => editHistory(item.id)} className='clip-btn px-12 w-fit mt-4'>
+                                         {loading && ( <div className='spinner'></div>)}
+                                             Save</Button>
+     
+                                     </div>
+                                 </DialogContent>
+                                 </Dialog>
 
-                                        if (rawValue === '') {
-                                          setAmount(0);
-                                        } else if (!isNaN(numValue) && numValue >= 0) {
-                                          setAmount(numValue);
-                                        }
-                                      }}
-                                    />
-
-                                    <Button disabled={loading} onClick={() => editHistory(item.id)} className='clip-btn px-12 w-fit mt-4'>
-                                    {loading && ( <div className='spinner'></div>)}
-                                        Save</Button>
-
-                                </div>
-                            </DialogContent>
-                            </Dialog> */}
+                    )}
+                   
                     </TableCell>
                    
                    
