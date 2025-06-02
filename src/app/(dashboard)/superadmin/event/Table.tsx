@@ -57,8 +57,9 @@ export default function Leaderboard() {
       
         const delayDebounceFn = setTimeout(async () => {
           try {
+            const encodedDate = encodeURIComponent(date)
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/leaderboard/getleaderboardhistory?date=${date.split(' ')[0]}&hour=${date.split(' ')[1]}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/leaderboard/getleaderboardhistory?date=${encodedDate}`,
               {
                 withCredentials: true,
               }
