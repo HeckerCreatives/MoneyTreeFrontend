@@ -169,7 +169,7 @@ export default function GameHistory() {
                     <TableCell className="">₱{item.amount.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</TableCell>
                     {/* <TableCell className="">{item.rank}</TableCell> */}
                     <TableCell className="">
-                      <Dialog >
+                      <Dialog open={open} onOpenChange={setOpen}>
                       <DialogTrigger className=' text-[.7rem] bg-red-500 text-white p-1 rounded-md flex items-center gap-1'><Trash2 size={15}/></DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
