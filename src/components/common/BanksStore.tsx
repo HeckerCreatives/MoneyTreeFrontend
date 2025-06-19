@@ -38,11 +38,13 @@ export default function BanksStore(prop: Bank) {
     const router = useRouter()
     const {refresh, setRefresh} = refreshStore()
     const [drawer, setDrawer] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const buyBank = async () => {
         setDialog(false)
         setLoading(true)
         setRefresh('true')
+        setIsLoading(true)
         try {
             const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/inventory/buybank`,{
                 type: prop.type, // bank type // piggy_bank, money_vault, and treasure_chest
@@ -65,6 +67,8 @@ export default function BanksStore(prop: Bank) {
                 router.push('?state=false')
                 setRefresh('false')
                 setDrawer(false)
+                setIsLoading(false)
+
 
 
             }
@@ -224,7 +228,7 @@ setVal(prop.min)
                             <Input type='number' min={500} value={val} onChange={(e) => setVal(e.target.valueAsNumber)} placeholder='Amount'/>
 
                             <div className=' w-full flex items-center gap-4 mt-6'>
-                            <Button onClick={buyBank} className=' w-full '>
+                            <Button disabled={isLoading}  onClick={buyBank} className=' w-full '>
                                 {loading && (
                                     <span className='loader'></span>
                                 )}
