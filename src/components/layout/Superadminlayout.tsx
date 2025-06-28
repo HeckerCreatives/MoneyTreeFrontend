@@ -216,7 +216,7 @@ export default function Superadminlayout({
 
           </header>
         
-          <main className=" w-full relative flex flex-1 flex-col items-center gap-4 overflow-y-auto ">
+          <main className=" w-full relative flex flex-1 flex-col items-center gap-4 overflow-y-auto pb-16">
               {children}
           </main>
         </div>
