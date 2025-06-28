@@ -77,7 +77,7 @@ export default function Saleshistory() {
         <div className=' w-full flex flex-col gap-4 '>
         <p className=' text-sm font-medium'>Sales History</p>
 
-        <div className=' flex gap-4 items-center'>
+        <div className=' flex flex-wrap gap-4 items-center'>
             <div className=' flex flex-col gap-1'>
                 <label htmlFor="" className=' text-xs'>Start Date</label>
                 <Input type='date' value={start} onChange={(e) => setStart(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/>
