@@ -74,6 +74,7 @@ export default function Withdrawform( prop: Props) {
                 setLoading(false)
                 setRefresh('false')
                 reset()
+                window.location.reload()
 
 
             }

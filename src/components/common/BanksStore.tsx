@@ -155,7 +155,7 @@ export default function BanksStore(prop: Bank) {
     const findBank = banks.find((item) => item.id === prop.name)
 
     useEffect(()=>{
-setVal(prop.min)
+// setVal(prop.min)
     },[prop])
 
   return (
@@ -224,8 +224,16 @@ setVal(prop.min)
                             <p className=' text-sm font-bold text-blue-600'>Saving Plus</p>
                             )}
 
-                            <label htmlFor="" className=' text-xs mt-2 mb-1'>Enter amount</label>
-                            <Input type='number' min={500} value={val} onChange={(e) => setVal(e.target.valueAsNumber)} placeholder='Amount'/>
+                            <div className=' flex items-end w-full gap-1'>
+                                 <div className=' flex flex-col gap-1 w-full'>
+                                    <label htmlFor="" className=' text-xs'>Enter amount</label>
+                                    <Input type='number' min={500} value={val} onChange={(e) => setVal(e.target.valueAsNumber)} placeholder='Amount'/>
+                                </div>
+                                <button onClick={() => setVal(val + 1)} className=' bg-blue-600 text-white h-10 px-3 rounded-md text-lg font-bold'>+</button>
+                                <button disabled={val === 0} onClick={() => setVal(val - 1)} className=' bg-red-600 text-white h-10 px-3 rounded-md text-lg font-bold'>-</button>
+                            </div>
+
+                           
 
                             <div className=' w-full flex items-center gap-4 mt-6'>
                             <Button disabled={isLoading}  onClick={buyBank} className=' w-full '>
