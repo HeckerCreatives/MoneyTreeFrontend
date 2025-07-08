@@ -69,7 +69,7 @@ const id = params.get('id')
     setLoading(true);
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/unilevel/playeviewadminunilevel?playerid=${id}&level=${current}&page=${currentpage}&limit=2&search=${search}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/unilevel/playeviewadminunilevel?playerid=${id}&level=${current}&page=${currentpage}&limit=10&search=${search}`,
         { withCredentials: true }
       );
 
