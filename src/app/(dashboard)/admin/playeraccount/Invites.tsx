@@ -62,7 +62,7 @@ const id = params.get('id')
     }, 500); 
 
     return () => clearTimeout(debounceTimer);
-  }, [current, search]); 
+  }, [current, search, currentpage]); 
 
   const fetchData = async () => {
     setLoading(true);
@@ -89,6 +89,10 @@ const id = params.get('id')
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
+
+  useEffect(() => {
+    setCurrentPage(0)
+  },[current])
 
 
 

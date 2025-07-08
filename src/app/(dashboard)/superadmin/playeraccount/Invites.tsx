@@ -63,13 +63,13 @@ const id = params.get('id')
     }, 500); 
 
     return () => clearTimeout(debounceTimer);
-  }, [current, search]); 
+  }, [current, search, currentpage]); 
 
   const fetchData = async () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/unilevel/playeviewadminunilevel?playerid=${id}&level=${current}&page=${currentpage}&limit=10&search=${search}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/unilevel/playeviewadminunilevel?playerid=${id}&level=${current}&page=${currentpage}&limit=2&search=${search}`,
         { withCredentials: true }
       );
 
@@ -90,6 +90,10 @@ const id = params.get('id')
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
+
+   useEffect(() => {
+      setCurrentPage(0)
+    },[current])
 
 
 
