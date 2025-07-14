@@ -26,7 +26,7 @@ interface List {
 
 }
 
-export default function ClaimHistory() {
+export default function TreeClaimHistory() {
     const router = useRouter()
     const [list, setList] = useState<List[]>([])
     const [totalpage, setTotalPage] = useState(0)
@@ -39,7 +39,7 @@ export default function ClaimHistory() {
         setLoading(true)
         const getList = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getinventoryhistory?type=claim&page=${currentpage}&limit=10&rank=bank`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getinventoryhistory?type=claim&page=${currentpage}&limit=10&rank=tree`,{
             withCredentials:true
             })
 
@@ -82,7 +82,7 @@ export default function ClaimHistory() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Date</TableHead>
-                <TableHead>Bank name</TableHead>
+                {/* <TableHead>Bank name</TableHead> */}
                 <TableHead>Type</TableHead>
                 <TableHead>Amount</TableHead>
                 </TableRow>
@@ -91,7 +91,7 @@ export default function ClaimHistory() {
                 {list.map((item, index) => (
                     <TableRow key={index}>
                     <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
-                    <TableCell>{item.bankname}</TableCell>
+                    {/* <TableCell>{item.bankname}</TableCell> */}
                     <TableCell>{item.type}</TableCell>
 
                     <TableCell className=' '>

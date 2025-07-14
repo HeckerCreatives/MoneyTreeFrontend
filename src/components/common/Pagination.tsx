@@ -20,11 +20,11 @@ export default function Pagination({ currentPage, total, onPageChange }: Paginat
   }
 
   return (
-    <div className="flex items-center gap-1 text-xs">
+    <div className=" flex items-center gap-1 text-xs">
       <button onClick={prev} disabled={currentPage === 0} className=" bg-amber-950 text-amber-50 p-2 rounded-sm">
         <ArrowLeft size={15} />
       </button>
-      <p className="p-2 aspect-square max-w-32 w-fit h-8 text-center rounded-sm bg-white">
+      <p className="p-2  w-fit px-2 h-8 text-center rounded-sm bg-white">
         {currentPage + 1} / {total}
       </p>
       <button onClick={next} disabled={currentPage + 1 === total}  className=" bg-amber-950 text-amber-50 p-2 rounded-sm">

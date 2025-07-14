@@ -64,6 +64,15 @@ export const complanSchema = z.object({
     //     path: ['min'], // Specify the path where the error will show
     // });
 
+export const complanTreeSchema = z.object({
+    profit: z.number().min(0, 'Enter a profit value'),
+    duration: z.number().min(1, 'Enter a duration value'),
+    isActive: z.boolean(),
+    price: z.number().min(1, 'Enter a price'),
+    limit: z.number().min(1, 'Enter a limit'),
+    stocks: z.number().min(0, 'Enter a stocks'),
+})
+
 
 export const createAdmin = z.object({
     username: z.string().nonempty('Username is empty'),
@@ -98,6 +107,7 @@ export type UserChangePassword = z.infer<typeof userchangepassword>;
 export type SendFiat = z.infer<typeof sendFiat>;
 export type SaveConversionRate = z.infer<typeof conversionRate>;
 export type SaveComplan = z.infer<typeof complanSchema>;
+export type SaveTreeComplan = z.infer<typeof complanTreeSchema>;
 export type CreateAdminAccount = z.infer<typeof createAdmin>;
 export type AddSocialMedia = z.infer<typeof socialsSchema>;
 export type CreateMasterKey = z.infer<typeof masterkey>;

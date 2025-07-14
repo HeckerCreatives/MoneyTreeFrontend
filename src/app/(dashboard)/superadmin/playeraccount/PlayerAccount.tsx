@@ -24,6 +24,9 @@ import { Button } from '@/components/ui/button'
 import BuyHistory from './BuyHistory'
 import PayoutHistory from './payoutHistory'
 import GameHistory from './GameHistory'
+import TreeInventory from './TreeInventory'
+
+
 
   
 
@@ -243,7 +246,18 @@ export default function PlayerAccount() {
                     <Invites/>
                 </TabsContent>
                 <TabsContent value="Inventory">
-                    <Inventory/>
+                    <Tabs defaultValue="bank" className="w-full">
+                        <TabsList>
+                            <TabsTrigger value="bank">Bank</TabsTrigger>
+                            <TabsTrigger value="tree">Tree</TabsTrigger>
+                        </TabsList>
+                        <TabsContent value="bank">                   
+                             <Inventory/>
+                        </TabsContent>
+                        <TabsContent value="tree">
+                            <TreeInventory/>
+                        </TabsContent>
+                        </Tabs>
                 </TabsContent>
         
                 <TabsContent value="WalletHistory">

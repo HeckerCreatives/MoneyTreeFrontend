@@ -40,7 +40,7 @@ export default function BuyHistory() {
         setLoading(true)
         const getList = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getinventoryhistory?type=buy&page=${currentpage}&limit=10`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getinventoryhistory?type=buy&page=${currentpage}&limit=10&rank=bank`,{
             withCredentials:true
             })
 

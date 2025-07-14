@@ -12,7 +12,7 @@ export default function page() {
     <Playerlayout>
        <Mybanks/>
        {/* <ClaimHistory/> */}
-       <Tabs defaultValue="Claim" className="w-full mt-8">
+       {/* <Tabs defaultValue="Claim" className="w-full mt-8">
                <TabsList className=' bg-cream'>
                    <TabsTrigger value="Claim">Earnings History</TabsTrigger>
                    <TabsTrigger value="Daily">Game History</TabsTrigger>
@@ -23,7 +23,7 @@ export default function page() {
                <TabsContent value="Daily">
                    <DailyClaimHistory/>
                </TabsContent>
-               </Tabs>
+               </Tabs> */}
     </Playerlayout>
   )
 }

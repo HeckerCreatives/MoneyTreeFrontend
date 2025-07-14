@@ -17,7 +17,6 @@ import rateStore from '@/store/rate'
 import refreshStore from '@/store/refresh'
 import loadingtableStore from '@/store/tableloading'
 
-
 interface List {
     bankname: string
     type: string
@@ -26,7 +25,7 @@ interface List {
 
 }
 
-export default function ClaimHistory() {
+export default function TreeBuyHistory() {
     const router = useRouter()
     const [list, setList] = useState<List[]>([])
     const [totalpage, setTotalPage] = useState(0)
@@ -35,11 +34,13 @@ export default function ClaimHistory() {
     const {rate, setRate, clearRate} = rateStore()
     const {refresh, setRefresh} = refreshStore()
 
+
+
     useEffect(() => {
         setLoading(true)
         const getList = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getinventoryhistory?type=claim&page=${currentpage}&limit=10&rank=bank`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getinventoryhistory?type=buy&page=${currentpage}&limit=10&rank=tree`,{
             withCredentials:true
             })
 
@@ -54,7 +55,7 @@ export default function ClaimHistory() {
             if (axios.isAxiosError(error)) {
               const axiosError = error as AxiosError<{ message: string, data: string }>;
               if (axiosError.response && axiosError.response.status === 401) {
-               
+                 
                 }    
               } 
           }
@@ -68,8 +69,8 @@ export default function ClaimHistory() {
 
 
   return (
-     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6 mt-12'>
-        <p className=' text-sm font-medium'>Claim History</p>
+     <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6 mt-6'>
+        <p className=' text-sm font-medium'>Purchased History</p>
             <Table>
                 {loading === true && (
                     <TableCaption>
@@ -82,23 +83,26 @@ export default function ClaimHistory() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Date</TableHead>
-                <TableHead>Bank name</TableHead>
+                <TableHead>Bank</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead>Amount</TableHead>
+                {/* <TableHead>Rank</TableHead> */}
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {list.map((item, index) => (
                     <TableRow key={index}>
                     <TableCell className="">{new Date(item.createdAt).toLocaleString()}</TableCell>
+
                     <TableCell>{item.bankname}</TableCell>
                     <TableCell>{item.type}</TableCell>
-
                     <TableCell className=' '>
-                         <div className='flex flex-col'>
-                        ₱{item?.amount?.toLocaleString() || 0} <span className=' text-[.6rem] text-zinc-500'>${(item?.amount || 0 / rate).toLocaleString()}</span>
+                        <div className='flex flex-col'>
+                        ₱{item.amount.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.amount / rate).toLocaleString()}</span>
                         </div>
                     </TableCell>
+                    {/* <TableCell>{item.}</TableCell> */}
+                   
                     </TableRow>
                 ))}
                 

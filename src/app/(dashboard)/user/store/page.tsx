@@ -6,7 +6,7 @@ export default function page() {
   return (
     <Playerlayout>
        <Store/>
-       <BuyHistory/>
+       {/* <BuyHistory/> */}
     </Playerlayout>
   )
 }
