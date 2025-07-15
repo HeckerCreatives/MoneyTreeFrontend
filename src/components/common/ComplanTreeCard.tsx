@@ -163,12 +163,12 @@ export default function Complantreecard(prop: Props) {
 
                    
 
-                        <div className=' transition-all duration-300 w-full overflow-hidden aspect-square  shadow-sm flex items-center justify-center relative'
-                        style={{backgroundImage: `url(${bgImage()})`, backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'top'}}
+                        <div className=' relative transition-all duration-300 w-full overflow-hidden  shadow-sm flex items-center justify-center '
+                        // style={{backgroundImage: `url(${bgImage()})`, backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'top'}}
                         
                         >
 
-                            {/* <img src={bgImage()} alt="tree"  className=' object-top'/> */}
+                            <img src={bgImage()} alt="tree"  className=' object-cover'/>
 
 
                         </div>

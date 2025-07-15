@@ -143,11 +143,11 @@ export default function MyTreeOwn( prop: Prop) {
    
     
   return (
-    <div className=' max-w-[300px] min-h-[400px] relative flex items-center justify-center'>
+    <div className=' relative w-full max-w-[300px] min-h-[600px] flex items-center justify-center'>
 
-        <img src="/assets/bigcard.png" alt="bank" />
+        <img src="/assets/bigcard.png" alt="bank" className=' min-h-[600px] absolute top-0' />
         <div className=' absolute w-full h-full p-4 '>
-            <div className=' w-full aspect-video overflow-hidden flex items-center justify-center'>
+            <div className=' w-full  overflow-hidden flex items-center justify-center'>
                 <img src={bgImage()} alt="" className=' w-full object-center' />
             </div>
 

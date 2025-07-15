@@ -132,8 +132,8 @@ export default function BanksTreeStore(prop: Props) {
 
         </div>
         <div className=' relative z-10 w-full flex gap-4 items-center justify-center h-full '>
-            <div className=' h-[200px] w-full bg-blue-500'>
-                <img src={bgImage()} alt="bank" width={100} height={100} className=' w-full' />
+            <div className='  w-full '>
+                <img src={bgImage()} alt="bank" width={100} height={100} className=' w-full h-full' />
 
             </div>
 
@@ -157,8 +157,8 @@ export default function BanksTreeStore(prop: Props) {
                     <DrawerDescription></DrawerDescription>
                     </DrawerHeader>
 
-                    <div className=' w-full max-w-[700px] grid grid-cols-1 md:grid-cols-2 h-auto bg-amber-50 rounded-sm'>
-                        <div className=' w-full aspect-square flex items-center justify-center overflow-hidden '>
+                    <div className=' w-full max-w-[700px] grid grid-cols-1 md:grid-cols-2 h-auto bg-amber-50 rounded-sm overflow-hidden'>
+                        <div className=' w-full flex items-center justify-center overflow-hidden '>
                             <img src={bgImage()} alt="bank" width={100} height={100} className=' w-full object-top' />
                         </div>
 

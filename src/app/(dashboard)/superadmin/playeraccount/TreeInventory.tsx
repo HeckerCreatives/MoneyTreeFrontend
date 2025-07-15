@@ -182,7 +182,7 @@ const {refresh, setRefresh} = refreshStore()
                 <TableRow>
                 <TableHead className="">Name</TableHead>
                 <TableHead className="">Earnings</TableHead>
-                <TableHead className="">End Time</TableHead>
+                <TableHead className="">Duration</TableHead>
                 <TableHead className="">Action</TableHead>
                 </TableRow>
             </TableHeader>
