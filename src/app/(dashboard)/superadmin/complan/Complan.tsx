@@ -108,6 +108,21 @@ export default function Complan() {
     },[ refresh])
 
 
+      const preferredOrder = ["Lanzones", "Rambutan", "Avocado", "Mango", "Moneytree"];
+
+        const sortedTree = [...tree]
+        .map(item => ({
+            ...item,
+        }))
+        .sort((a, b) => {
+            const indexA = preferredOrder.indexOf(a.name);
+            const indexB = preferredOrder.indexOf(b.name);
+            return indexA - indexB;
+        });
+
+
+
+
 
 
   return (
@@ -140,7 +155,7 @@ export default function Complan() {
       </TabsContent>
       <TabsContent value="tree">
           <div className=' w-full h-auto grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-items-center gap-4 '>
-            {tree.map((item, index) => (
+            {sortedTree.map((item, index) => (
               <Complantreecard 
                 key={index}
                 _id={item.id}

@@ -131,7 +131,7 @@ export default function MyTreeOwn( prop: Prop) {
                 return `/tree/mango_${getEarningTier()}.jpg`
             }else if(prop.bankname === 'Avocado'){
                 return `/tree/avocado_${getEarningTier()}.jpg`
-            } else if(prop.bankname === 'Apple'){
+            } else if(prop.bankname === 'Moneytree'){
                 return `/tree/apple_${getEarningTier()}.jpg`
             } else if(prop.bankname === 'Lanzones'){
                 return `/tree/lanzones_${getEarningTier()}.jpg`

@@ -27,6 +27,7 @@ export default function TreeGrantMaturity( data: Props) {
     const [open, setOpen] = useState(false)
     const params = useSearchParams()
     const id = params.get('id')
+    const [percentage, setPercentage] = useState(0)
 
     const grant = async () => {
             setLoading(true)
@@ -34,7 +35,8 @@ export default function TreeGrantMaturity( data: Props) {
             try {
                 const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/tinventory/maxplayertreeinventorysuperadmin`,{
                     playerid: id,
-                    tbankid: data.id
+                    tbankid: data.id,
+                    percentage: percentage
                 },{
                     withCredentials: true,
                     headers:{
@@ -56,6 +58,8 @@ export default function TreeGrantMaturity( data: Props) {
             } catch (error) {
                 setLoading(false)
                 setRefresh('false')
+                    setOpen(false)
+
     
                  if (axios.isAxiosError(error)) {
                         const axiosError = error as AxiosError<{ message: string, data: string }>;
@@ -102,7 +106,25 @@ export default function TreeGrantMaturity( data: Props) {
           This action cannot be undone. This will grant plan maturity.
         </DialogDescription>
       </DialogHeader>
-      <div className=' mt-6 flex items-end justify-end'>
+      <p className=' text-xs'>Select Percentage</p>
+       <div className="flex gap-4">
+            {[50, 75, 100].map((val) => (
+                <div
+                key={val}
+                onClick={() => setPercentage(val)}
+                className={`
+                    cursor-pointer px-4 py-2 rounded-md border text-sm font-medium 
+                    ${percentage === val ? 'bg-lime-500 text-white border-lime-600' : 'bg-white text-gray-700 border-gray-300'}
+                `}
+                >
+                {val}%
+                </div>
+            ))}
+            </div>
+      <div className=' mt-4 flex items-end justify-end'>
+
+       
+
         <Button onClick={grant} disabled={loading}>
         {loading === true && (
                 <span className=' loader'></span>

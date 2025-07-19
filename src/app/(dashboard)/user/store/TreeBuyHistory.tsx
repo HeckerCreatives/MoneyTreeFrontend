@@ -83,7 +83,7 @@ export default function TreeBuyHistory() {
             <TableHeader>
                 <TableRow>
                 <TableHead className="">Date</TableHead>
-                <TableHead>Bank</TableHead>
+                <TableHead>Tree</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead>Amount</TableHead>
                 {/* <TableHead>Rank</TableHead> */}

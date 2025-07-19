@@ -115,7 +115,7 @@ export default function BanksTreeStore(prop: Props) {
                 return '/tree/mango_4.jpg'
             }else if(prop.name === 'Avocado'){
                 return '/tree/avocado_4.jpg'
-            } else if(prop.name === 'Apple'){
+            } else if(prop.name === 'Moneytree'){
                 return '/tree/apple_4.jpg'
             } else if(prop.name === 'Lanzones'){
                 return '/tree/lanzones_4.jpg'
@@ -193,7 +193,7 @@ export default function BanksTreeStore(prop: Props) {
                             {prop.stocks === 0 ? (
                                 <p className=' text-xs text-red-600 mt-4'>No stocks left.</p>
                             ) : (
-                                <p className=' mt-4'>Stocks Left: {prop.stocks}</p>
+                                <p className=' mt-4 '>Stocks Left: {prop.stocks}</p>
                             )}
 
 
@@ -207,7 +207,7 @@ export default function BanksTreeStore(prop: Props) {
                 {prop.stocks === 0 ? (
                     <p className=' text-xs text-red-600 mt-4'>No stocks left.</p>
                 ) : (
-                    <p className=' mt-4'>Stocks Left: {prop.stocks}</p>
+                    <p className=' mt-4 text-blue-700'>Stocks Left: {prop.stocks}</p>
                 )}
 
             </div>

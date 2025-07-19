@@ -135,7 +135,7 @@ export default function Complantreecard(prop: Props) {
                 return '/tree/mango_4.jpg'
             }else if(prop.name === 'Avocado'){
                 return '/tree/avocado_4.jpg'
-            } else if(prop.name === 'Apple'){
+            } else if(prop.name === 'Moneytree'){
                 return '/tree/apple_4.jpg'
             } else if(prop.name === 'Lanzones'){
                 return '/tree/lanzones_4.jpg'
@@ -157,9 +157,12 @@ export default function Complantreecard(prop: Props) {
     },[prop])
 
 
+  
+
+
 
   return (
-    <div className={` group w-full h-auto bg-cream rounded-md overflow-hidden shadow-md ${(prop.name.includes('Money') || prop.name.includes('Treasure')) && 'grayscale'}`}>
+    <div className={` group w-full h-auto bg-cream rounded-md overflow-hidden shadow-md `}>
 
                    
 

@@ -105,9 +105,20 @@ export default function Store() {
         getWallets()
     },[tab])
 
-    const filteredStore = storeTree.filter((item) => item.isActive === true )
 
 
+    const preferredOrder = ["Lanzones", "Rambutan", "Avocado", "Mango", "Moneytree"];
+
+const filteredStore = storeTree
+  .filter((item) => item.isActive === true)
+  .map(item => ({
+    ...item,
+  }))
+  .sort((a, b) => {
+    const indexA = preferredOrder.indexOf(a.name);
+    const indexB = preferredOrder.indexOf(b.name);
+    return indexA - indexB;
+  });
 
 
   return (
