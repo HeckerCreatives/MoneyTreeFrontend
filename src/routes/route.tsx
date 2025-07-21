@@ -1,4 +1,4 @@
-import { Activity, Banknote, BarChart, Cable, ChartColumnBig, ChartPie, Cog, CreditCard, Folder, Grid2X2, Info, PawPrint, Play, Settings, ShoppingBag, Trophy, Users, Wallet, Wrench } from "lucide-react";
+import { Activity, Banknote, BarChart, Cable, ChartColumnBig, ChartPie, Clock12, Cog, CreditCard, Folder, Grid2X2, Info, PawPrint, Play, Settings, ShoppingBag, Trophy, Users, Wallet, Wrench } from "lucide-react";
 import { FaBox } from "react-icons/fa6";
 
 
@@ -49,10 +49,12 @@ export const superadmin = [
     
     {name: 'Maintenance', icon: <Wrench size={15}/>, 
     path:'/superadmin/maintenance', subpath:[]},
-     {name: 'Events', icon: <Trophy size={15}/>, 
+    {name: 'Events', icon: <Trophy size={15}/>, 
     path:'/superadmin/event', subpath:[]},
-     {name: 'Settings', icon: <Settings size={15}/>, 
-     path:'/superadmin/settings', subpath:[]},
+    {name: 'Raffle', icon: <Clock12 size={15}/>, 
+    path:'/superadmin/raffle', subpath:[]},
+    {name: 'Settings', icon: <Settings size={15}/>, 
+    path:'/superadmin/settings', subpath:[]},
 ]
 
 export const admin = [

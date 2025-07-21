@@ -48,6 +48,10 @@ export const sendFiat = z.object({
     amount: z.number().min(500, 'Amount must be at least 500').max(999_000_000),
 })
 
+export const addRaffleEntry = z.object({
+    username: z.string().nonempty('Username is required'), 
+})
+
 export const conversionRate = z.object({
     amount: z.number().min(1, 'Amount must be at least 1').max(999_000_000),
 })
@@ -105,6 +109,7 @@ export type Register = z.infer<typeof registeruser>;
 export type UserAccount = z.infer<typeof accountSchema>;
 export type UserChangePassword = z.infer<typeof userchangepassword>;
 export type SendFiat = z.infer<typeof sendFiat>;
+export type AddRaffleEntry = z.infer<typeof addRaffleEntry>;
 export type SaveConversionRate = z.infer<typeof conversionRate>;
 export type SaveComplan = z.infer<typeof complanSchema>;
 export type SaveTreeComplan = z.infer<typeof complanTreeSchema>;
