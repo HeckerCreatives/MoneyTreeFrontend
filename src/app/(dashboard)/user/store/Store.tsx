@@ -21,6 +21,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import BanksTreeStore from '@/components/common/BankTreeStore';
 import TreeBuyHistory from './TreeBuyHistory';
 import BuyHistory from './Buyhistory';
+import refreshStore from '@/store/refresh';
 
 
 interface Bank {
@@ -46,6 +47,7 @@ interface StoreTree {
   stocks: number
   type: string
   totalprofit: number
+  purchasedCount: number
 
 }
 
@@ -55,6 +57,8 @@ export default function Store() {
     const router = useRouter()
     const [store, setStore] = useState<Bank[]>([])
     const [storeTree, setStoreTree] = useState<StoreTree[]>([])
+    const {refresh, setRefresh} = refreshStore()
+
 
 
     useEffect(() => {
@@ -103,7 +107,7 @@ export default function Store() {
           }
         }
         getWallets()
-    },[tab])
+    },[tab, refresh])
 
 
 
@@ -150,7 +154,7 @@ const filteredStore = storeTree
         ):(
            <div className=' w-full grid grid-cols-[repeat(auto-fill,minmax(325px,1fr))] gap-4 h-fit place-items-center '>
               {filteredStore.map((item, index) => (
-                  <BanksTreeStore key={index} _id={item.id} type={item.type} name={item.name} price={item.price} duration={item.duration} profit={item.profit} isActive={item.isActive} limit={item.limit} stocks={item.stocks}/>
+                  <BanksTreeStore key={index} _id={item.id} type={item.type} name={item.name} price={item.price} duration={item.duration} profit={item.profit} isActive={item.isActive} limit={item.limit} stocks={item.stocks} owned={item.purchasedCount}/>
               ))}
 
           </div>

@@ -44,6 +44,7 @@ interface ComplanTree {
   profit: number
   stocks: number
   type: string
+  timesBought: number
 
 }
 
@@ -165,7 +166,7 @@ export default function Complan() {
                 duration={item.duration}
                 profit={item.profit}
                 isActive={item.isActive}
-                islocked={false} limit={item.limit} stocks={item.stocks}/>
+                islocked={false} limit={item.limit} stocks={item.stocks} sold={item.timesBought}/>
           ))}
         </div>
       </TabsContent>

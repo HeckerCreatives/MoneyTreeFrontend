@@ -35,6 +35,7 @@ import refreshStore from '@/store/refresh'
 import loadingtableStore from '@/store/tableloading'
 import { Button } from '@/components/ui/button'
 import Card from '@/components/common/Card'
+import { Input } from '@/components/ui/input'
 
 
 
@@ -99,9 +100,7 @@ export default function Payouthistory() {
     const [totalrequests, setTotalRequests] = useState<Totals>()
     const [payoutid, setPayoutId] = useState('')
     const [paymethod, setPaymethod] = useState('all')
-    
-
-
+  
 
     useEffect(() => {
         setLoading(true);
@@ -136,7 +135,7 @@ export default function Payouthistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayoutlist?page=${currentpage}&limit=10&type=${tab}&methodtype=${paymethod}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayoutlist?page=${currentpage}&limit=10&type=${tab}&methodtype=${paymethod}&searchUsername=${search}`,
               { withCredentials: true }
             );
     
@@ -155,7 +154,11 @@ export default function Payouthistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage, refresh, tab, paymethod]);
+      }, [currentpage, refresh, tab, paymethod, search]);
+
+      useEffect(() => {
+        setSearch('')
+      }, [tab])
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
@@ -383,16 +386,21 @@ export default function Payouthistory() {
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Game Payout List</p>
 
-        <Select value={paymethod} onValueChange={setPaymethod}>
-        <SelectTrigger className=" w-[100px]">
-          <SelectValue placeholder="Payment Method" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">All</SelectItem>
-          <SelectItem value="gcash">GCash</SelectItem>
-          <SelectItem value="gotyme">GoTyme</SelectItem>
-        </SelectContent>
-      </Select>
+        <div className=' flex items-center gap-2'>
+          <Input placeholder='Search' value={search} onChange={(e) => setSearch(e.target.value)}/>
+          <Select value={paymethod} onValueChange={setPaymethod}>
+            <SelectTrigger className=" w-[100px]">
+              <SelectValue placeholder="Payment Method" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="gcash">GCash</SelectItem>
+              <SelectItem value="gotyme">GoTyme</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+       
 
 
         {/* <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/> */}
@@ -604,16 +612,19 @@ export default function Payouthistory() {
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Referral Payout List</p>
 
-         <Select value={paymethod} onValueChange={setPaymethod}>
-        <SelectTrigger className=" w-[100px]">
-          <SelectValue placeholder="Payment Method" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">All</SelectItem>
-          <SelectItem value="gcash">GCash</SelectItem>
-          <SelectItem value="gotyme">GoTyme</SelectItem>
-        </SelectContent>
-      </Select>
+        <div className=' flex items-center gap-2'>
+          <Input placeholder='Search' value={search} onChange={(e) => setSearch(e.target.value)}/>
+          <Select value={paymethod} onValueChange={setPaymethod}>
+            <SelectTrigger className=" w-[100px]">
+              <SelectValue placeholder="Payment Method" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="gcash">GCash</SelectItem>
+              <SelectItem value="gotyme">GoTyme</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
 
         {/* <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/> */}
         </div>
@@ -822,16 +833,19 @@ export default function Payouthistory() {
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Unilevel Payout List</p>
 
-        <Select value={paymethod} onValueChange={setPaymethod}>
-        <SelectTrigger className=" w-[100px]">
-          <SelectValue placeholder="Payment Method" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">All</SelectItem>
-          <SelectItem value="gcash">GCash</SelectItem>
-          <SelectItem value="gotyme">GoTyme</SelectItem>
-        </SelectContent>
-      </Select>
+        <div className=' flex items-center gap-2'>
+          <Input placeholder='Search' value={search} onChange={(e) => setSearch(e.target.value)}/>
+          <Select value={paymethod} onValueChange={setPaymethod}>
+            <SelectTrigger className=" w-[100px]">
+              <SelectValue placeholder="Payment Method" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="gcash">GCash</SelectItem>
+              <SelectItem value="gotyme">GoTyme</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
 
         {/* <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/> */}
         </div>

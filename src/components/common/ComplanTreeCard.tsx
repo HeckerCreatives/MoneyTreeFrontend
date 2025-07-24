@@ -24,6 +24,7 @@ type Props = {
     limit: number,
     stocks: number
     price: number
+    sold: number
 }
 
 export default function Complantreecard(prop: Props) {
@@ -210,10 +211,11 @@ export default function Complantreecard(prop: Props) {
                         <Input  type='number' className=' text-xs' {...register('limit', {valueAsNumber: true})}/>
                         {errors.limit && <p className='text-[.6em] text-red-500'>{errors.limit.message}</p>}
 
+                        <p className=' text-sm text-black mt-4'>Stocks Sold: {prop.sold.toLocaleString()}</p>
 
-                        <Button disabled={prop.name.includes('Money') || prop.name.includes('Treasure')}  className={`w-full mt-4`}>
+                        <Button disabled={loading}  className={`w-full mt-4`}>
 
-                            {(prop.name.includes('Money') || prop.name.includes('Treasure')) ? ' Coming Soon!' : 'Save'}
+                           Save
                         </Button>
                        </form>
 

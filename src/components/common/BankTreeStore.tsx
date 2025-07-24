@@ -26,8 +26,9 @@ type Props = {
     profit: number,
     isActive: boolean
     limit: number,
-    stocks: number
-    price: number
+    stocks: number,
+    price: number,
+    owned: number
 }
 
 export default function BanksTreeStore(prop: Props) {
@@ -39,15 +40,16 @@ export default function BanksTreeStore(prop: Props) {
     const {refresh, setRefresh} = refreshStore()
     const [drawer, setDrawer] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+    const [quantity, setQuantity] = useState(1)
 
     const buyBank = async () => {
         setDialog(false)
         setLoading(true)
         setRefresh('true')
-        setIsLoading(true)
         try {
             const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/tinventory/buytbank`,{
-              tbankid: prop._id
+              tbankid: prop._id,
+              quantity: quantity
             },{
                 withCredentials: true,
                 headers:{
@@ -177,10 +179,23 @@ export default function BanksTreeStore(prop: Props) {
                                 <button disabled={val === 0} onClick={() => setVal(val - 1)} className=' bg-red-600 text-white h-10 px-3 rounded-md text-lg font-bold'>-</button>
                             </div> */}
 
+                            <div className='flex flex-col gap-1 mt-2'>
+                                <label htmlFor="" className=' text-sm'>Quantity</label>
+                                <Input type='number' value={quantity} onChange={(e) => setQuantity(e.target.valueAsNumber)} placeholder='Quantity'/>
+                            </div>
+
+                            <div className=' flex items-center gap-2 mt-4'>
+                                <p className=' px-3 py-1 bg-red-600 rounded-full text-xs text-white'>Stocks: {prop.stocks} </p>
+                                <p className=' px-3 py-1 bg-blue-600 rounded-full text-xs text-white'>Owned: {prop.owned} </p>
+
+                            </div>
+
+                            <p className=' text-sm mt-2'>Total Amount: Php {(prop.price * quantity).toLocaleString()}</p>
+
                            
 
                             <div className=' w-full flex items-center gap-4 mt-6'>
-                            <Button disabled={isLoading}  onClick={buyBank} className=' w-full '>
+                            <Button disabled={loading}  onClick={buyBank} className=' w-full '>
                                 {loading && (
                                     <span className='loader'></span>
                                 )}
@@ -190,11 +205,11 @@ export default function BanksTreeStore(prop: Props) {
                             </DrawerClose>
                             </div>
 
-                            {prop.stocks === 0 ? (
+                            {/* {prop.stocks === 0 ? (
                                 <p className=' text-xs text-red-600 mt-4'>No stocks left.</p>
                             ) : (
                                 <p className=' mt-4 '>Stocks Left: {prop.stocks}</p>
-                            )}
+                            )} */}
 
 
 

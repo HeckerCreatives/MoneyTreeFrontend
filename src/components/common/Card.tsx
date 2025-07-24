@@ -33,6 +33,8 @@ export default function Card( prop: Props) {
     const [amount, setAmount] = useState(0)
     const params = useSearchParams()
     const id = params.get('id')
+    const [dialogOpen, setDialogOpen] = useState(false);
+
 
     const editWallet = async () => {
         setLoading(true)
@@ -67,9 +69,38 @@ export default function Card( prop: Props) {
     
     }
 
+  
+
+    const [inputValue, setInputValue] = useState('');
+
+    // Update this in useEffect to sync with `amount`
     useEffect(() => {
-     setAmount(prop.amount)   
+    setInputValue(amount.toString());
+    }, [amount]);
+
+   const formatNumberWithCommas = (value: string) => {
+    const [intPart, decPart] = value.split('.');
+    const formattedInt = intPart ? Number(intPart).toLocaleString() : '0';
+    return decPart !== undefined ? `${formattedInt}.${decPart}` : formattedInt;
+    };
+
+
+    useEffect(() => {
+     setAmount(prop.amount)
+     setInputValue(formatNumberWithCommas(prop.amount.toString()))
     },[prop.amount])
+
+    useEffect(() => {
+    if (dialogOpen) {
+        const [intPart, decPart] = amount.toString().split('.');
+        const formattedInt = Number(intPart).toLocaleString();
+        const formatted = decPart !== undefined ? `${formattedInt}.${decPart}` : formattedInt;
+        setInputValue(formatted);
+    }
+    }, [dialogOpen]);
+
+
+
 
 
   return (
@@ -95,7 +126,7 @@ export default function Card( prop: Props) {
                                 <p className=' text-xs text-zinc-700'>${(prop.amount / rate).toLocaleString()}</p>
                             </div>
                             {prop.editable && (
-                            <Dialog>
+                            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                             <DialogTrigger>
                             <button className=' bg-black text-white p-1 rounded-sm cursor-pointer'><Pen size={ 12}/></button>
                             </DialogTrigger>
@@ -109,21 +140,31 @@ export default function Card( prop: Props) {
 
                                 <div className=' w-full'>
                                     <label htmlFor="">Amount</label>
-                                    <Input
+                                   <Input
                                     type="text"
                                     className="text-black mt-1"
-                                    value={amount.toLocaleString()}
-                                    onChange={(e) => {
-                                        const rawValue = e.target.value.replace(/,/g, '');
-                                        const numValue = Number(rawValue);
+                                    value={formatNumberWithCommas(inputValue)}
+                                     onChange={(e) => {
+                                        let raw = e.target.value.replace(/,/g, '');
 
-                                        if (rawValue === '') {
-                                        setAmount(0);
-                                        } else if (!isNaN(numValue) && numValue >= 0) {
-                                        setAmount(numValue);
+                                        // Allow numbers with at most one decimal point and 2 decimals
+                                        if (!/^\d*\.?\d{0,2}$/.test(raw)) return;
+
+                                        const floatVal = parseFloat(raw);
+                                        if (!isNaN(floatVal)) {
+                                            if (floatVal > 1_000_000) return;
+                                            setAmount(floatVal);
+                                        } else {
+                                            setAmount(0);
                                         }
-                                    }}
+
+                                        // Show formatted value immediately
+                                        setInputValue(formatNumberWithCommas(raw));
+                                        }}
+
                                     />
+
+
 
                                     <Button disabled={loading} onClick={editWallet} className='clip-btn px-12 w-fit mt-4'>
                                     {loading && ( <div className='spinner'></div>)}
