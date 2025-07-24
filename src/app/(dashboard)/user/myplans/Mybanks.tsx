@@ -55,13 +55,14 @@ export default function Mybanks() {
     const [totalpage, setTotalPage] = useState(0)
     const [currentpage, setCurrentPage] = useState(0)
     const {refresh, setRefresh} = refreshStore()
+    const [storeTab, setStoreTab] = useState('bank')
 
 
     useEffect(() => {
         setLoading(true)
         const getWallets = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getinventory?page=${currentpage}&limit=9`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/inventory/getinventory?page=${currentpage}&limit=10`,{
             withCredentials:true
             })
 
@@ -80,7 +81,7 @@ export default function Mybanks() {
           }
         }
         getWallets()
-    },[tab, currentpage, refresh])
+    },[tab, currentpage, refresh, storeTab])
 
     const handlePageChange = (page: number) => {
       setCurrentPage(page)
@@ -90,13 +91,13 @@ export default function Mybanks() {
         setLoading(true)
         const getWallets = async () => {
           try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/tinventory/gettinventory`,{
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/tinventory/gettinventory?limit=10&page=${currentpage}`,{
             withCredentials:true
             })
 
             setLoading(false)
             setTree(response.data.data.tree)
-            // setTotalPage(response.data.totalpages)
+            setTotalPage(response.data.data.totalPages)
             console.log(response.data)
             
           } catch (error) {
@@ -110,14 +111,19 @@ export default function Mybanks() {
           }
         }
         getWallets()
-    },[tab, currentpage, refresh])
+    },[currentpage, refresh, storeTab])
+
+    useEffect(() => {
+      setTotalPage(0)
+      setCurrentPage(0)
+    },[storeTab])
 
     
 
   return (
     <div className="w-full flex flex-col gap-4 text-amber-950 py-8">
 
-      <Tabs defaultValue="bank" className="w-full">
+      <Tabs defaultValue="bank" value={storeTab} onValueChange={setStoreTab} className="w-full">
         <TabsList>
           <TabsTrigger value="bank">Bank</TabsTrigger>
           <TabsTrigger value="tree">Tree</TabsTrigger>
@@ -189,6 +195,11 @@ export default function Mybanks() {
                   </div>
                 )}
 
+                {Object.values(tree).length !== 0 && (
+                <div className=' w-full flex items-center justify-center mt-6 '>
+                  <Pagination currentPage={currentpage} total={totalpage} onPageChange={handlePageChange}/>
+                </div>
+            )}
             {/* {Object.values(tree).length !== 0 && (
                 <div className=' w-full flex items-center justify-center mt-6 '>
                   <Pagination currentPage={currentpage} total={totalpage} onPageChange={handlePageChange}/>

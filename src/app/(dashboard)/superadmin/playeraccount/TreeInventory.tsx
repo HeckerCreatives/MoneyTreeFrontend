@@ -88,7 +88,7 @@ const {refresh, setRefresh} = refreshStore()
 
       setLoading(false);
       setList(response.data.data.tree)
-      setTotalPage(response.data.totalpages)
+      setTotalPage(response.data.data.totalPages)
     
     } catch (error) {
       setLoading(false);

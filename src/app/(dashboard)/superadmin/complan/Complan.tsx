@@ -22,7 +22,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Complantreecard from '@/components/common/ComplanTreeCard';
 
 interface Complan {
-    _id: string,
+    id: string,
     name: string
     type: string
     min: number,
@@ -31,6 +31,7 @@ interface Complan {
     profit: number,
     b1t1: string
     islocked: boolean
+    isActive: boolean
 
 }
 
@@ -141,7 +142,7 @@ export default function Complan() {
             .map((item, index) => (
               <Complancard 
                 key={index} 
-                _id={item._id} 
+                _id={item.id} 
                 name={item.name} 
                 type={item.type} 
                 min={item.min} 
@@ -150,6 +151,7 @@ export default function Complan() {
                 profit={item.profit} 
                 b1t1={item.b1t1} 
                 islocked={false} 
+                isActive={item.isActive}
               />
           ))}
         </div>

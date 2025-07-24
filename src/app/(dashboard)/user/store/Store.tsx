@@ -33,6 +33,7 @@ interface Bank {
   profit: number 
   duration: number
   b1t1: string
+  isActive: boolean
 }
 
 
@@ -124,6 +125,8 @@ const filteredStore = storeTree
     return indexA - indexB;
   });
 
+  const filteredBanks = store.filter((item) => item.isActive)
+
 
   return (
     <div className="w-full flex flex-col gap-4 font-light py-8">
@@ -135,7 +138,14 @@ const filteredStore = storeTree
       <TabsContent value="bank">
         <div className=' w-full grid grid-cols-[repeat(auto-fill,minmax(325px,1fr))] gap-4 h-fit place-items-center '>
 
-              {store
+          {filteredBanks.filter((item) => item.type !== "money_vault" && item.type !== "treasure_chest").length === 0 && (
+            <div className=' w-full flex items-center justify-center p-16 col-span-6 '>
+                <p className=' text-xs '>No bank avialable.</p>
+              </div>
+          )}
+              
+
+              {filteredBanks
               .filter((item) => item.type !== "money_vault" && item.type !== "treasure_chest")
               .map((item, index) => (
                 <BanksStore key={index} _id={item._id} type={item.type} name={item.name} min={item.min} max={item.max} profit={item.profit} duration={item.duration} b1t1={item.b1t1} locked={['Money Vault', 'Treasure Chest'].includes(item.name)}/>

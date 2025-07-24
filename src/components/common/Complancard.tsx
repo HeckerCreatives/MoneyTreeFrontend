@@ -22,7 +22,8 @@ type Props = {
     duration: number,
     profit: number,
     b1t1: string
-    islocked: boolean
+    islocked: boolean,
+    isActive: boolean,
 }
 
 export default function Complancard(prop: Props) {
@@ -60,6 +61,7 @@ export default function Complancard(prop: Props) {
           profit: prop.profit * 100, // Convert profit to percentage
           min: prop.min,
           max: prop.max,
+          isActive: prop.isActive
         });
       }, [prop, reset]);
 
@@ -74,6 +76,7 @@ export default function Complancard(prop: Props) {
                 duration: data.duration ,
                 min: data.min,
                 max: data.max,
+                isActive: data.isActive
             }, {
                 withCredentials: true,
                 headers: {
@@ -145,6 +148,7 @@ export default function Complancard(prop: Props) {
             min: prop.min,
             max: prop.max,
             b1t1: prop.b1t1 === '0' ? false : true,
+            isActive: prop.isActive
         })
     },[prop])
 
@@ -164,8 +168,16 @@ export default function Complancard(prop: Props) {
                         </div>
 
                        <form onSubmit={handleSubmit(onsubmit)} action="" className=' p-4'>
+
+                         <div className=' w-full flex justify-between'>
+                            <p className=' text-sm font-medium'>Available on Store</p>
+                            <Switch 
+                            checked={watch("isActive")} 
+                            onCheckedChange={(value) => setValue("isActive", value)} 
+    />
+                        </div>
                         
-                        <div className=' w-full flex justify-between'>
+                        <div className=' w-full flex justify-between mt-2'>
                             <p className=' text-sm font-medium'>Buy one take one</p>
                             <Switch 
                             checked={watch("b1t1")} 
