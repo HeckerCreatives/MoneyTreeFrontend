@@ -89,6 +89,10 @@ export default function Invites() {
     setCurrentPage(page)
   }
 
+  useEffect(() => {
+    setCurrentPage(0)
+  },[current])
+
 
 
 
