@@ -44,7 +44,7 @@ export const userchangepassword = z.object({
     })
 
 export const sendFiat = z.object({
-    username: z.string().max(20).nonempty('Username is required'), 
+    username: z.string().nonempty('Username is required'), 
     amount: z.number().min(500, 'Amount must be at least 500').max(999_000_000),
 })
 

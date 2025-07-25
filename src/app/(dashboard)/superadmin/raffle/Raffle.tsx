@@ -113,27 +113,34 @@ export default function RaffleSection() {
  const selectedUsername = watch("username");
 
  
-   useEffect(() => {
-     const getList = async () => {
-       try {
-         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/searchplayerlist?playerusername=${user}`,{
-         withCredentials:true
-         })
- 
-         setUsers(response.data.data.userlist)
-         
-       } catch (error) {
- 
-         if (axios.isAxiosError(error)) {
-           const axiosError = error as AxiosError<{ message: string, data: string }>;
-           if (axiosError.response && axiosError.response.status === 401) {
-              
-             }    
-           } 
-       }
-     }
-     getList()
- },[user])
+    useEffect(() => {
+    const getList = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/user/searchplayerlist?playerusername=${user}`,
+          { withCredentials: true }
+        )
+        setUsers(res.data.data.userlist)
+      } catch (err) {
+        console.error("Fetch failed", err)
+      }
+    }
+
+    if (user.trim() === "") {
+      getList()
+      return
+    }
+
+    const delayDebounce = setTimeout(() => {
+      if (user.trim().length > 0) {
+        getList()
+      }
+    }, 300)
+
+    return () => clearTimeout(delayDebounce)
+  }, [user])
+
+  console.log(users)
 
  useEffect(() => {
      const getList = async () => {
@@ -393,57 +400,62 @@ export default function RaffleSection() {
 
             <p className=" flex items-center gap-2 font-semibold text-lg md:text-2xl"><Award size={30} />Winner : <span className=" text-orange-400">{currentWinner ? currentWinner : ' No winner yet!'}</span> </p>
           <form onSubmit={handleSubmit(addUserEntry)} className="flex flex-wrap gap-4 items-end">
-              <Controller
-                        name="username"
-                        control={control}
-                        render={({ field }) => {
-                            const selectedUser = users.find((item) => item.id === field.value);
+            <Controller
+              name="username"
+              control={control}
+              render={({ field }) => {
+                const selectedUser = users.find((item) => item.id === field.value)
 
-                            return (
-                            <Popover open={open} onOpenChange={setOpen}>
-                                <PopoverTrigger asChild>
-                                <Button
-                                    variant="outline"
-                                    role="combobox"
-                                    aria-expanded={open}
-                                    className="w-full max-w-[300px] justify-between bg-gray-100"
-                                >
-                                    {selectedUser ? selectedUser.username : "Select username..."}
-                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                </Button>
-                                </PopoverTrigger>
-                                <PopoverContent className="w-full p-0">
-                                <Command>
-                                    <CommandInput placeholder="Search user..." />
-                                    <CommandList>
-                                    <CommandEmpty>No user found.</CommandEmpty>
-                                    <CommandGroup>
-                                        {users.map((item) => (
-                                        <CommandItem
-                                            key={item.id}
-                                            value={item.id}
-                                            onSelect={(currentValue) => {
-                                            field.onChange(currentValue); // ✅ update form value with ID
-                                            setOpen(false);
-                                            }}
-                                        >
-                                            <Check
-                                            className={cn(
-                                                "mr-2 h-4 w-4",
-                                                field.value === item.id ? "opacity-100" : "opacity-0"
-                                            )}
-                                            />
-                                            {item.username}
-                                        </CommandItem>
-                                        ))}
-                                    </CommandGroup>
-                                    </CommandList>
-                                </Command>
-                                </PopoverContent>
-                            </Popover>
-                            );
-                        }}
+                return (
+                  <Popover open={open} onOpenChange={setOpen}>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        aria-expanded={open}
+                        className="w-full max-w-[300px] justify-between bg-gray-100"
+                      >
+                        {selectedUser ? selectedUser.username : "Select username..."}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-full p-0">
+                      <Command>
+                        <CommandInput
+                          value={user}
+                          onValueChange={setUser}
+                          placeholder="Search user..."
                         />
+                        <CommandList>
+                          <CommandEmpty>No user found.</CommandEmpty>
+                          <CommandGroup>
+                            {users.map((item) => (
+                              <CommandItem
+                                key={item.id}
+                                value={item.username} // ✅ use username for filtering
+                                onSelect={() => {
+                                  field.onChange(item.id) // ✅ store id in form
+                                  setOpen(false)
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    field.value === item.id ? "opacity-100" : "opacity-0"
+                                  )}
+                                />
+                                {item.username}
+                              </CommandItem>
+                            ))}
+                          </CommandGroup>
+                        </CommandList>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                )
+              }}
+            />
+
 
 
                         <Button type="submit" disabled={loading}>

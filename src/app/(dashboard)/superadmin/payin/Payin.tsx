@@ -113,27 +113,32 @@ export default function Payin() {
   };
 
 
-  useEffect(() => {
+    useEffect(() => {
     const getList = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/searchplayerlist?playerusername=${user}`,{
-        withCredentials:true
-        })
-
-        setUsers(response.data.data.userlist)
-        
-      } catch (error) {
-
-        if (axios.isAxiosError(error)) {
-          const axiosError = error as AxiosError<{ message: string, data: string }>;
-          if (axiosError.response && axiosError.response.status === 401) {
-             
-            }    
-          } 
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/user/searchplayerlist?playerusername=${user}`,
+          { withCredentials: true }
+        )
+        setUsers(res.data.data.userlist)
+      } catch (err) {
+        console.error("Fetch failed", err)
       }
     }
-    getList()
-},[user])
+
+    if (user.trim() === "") {
+      getList()
+      return
+    }
+
+    const delayDebounce = setTimeout(() => {
+      if (user.trim().length > 0) {
+        getList()
+      }
+    }, 300)
+
+    return () => clearTimeout(delayDebounce)
+  }, [user])
 
  const selectedUsername = watch("username");
 
@@ -168,55 +173,62 @@ export default function Payin() {
             {/* Form with validation */}
             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
               <p className=' label'>Username</p>
-              <Controller
-                name="username"
-                control={control}
-                render={({ field }) => (
-                  <Popover open={open} onOpenChange={setOpen}>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        role="combobox"
-                        aria-expanded={open}
-                        className="w-full justify-between bg-gray-100"
-                      >
-                        {selectedUsername
-                          ? users.find((item) => item.username === selectedUsername)?.username
-                          : "Select username..."}
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-full p-0">
-                      <Command>
-                        <CommandInput placeholder="Search user..." />
-                        <CommandList>
-                          <CommandEmpty>No user found.</CommandEmpty>
-                          <CommandGroup>
-                            {users.map((item) => (
-                              <CommandItem
-                                key={item.id}
-                                value={item.username}
-                                onSelect={(currentValue) => {
-                                  setValue("username", currentValue); // Update the form value
-                                  setOpen(false);
-                                }}
-                              >
-                                <Check
-                                  className={cn(
-                                    "mr-2 h-4 w-4",
-                                    selectedUsername === item.username ? "opacity-100" : "opacity-0"
-                                  )}
-                                />
-                                {item.username}
-                              </CommandItem>
-                            ))}
-                          </CommandGroup>
-                        </CommandList>
-                      </Command>
-                    </PopoverContent>
-                  </Popover>
-                )}
-              />
+               <Controller
+                           name="username"
+                           control={control}
+                           render={({ field }) => {
+                             const selectedUser = users.find((item) => item.username === field.value)
+             
+                             return (
+                               <Popover open={open} onOpenChange={setOpen}>
+                                 <PopoverTrigger asChild  className=' w-full'>
+                                   <Button
+                                     variant="outline"
+                                     role="combobox"
+                                     aria-expanded={open}
+                                     className="w-full  justify-between bg-gray-100"
+                                   >
+                                     {selectedUser ? selectedUser.username : "Select username..."}
+                                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                   </Button>
+                                 </PopoverTrigger>
+                                 <PopoverContent className="w-full p-0 ">
+                                   <Command>
+                                     <CommandInput
+                                       value={user}
+                                       onValueChange={setUser}
+                                       placeholder="Search user..."
+                                       className=' w-full'
+                                     />
+                                     <CommandList>
+                                       <CommandEmpty>No user found.</CommandEmpty>
+                                       <CommandGroup>
+                                         {users.map((item) => (
+                                           <CommandItem
+                                             key={item.id}
+                                             value={item.username} // ✅ use username for filtering
+                                             onSelect={() => {
+                                               field.onChange(item.username) // ✅ store id in form
+                                               setOpen(false)
+                                             }}
+                                           >
+                                             <Check
+                                               className={cn(
+                                                 "mr-2 h-4 w-4",
+                                                 field.value === item.username ? "opacity-100" : "opacity-0"
+                                               )}
+                                             />
+                                             {item.username}
+                                           </CommandItem>
+                                         ))}
+                                       </CommandGroup>
+                                     </CommandList>
+                                   </Command>
+                                 </PopoverContent>
+                               </Popover>
+                             )
+                           }}
+                         />
               {errors.username && <p className='text-[.6em] text-red-400'>{errors.username.message}</p>}
 
 
