@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Trash2, Trophy, Users, RotateCcw, Clock12, ChevronsUpDown, Check, Award } from "lucide-react"
 import {
@@ -117,7 +117,7 @@ export default function RaffleSection() {
     const getList = async () => {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/user/searchplayerlist?playerusername=${user}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/user/searchplayerlist?playerusername=${user}&limit=20`,
           { withCredentials: true }
         )
         setUsers(res.data.data.userlist)
@@ -140,7 +140,6 @@ export default function RaffleSection() {
     return () => clearTimeout(delayDebounce)
   }, [user])
 
-  console.log(users)
 
  useEffect(() => {
      const getList = async () => {
@@ -152,7 +151,6 @@ export default function RaffleSection() {
          setEntry(response.data.data)
          setTotalPage(response.data.pagination.totalPages)
 
- 
          
        } catch (error) {
  
@@ -188,6 +186,8 @@ export default function RaffleSection() {
       }
       getList()
   },[refresh])
+
+  console.log(entry)
 
 
 
@@ -486,8 +486,14 @@ export default function RaffleSection() {
               <h3 className="text-sm font-semibold">Participants</h3>
             </div>
 
-            {entry.length > 0 ? (
+           
              <Table>
+              {entry.length === 0 && (
+                <TableCaption>
+                  <div className="text-center py-8 text-gray-500 text-sm">No participants added yet</div>
+                </TableCaption>
+
+              )}
                 <TableHeader>
                     <TableRow className="bg-gray-100 py-2">
                     <TableHead colSpan={2} className="text-left py-2">Name</TableHead>
@@ -495,8 +501,8 @@ export default function RaffleSection() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {entry.map((participant) => (
-                    <TableRow key={participant.id}>
+                    {entry.map((participant, index) => (
+                    <TableRow key={index}>
                         <TableCell colSpan={2}>{participant.username}</TableCell>
                         <TableCell className=" flex items-end justify-end">
                             <DeleteEntry username={participant.username} id={participant.id}/>
@@ -506,9 +512,8 @@ export default function RaffleSection() {
                 </TableBody>
                 </Table>
 
-            ) : (
-              <div className="text-center py-8 text-gray-500 text-sm">No participants added yet</div>
-            )}
+
+
 
              {entry.length !== 0 && (
                             <div className=' w-full flex items-center justify-center mt-6'>
