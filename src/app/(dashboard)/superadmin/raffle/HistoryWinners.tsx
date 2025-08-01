@@ -98,7 +98,7 @@ export default function WinnerHsitory() {
                   <TableRow key={entry.id}>
                     <TableCell>{new Date(entry.createdAt).toLocaleString()}</TableCell>
                     <TableCell>{entry.owner}</TableCell>
-                    <TableCell className="text-right">Raffle {entry.index + 1}</TableCell>
+                    <TableCell className="text-right">Raffle {entry.index}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
