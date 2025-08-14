@@ -101,6 +101,7 @@ export default function Payouthistory() {
     const [totalrequests, setTotalRequests] = useState<Totals>()
     const [payoutid, setPayoutId] = useState('')
     const [paymethod, setPaymethod] = useState('all')
+    const [paymethodHistory, setPaymethodHistory] = useState('all')
   
 
     useEffect(() => {
@@ -109,7 +110,7 @@ export default function Payouthistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchUsername=${searchHistory}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchUsername=${searchHistory}&methodtype=${paymethodHistory}`,
               { withCredentials: true }
             );
     
@@ -128,7 +129,7 @@ export default function Payouthistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage2, refresh, tab, searchHistory]);
+      }, [currentpage2, refresh, tab, searchHistory, paymethodHistory, paymethodHistory]);
 
       useEffect(() => {
         setLoading(true);
@@ -160,6 +161,7 @@ export default function Payouthistory() {
       useEffect(() => {
         setSearch('')
         setSearchHistory('')
+        setPaymethodHistory('all')
       }, [tab])
 
     const handlePageChange = (page: number) => {
@@ -524,6 +526,16 @@ export default function Payouthistory() {
 
          <div className=' flex items-center gap-2'>
           <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
+           <Select value={paymethodHistory} onValueChange={setPaymethodHistory}>
+            <SelectTrigger className=" w-[100px]">
+              <SelectValue placeholder="Payment Method" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="gcash">GCash</SelectItem>
+              <SelectItem value="gotyme">GoTyme</SelectItem>
+            </SelectContent>
+          </Select>
         
         </div>
         </div>
@@ -752,7 +764,16 @@ export default function Payouthistory() {
         <p className=' text-sm font-medium'>Referral Payout History</p>
          <div className=' flex items-center gap-2'>
           <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
-        
+             <Select value={paymethodHistory} onValueChange={setPaymethodHistory}>
+            <SelectTrigger className=" w-[100px]">
+              <SelectValue placeholder="Payment Method" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="gcash">GCash</SelectItem>
+              <SelectItem value="gotyme">GoTyme</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         </div>
             <Table>
@@ -977,7 +998,16 @@ export default function Payouthistory() {
         <p className=' text-sm font-medium'>Unilevel Payout History</p>
          <div className=' flex items-center gap-2'>
           <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
-        
+             <Select value={paymethodHistory} onValueChange={setPaymethodHistory}>
+            <SelectTrigger className=" w-[100px]">
+              <SelectValue placeholder="Payment Method" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="gcash">GCash</SelectItem>
+              <SelectItem value="gotyme">GoTyme</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         </div>
             <Table>

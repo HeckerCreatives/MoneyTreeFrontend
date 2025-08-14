@@ -19,6 +19,13 @@ import refreshStore from '@/store/refresh'
 import loadingtableStore from '@/store/tableloading'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 
 
@@ -68,6 +75,8 @@ export default function Payouthistory() {
     const [searchHistory, setSearchHistory] = useState('')
     const { refresh, setRefresh} = refreshStore()
     const [tab, setTab] = useState('gamebalance')
+    const [paymethodHistory, setPaymethodHistory] = useState('all')
+    
 
 
 
@@ -77,7 +86,7 @@ export default function Payouthistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchUsername=${searchHistory}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchUsername=${searchHistory}&methodtype=${paymethodHistory}`,
               { withCredentials: true }
             );
     
@@ -96,7 +105,7 @@ export default function Payouthistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage2, refresh, tab, searchHistory]);
+      }, [currentpage2, refresh, tab, searchHistory, paymethodHistory]);
 
       useEffect(() => {
         setLoading(true);
@@ -132,6 +141,8 @@ export default function Payouthistory() {
 
     useEffect(() => {
           setSearchHistory('')
+        setPaymethodHistory('all')
+
         }, [tab])
 
 
@@ -156,7 +167,16 @@ export default function Payouthistory() {
         <p className=' text-sm font-medium'>Game Payout History</p>
          <div className=' flex items-center gap-2'>
           <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
-        
+           <Select value={paymethodHistory} onValueChange={setPaymethodHistory}>
+            <SelectTrigger className=" w-[100px]">
+              <SelectValue placeholder="Payment Method" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="gcash">GCash</SelectItem>
+              <SelectItem value="gotyme">GoTyme</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         </div>
             <Table>
@@ -232,7 +252,16 @@ export default function Payouthistory() {
         <p className=' text-sm font-medium'>ComissionPayout History</p>
          <div className=' flex items-center gap-2'>
             <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
-          
+           <Select value={paymethodHistory} onValueChange={setPaymethodHistory}>
+            <SelectTrigger className=" w-[100px]">
+              <SelectValue placeholder="Payment Method" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="gcash">GCash</SelectItem>
+              <SelectItem value="gotyme">GoTyme</SelectItem>
+            </SelectContent>
+          </Select>
           </div>
         </div>
             <Table>
@@ -306,7 +335,16 @@ export default function Payouthistory() {
       <p className=' text-sm font-medium'>ComissionPayout History</p>
        <div className=' flex items-center gap-2'>
           <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
-        
+             <Select value={paymethodHistory} onValueChange={setPaymethodHistory}>
+            <SelectTrigger className=" w-[100px]">
+              <SelectValue placeholder="Payment Method" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="gcash">GCash</SelectItem>
+              <SelectItem value="gotyme">GoTyme</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
           <Table>
