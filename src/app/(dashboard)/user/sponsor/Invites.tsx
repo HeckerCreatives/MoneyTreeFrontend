@@ -1,15 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from '@/components/ui/carousel';
-import { type CarouselApi } from '@/components/ui/carousel';
-import { Card, CardContent } from '@/components/ui/card';
-import useEmblaCarousel from 'embla-carousel-react';
-import { cn } from '@/lib/utils';
-import {
     Table,
     TableBody,
     TableCaption,
@@ -29,13 +20,12 @@ import { Button } from '@/components/ui/button';
 
 
 interface List {
-  _id: string
-  username: string
-  createdAt: string
+  _id: string,
+  username: string,
+  createdAt: string,
   level: number,
-  totalAmount: number
-  referrerUsername: string
-
+  totalAmount: number,
+  referrerUsername: string,
 }
 
 
@@ -49,13 +39,8 @@ export default function Invites() {
   const {rate, setRate, clearRate} = rateStore()
   const [search, setSearch] = useState('')
 
-  
-
-
-
   //invites 
   useEffect(() => {
-   
     const debounceTimer = setTimeout(() => {
       fetchData();
     }, 300); 
@@ -70,7 +55,6 @@ export default function Invites() {
         `${process.env.NEXT_PUBLIC_API_URL}/unilevel/playerunilevel?level=${current}&page=${currentpage}&limit=10&search=${search}`,
         { withCredentials: true }
       );
-
       setLoading(false);
       setList(response.data.data.length !== 0 ? response.data.data[0].data : []);
       setTotalPage(response.data.data[0].totalPages);

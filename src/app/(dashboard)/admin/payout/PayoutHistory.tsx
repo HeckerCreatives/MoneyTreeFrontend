@@ -14,26 +14,11 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import Pagination from '@/components/common/Pagination'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { RotateCcw } from 'lucide-react'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import rateStore from '@/store/rate'
 import refreshStore from '@/store/refresh'
 import loadingtableStore from '@/store/tableloading'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 
 
@@ -80,12 +65,9 @@ export default function Payouthistory() {
     const [currentpage2, setCurrentPage2] = useState(0)
     const {loading, setLoading, clearLoading} = loadingtableStore()
     const {rate, setRate, clearRate} = rateStore()
-    const [search, setSearch] = useState('')
+    const [searchHistory, setSearchHistory] = useState('')
     const { refresh, setRefresh} = refreshStore()
     const [tab, setTab] = useState('gamebalance')
-    const [status, setStatus] = useState('done')
-    const [open, setOpen] = useState(false)
-    const [payoutid, setPayoutId] = useState('')
 
 
 
@@ -95,7 +77,7 @@ export default function Payouthistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchUsername=${searchHistory}`,
               { withCredentials: true }
             );
     
@@ -114,7 +96,7 @@ export default function Payouthistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage2, refresh, tab]);
+      }, [currentpage2, refresh, tab, searchHistory]);
 
       useEffect(() => {
         setLoading(true);
@@ -143,68 +125,14 @@ export default function Payouthistory() {
         return () => clearTimeout(delayDebounceFn); 
       }, [currentpage, refresh, tab]);
 
-    const handlePageChange = (page: number) => {
-        setCurrentPage(page)
-    }
-
     const handlePageChange2 = (page: number) => {
       setCurrentPage2(page)
   }
 
-  const processPayout = async (id: string) => {
-    setLoading(true);
-    setRefresh('true')
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/payout/processpayout`,
-        {
-          payoutid: payoutid,
-          status: status
-        },
-        {
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
 
-      toast.success('Payout sucessfully processed.');
-      clearLoading();
-      setRefresh('false')
-      setOpen(false)
-
-    } catch (error) {
-      setLoading(false);
-      setRefresh('false')
-      setOpen(false)
-
-
-      if (axios.isAxiosError(error)) {
-        const axiosError = error as AxiosError<{ message: string; data: string }>;
-        if (axiosError.response && axiosError.response.status === 401) {
-          toast.error(`${axiosError.response.data.data}`);
-          router.push('/')
-        }
-
-        if (axiosError.response && axiosError.response.status === 400) {
-          toast.error(`${axiosError.response.data.data}`);
-        }
-
-        if (axiosError.response && axiosError.response.status === 402) {
-          toast.error(`${axiosError.response.data.data}`);
-        }
-
-        if (axiosError.response && axiosError.response.status === 403) {
-          toast.error(`${axiosError.response.data.data}`);
-        }
-
-        if (axiosError.response && axiosError.response.status === 404) {
-          toast.error(`${axiosError.response.data.data}`);
-        }
-      }
-    }
-  };
+    useEffect(() => {
+          setSearchHistory('')
+        }, [tab])
 
 
    
@@ -226,6 +154,10 @@ export default function Payouthistory() {
        <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Game Payout History</p>
+         <div className=' flex items-center gap-2'>
+          <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
+        
+        </div>
         </div>
             <Table>
                 {loading === true && (
@@ -298,6 +230,10 @@ export default function Payouthistory() {
        <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>ComissionPayout History</p>
+         <div className=' flex items-center gap-2'>
+            <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
+          
+          </div>
         </div>
             <Table>
                 {loading === true && (
@@ -368,6 +304,10 @@ export default function Payouthistory() {
      <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
       <div className=' w-full flex items-center justify-between '>
       <p className=' text-sm font-medium'>ComissionPayout History</p>
+       <div className=' flex items-center gap-2'>
+          <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
+        
+        </div>
       </div>
           <Table>
               {loading === true && (

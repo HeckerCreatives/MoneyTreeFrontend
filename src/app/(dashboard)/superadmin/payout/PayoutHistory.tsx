@@ -91,6 +91,7 @@ export default function Payouthistory() {
     const {loading, setLoading, clearLoading} = loadingtableStore()
     const {rate, setRate, clearRate} = rateStore()
     const [search, setSearch] = useState('')
+    const [searchHistory, setSearchHistory] = useState('')
     const { refresh, setRefresh} = refreshStore()
     const [tab, setTab] = useState('gamebalance')
     const [status, setStatus] = useState('done')
@@ -108,7 +109,7 @@ export default function Payouthistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payout/getpayouthistorysuperadmin?page=${currentpage2}&limit=10&type=${tab}&searchUsername=${searchHistory}`,
               { withCredentials: true }
             );
     
@@ -127,7 +128,7 @@ export default function Payouthistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage2, refresh, tab]);
+      }, [currentpage2, refresh, tab, searchHistory]);
 
       useEffect(() => {
         setLoading(true);
@@ -158,6 +159,7 @@ export default function Payouthistory() {
 
       useEffect(() => {
         setSearch('')
+        setSearchHistory('')
       }, [tab])
 
     const handlePageChange = (page: number) => {
@@ -519,6 +521,11 @@ export default function Payouthistory() {
        <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Game Payout History</p>
+
+         <div className=' flex items-center gap-2'>
+          <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
+        
+        </div>
         </div>
             <Table>
                 {loading === true && (
@@ -743,6 +750,10 @@ export default function Payouthistory() {
        <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Referral Payout History</p>
+         <div className=' flex items-center gap-2'>
+          <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
+        
+        </div>
         </div>
             <Table>
                 {loading === true && (
@@ -964,6 +975,10 @@ export default function Payouthistory() {
        <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Unilevel Payout History</p>
+         <div className=' flex items-center gap-2'>
+          <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
+        
+        </div>
         </div>
             <Table>
                 {loading === true && (
