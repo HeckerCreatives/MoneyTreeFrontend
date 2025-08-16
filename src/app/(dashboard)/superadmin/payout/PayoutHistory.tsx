@@ -164,6 +164,15 @@ export default function Payouthistory() {
         setPaymethodHistory('all')
       }, [tab])
 
+       useEffect(() => {
+        setCurrentPage2(0)
+      }, [searchHistory])
+
+        useEffect(() => {
+        setCurrentPage(0)
+      }, [search])
+
+
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
     }
