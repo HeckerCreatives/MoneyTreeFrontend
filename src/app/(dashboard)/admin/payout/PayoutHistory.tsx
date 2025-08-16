@@ -145,6 +145,10 @@ export default function Payouthistory() {
 
         }, [tab])
 
+    useEffect(() => {
+      setCurrentPage2(0)
+    }, [searchHistory])
+
 
    
 
