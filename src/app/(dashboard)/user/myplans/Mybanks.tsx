@@ -98,7 +98,6 @@ export default function Mybanks() {
             setLoading(false)
             setTree(response.data.data.tree)
             setTotalPage(response.data.data.totalPages)
-            console.log(response.data)
             
           } catch (error) {
             setLoading(false)

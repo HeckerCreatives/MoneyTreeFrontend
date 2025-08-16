@@ -187,7 +187,6 @@ export default function RaffleSection() {
       getList()
   },[refresh])
 
-  console.log(entry)
 
 
 

@@ -72,7 +72,6 @@ export default function Complantreecard(prop: Props) {
     const onsubmit = async (data: SaveTreeComplan) => {
         setRefresh('true');
         setLoading(true);
-        console.log(data)
         try {
             const request = axios.post(`${process.env.NEXT_PUBLIC_API_URL}/tbank/edittbank`, {
                 isActive: data.isActive,

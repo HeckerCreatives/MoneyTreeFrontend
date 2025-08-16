@@ -63,7 +63,6 @@ export default function Maintenance() {
 
     const getMilliseconds = (min: number, secs: number) => {
         const ms = (min * 60 + secs) * 1000;
-        console.log("Milliseconds:", ms);
         return ms;
     };
 

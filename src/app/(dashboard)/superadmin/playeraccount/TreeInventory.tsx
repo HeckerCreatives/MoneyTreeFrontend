@@ -106,7 +106,6 @@ const {refresh, setRefresh} = refreshStore()
   }
 
   const deletPlan = async ( id: string) => {
-    console.log(id)
     setLoading(true);
         setRefresh('true')
 

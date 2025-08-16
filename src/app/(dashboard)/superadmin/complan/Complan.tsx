@@ -94,7 +94,6 @@ export default function Complan() {
 
             setLoading(false)
             setTree(response.data.data)
-            console.log(response.data)
             
           } catch (error) {
             setLoading(false)
