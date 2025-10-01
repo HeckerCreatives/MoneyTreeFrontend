@@ -62,6 +62,8 @@ export const admin = [
     path:'/admin/analytics', subpath:[]},
     {name: 'Manage Account', icon: <Users size={15}/>, 
     path:'/admin/manageaccount', subpath:[]},
+    {name: 'Payin', icon: <CreditCard size={15}/>, 
+    path:'/admin/payin', subpath:[]},
 
     {name: 'Payout', icon: <Wallet size={15}/>, 
     path:'/admin/payout', subpath:[]},

@@ -117,7 +117,7 @@ export default function Payin() {
     const getList = async () => {
       try {
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/user/searchplayerlist?playerusername=${user}&limit=500`,
+          `${process.env.NEXT_PUBLIC_API_URL}/user/searchplayerlist?playerusername=${user}&limit=99999`,
           { withCredentials: true }
         )
         setUsers(res.data.data.userlist)
