@@ -111,7 +111,7 @@ export default function Payinhistory() {
                 <TableHead>Amount</TableHead>
                 <TableHead>Username</TableHead>
                 <TableHead>Send by</TableHead>
-                {/* <TableHead>Status</TableHead> */}
+                <TableHead>Approved by</TableHead>
                 <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
@@ -123,7 +123,7 @@ export default function Payinhistory() {
 
                     <TableCell>{item.username}</TableCell>
                     <TableCell>{item.processby}</TableCell>
-                    {/* <TableCell>{item.status}</TableCell> */}
+                    <TableCell>{item.processby}</TableCell>
                     <TableCell className=' flex gap-2'>
                       <DeletePayinHistory id={item.id} userid={item.userid}/>
                       {/* <ApprovedPayin data={item}/> */}
