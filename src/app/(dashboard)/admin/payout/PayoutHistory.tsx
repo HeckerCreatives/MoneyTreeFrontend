@@ -58,6 +58,7 @@ interface List {
   type:string
   createdAt:string
   phonenumber: string
+  processby: string
 }
 
 
@@ -203,6 +204,7 @@ export default function Payouthistory() {
                   <TableHead>Net amount</TableHead>
 
                   <TableHead>Withdrawal fee</TableHead>
+                  <TableHead>Approved by</TableHead>
                   <TableHead>Status</TableHead>
                 </TableRow>
             </TableHeader>
@@ -230,6 +232,7 @@ export default function Payouthistory() {
                       </div>
                     </TableCell>
 
+                    <TableCell>{item.processby}</TableCell>
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
 
                    
@@ -287,6 +290,7 @@ export default function Payouthistory() {
                   <TableHead>Gross amount</TableHead>
                   <TableHead>Net amount</TableHead>
                   <TableHead>Withdrawal fee</TableHead>
+                  <TableHead>Approved by</TableHead>
                   <TableHead>Status</TableHead>
                 </TableRow>
             </TableHeader>
@@ -314,6 +318,7 @@ export default function Payouthistory() {
                       </div>
                     </TableCell>
 
+                    <TableCell>{item.processby}</TableCell>
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
                    
                    
@@ -370,6 +375,7 @@ export default function Payouthistory() {
                 <TableHead>Gross amount</TableHead>
                 <TableHead>Net amount</TableHead>
                 <TableHead>Withdrawal fee</TableHead>
+                <TableHead>Approved by</TableHead>
                 <TableHead>Status</TableHead>
               </TableRow>
           </TableHeader>
@@ -397,6 +403,7 @@ export default function Payouthistory() {
                     </div>
                   </TableCell>
 
+                  <TableCell >{item.processby}</TableCell>
                   <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
                  
                  

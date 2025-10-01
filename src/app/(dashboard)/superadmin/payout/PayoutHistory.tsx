@@ -70,6 +70,7 @@ interface List {
   type:string
   createdAt:string
   phonenumber: string
+  processby: string
 }
 
 interface Totals {
@@ -568,6 +569,7 @@ export default function Payouthistory() {
                   <TableHead>Net amount</TableHead>
 
                   <TableHead>Withdrawal fee</TableHead>
+                  <TableHead>Approved by</TableHead>
                   <TableHead>Status</TableHead>
                   {/* <TableHead>Action</TableHead> */}
                 </TableRow>
@@ -596,6 +598,7 @@ export default function Payouthistory() {
                       </div>
                     </TableCell>
 
+                    <TableCell>{item.processby}</TableCell>
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
                     {/* <TableCell>
                     <Dialog open={open2} onOpenChange={setOpen2}>
@@ -804,6 +807,7 @@ export default function Payouthistory() {
                   <TableHead>Gross amount</TableHead>
                   <TableHead>Net amount</TableHead>
                   <TableHead>Withdrawal fee</TableHead>
+                  <TableHead>Approved by</TableHead>
                   <TableHead>Status</TableHead>
                   {/* <TableHead>Action</TableHead> */}
                 </TableRow>
@@ -831,6 +835,8 @@ export default function Payouthistory() {
                         ₱{item.withdrawalfee.toLocaleString()} <span className=' text-[.6rem] text-zinc-500'>${(item.withdrawalfee / rate).toLocaleString()}</span>
                       </div>
                     </TableCell>
+                    <TableCell>{item.processby}</TableCell>
+
 
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
                     {/* <TableCell>
@@ -1038,6 +1044,7 @@ export default function Payouthistory() {
                   <TableHead>Gross amount</TableHead>
                   <TableHead>Net amount</TableHead>
                   <TableHead>Withdrawal fee</TableHead>
+                  <TableHead>Approved by</TableHead>
                   <TableHead>Status</TableHead>
                   {/* <TableHead>Action</TableHead> */}
                 </TableRow>
@@ -1066,6 +1073,7 @@ export default function Payouthistory() {
                       </div>
                     </TableCell>
 
+                    <TableCell >{item.processby}</TableCell>
                     <TableCell className={`${item.status === 'done' ? 'text-green-400' : 'text-red-500'}`}>{item.status}</TableCell>
                     
                  
