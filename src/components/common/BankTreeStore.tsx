@@ -142,9 +142,9 @@ export default function BanksTreeStore(prop: Props) {
             <div className=' w-full flex flex-col text-amber-50 text-xs font-bold p-3'>
                 <h2 className=' text-lg font-black'>{prop.name}</h2>
              
-                 <p>Profit: {prop.profit * 100} %</p>
-                <p>Duration: {prop.duration} days</p>
-                <p>Price: {prop.price.toLocaleString()} php</p>
+                 <p>Revenue: {prop.profit * 100} %</p>
+                <p>Lead Time: {prop.duration} days</p>
+                <p>Unit Price: {prop.price.toLocaleString()} php</p>
                    
 
 
@@ -166,9 +166,9 @@ export default function BanksTreeStore(prop: Props) {
 
                         <div className=' w-full flex flex-col justify-center text-amber-950 p-4 md:p-6'>
                             <h2 className=' text-lg font-black'>{prop.name}</h2>
-                            <p>Profit: {prop.profit * 100} %</p>
-                            <p>Duration: {prop.duration} days</p>
-                            <p>Price: {prop.price.toLocaleString()} php</p>
+                            <p>Revenue: {prop.profit * 100} %</p>
+                            <p>Lead Time: {prop.duration} days</p>
+                            <p>Unit Price: {prop.price.toLocaleString()} php</p>
 
                             {/* <div className=' flex items-end w-full gap-1'>
                                  <div className=' flex flex-col gap-1 w-full'>
@@ -185,7 +185,7 @@ export default function BanksTreeStore(prop: Props) {
                             </div>
 
                             <div className=' flex items-center gap-2 mt-4'>
-                                <p className=' px-3 py-1 bg-red-600 rounded-full text-xs text-white'>Stocks: {prop.stocks} </p>
+                                <p className=' px-3 py-1 bg-red-600 rounded-full text-xs text-white'>Seedlings: {prop.stocks} </p>
                                 <p className=' px-3 py-1 bg-blue-600 rounded-full text-xs text-white'>Owned: {prop.owned} </p>
 
                             </div>
