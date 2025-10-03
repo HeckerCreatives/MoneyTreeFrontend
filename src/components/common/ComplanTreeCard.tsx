@@ -188,29 +188,29 @@ export default function Complantreecard(prop: Props) {
                         <p className=' text-lg font-black'>{prop.name}</p>
 
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Profit (%)</label>
+                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Revenue (%)</label>
                         <Input type='number' className=' text-xs' {...register('profit', {valueAsNumber: true})}/>
                         {errors.profit && <p className='text-[.6em] text-red-500'>{errors.profit.message}</p>}
 
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2' >Duration (days)</label>
+                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2' >Lead Time (days)</label>
                         <Input  type='number' className=' text-xs' {...register('duration', {valueAsNumber: true})}/>
                         {errors.duration && <p className='text-[.6em] text-red-500'>{errors.duration.message}</p>}
 
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Price (php)</label>
+                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2'>Unit Price (php)</label>
                         <Input  type='number' className=' text-xs' {...register('price', {valueAsNumber: true})}/>
                         {errors.price && <p className='text-[.6em] text-red-500'>{errors.price.message}</p>}
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2' >Stocks</label>
+                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2' >Seedlings</label>
                         <Input  type='number' className=' text-xs' {...register('stocks', {valueAsNumber: true})}/>
                         {errors.stocks && <p className='text-[.6em] text-red-500'>{errors.stocks.message}</p>}
 
-                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2' >Limit</label>
+                        <label htmlFor="" className=' text-xs text-zinc-500 mt-2' >Distribution Limit</label>
                         <Input  type='number' className=' text-xs' {...register('limit', {valueAsNumber: true})}/>
                         {errors.limit && <p className='text-[.6em] text-red-500'>{errors.limit.message}</p>}
 
-                        <p className=' text-sm text-black mt-4'>Stocks Sold: {prop.sold.toLocaleString()}</p>
+                        <p className=' text-sm text-black mt-4'>Seedlings sold: {prop.sold.toLocaleString()}</p>
 
                         <Button disabled={loading}  className={`w-full mt-4`}>
 
