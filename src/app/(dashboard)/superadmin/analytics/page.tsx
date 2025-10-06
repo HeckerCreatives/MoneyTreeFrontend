@@ -66,7 +66,7 @@ export default function page() {
   return (
     <Superadminlayout>
         <div className=' w-full grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-items-center mt-12 gap-4'>
-          <Card name={'Total Sales'} amount={totalsales} color={''} subcolor={''} editable={false}/>
+          {/* <Card name={'Total Sales'} amount={totalsales} color={''} subcolor={''} editable={false}/>
           <Card name={'Total User Commission'} amount={(wallets?.referral ?? 0) + (wallets?.unilevel ?? 0)} color={''} subcolor={''} editable={false}/>
           <Card name={'User Top Up'} amount={wallets?.payin || 0} color={''} subcolor={''} editable={false}/>
           <Card name={'Total Payout'} amount={wallets?.payout || 0} color={''} subcolor={''} editable={false}/>
@@ -74,6 +74,16 @@ export default function page() {
           <Card name={'User Referral Commission'} amount={wallets?.direct || 0} color={''} subcolor={''} editable={false}/>
           <Card name={'User Unilevel Commission'} amount={wallets?.unilevelbalance || 0} color={''} subcolor={''} editable={false}/>
           <Card name={'Total Company Profit'} amount={totalsales - (wallets?.payout || 0)} color={''} subcolor={''} editable={false}/>
+          <Card name={'Game Profit'} amount={wallets?.products || 0} color={''} subcolor={''} editable={false}/> */}
+
+          <Card name={'Total Sales'} amount={wallets?.payin || 0} color={''} subcolor={''} editable={false}/>
+          <Card name={'Total User Commission'} amount={(wallets?.referral ?? 0) + (wallets?.unilevel ?? 0)} color={''} subcolor={''} editable={false}/>
+          {/* <Card name={'User Top Up'} amount={wallets?.payin || 0} color={''} subcolor={''} editable={false}/> */}
+          <Card name={'Total Payout'} amount={wallets?.payout || 0} color={''} subcolor={''} editable={false}/>
+          <Card name={'User Game Wallet'} amount={wallets?.gamewalletbalance || 0} color={''} subcolor={''} editable={false}/>
+          <Card name={'User Referral Commission'} amount={wallets?.direct || 0} color={''} subcolor={''} editable={false}/>
+          <Card name={'User Unilevel Commission'} amount={wallets?.unilevelbalance || 0} color={''} subcolor={''} editable={false}/>
+          <Card name={'Total Company Profit'} amount={(wallets?.payin || 0) - (wallets?.payout || 0)} color={''} subcolor={''} editable={false}/>
           <Card name={'Game Profit'} amount={wallets?.products || 0} color={''} subcolor={''} editable={false}/>
 
         
