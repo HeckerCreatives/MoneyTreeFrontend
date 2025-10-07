@@ -238,7 +238,7 @@ export default function BanksTreeStore(prop: Props) {
 
                             <div className=' flex items-center gap-2 mt-4'>
                                 <p className=' px-3 py-1 bg-red-600 rounded-full text-xs text-white'>Seedlings: {prop.stocks} </p>
-                                <p className=' px-3 py-1 bg-blue-600 rounded-full text-xs text-white'>Owned: {prop.owned} </p>
+                                <p className=' px-3 py-1 bg-blue-600 rounded-full text-xs text-white'>Leverage: {prop.owned} </p>
 
                             </div>
 
