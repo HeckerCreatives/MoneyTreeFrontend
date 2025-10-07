@@ -69,14 +69,16 @@ export const complanSchema = z.object({
     //     path: ['min'], // Specify the path where the error will show
     // });
 
-export const complanTreeSchema = z.object({
-    profit: z.number().min(0, 'Enter a profit value'),
-    duration: z.number().min(1, 'Enter a duration value'),
-    isActive: z.boolean(),
-    price: z.number().min(1, 'Enter a price'),
-    limit: z.number().min(1, 'Enter a limit'),
-    stocks: z.number().min(0, 'Enter a stocks'),
-})
+// export const complanTreeSchema = z.object({
+//     profit: z.number().min(0, 'Enter a profit value'),
+//     duration: z.number().min(1, 'Enter a duration value'),
+//     isActive: z.boolean(),
+//     price: z.number().min(1, 'Enter a price'),
+//     limit: z.number().min(1, 'Enter a limit'),
+//     stocks: z.number().min(0, 'Enter a stocks'),
+//     description: z.string().nonempty('Description is required'),
+//     benefits: z.array(z.string()).min(1,'Add atleast one benefits')
+// })
 
 
 export const createAdmin = z.object({
@@ -102,6 +104,27 @@ export const createAdmin = z.object({
         key: z.string().min(1, 'Secret key is empty'),
     })
 
+
+const arrayObject = z.object({
+    benefit: z.string().nonempty('Benefit is required'),
+})
+
+export const complanTreeSchema = z.object({
+  profit: z.number().min(0, 'Enter a profit value'),
+  duration: z.number().min(1, 'Enter a duration value'),
+  isActive: z.boolean(),
+  price: z.number().min(1, 'Enter a price'),
+  limit: z.number().min(1, 'Enter a limit'),
+  stocks: z.number().min(0, 'Enter a stocks'),
+  description: z.string().nonempty('Description is required'),
+  name: z.string().nonempty('Name is required'),
+  sname: z.string().nonempty('Scientific name is required'),
+  benefits: z.array(arrayObject).min(1, 'Add at least one benefits'),
+})
+
+export type SaveTreeComplan = z.infer<typeof complanTreeSchema>
+
+
     
 
       
@@ -113,7 +136,6 @@ export type SendFiat = z.infer<typeof sendFiat>;
 export type AddRaffleEntry = z.infer<typeof addRaffleEntry>;
 export type SaveConversionRate = z.infer<typeof conversionRate>;
 export type SaveComplan = z.infer<typeof complanSchema>;
-export type SaveTreeComplan = z.infer<typeof complanTreeSchema>;
 export type CreateAdminAccount = z.infer<typeof createAdmin>;
 export type AddSocialMedia = z.infer<typeof socialsSchema>;
 export type CreateMasterKey = z.infer<typeof masterkey>;

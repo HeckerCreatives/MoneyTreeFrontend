@@ -17,10 +17,33 @@ import refreshStore from '@/store/refresh'
 import { useRouter } from 'next/navigation'
 import axios, { AxiosError } from 'axios'
 import toast from 'react-hot-toast'
+import { bgTreeImage } from '@/helpers/assets'
+
+type ComplanTree = {
+  duration: number
+  id: string
+  isActive: boolean
+  limit: number
+  price: number
+  profit: number
+  stocks: number
+  type: string
+  timesBought: number
+
+  name: string,
+  scientificName: string,
+  description: string,
+  healthBenefits: string[]
+  isPurchased: boolean,
+  purchasedCount: number,
+}
 
 type Props = {
     _id: string,
     name: string
+    sname: string
+    description: string
+    benefits: string[]
     type: string
     duration: number,
     profit: number,
@@ -134,16 +157,19 @@ export default function BanksTreeStore(prop: Props) {
 
         </div>
         <div className=' relative z-10 w-full flex gap-4 items-center justify-center h-full '>
-            <div className='  w-full '>
-                <img src={bgImage()} alt="bank" width={100} height={100} className=' w-full h-full' />
-
+            <div className='  w-full max-h-[16rem] '
+            //  style={{backgroundImage: `url(${bgTreeImage(prop.name)})`, backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundPosition:'top'}}
+            >
+                <img src={bgTreeImage(prop.name)} alt="bank" width={100} height={100} className=' w-full h-full ' />
             </div>
 
             <div className=' w-full flex flex-col text-amber-50 text-xs font-bold p-3'>
                 <h2 className=' text-lg font-black'>{prop.name}</h2>
+
+                
              
-                 <p>Revenue: {prop.profit * 100} %</p>
-                <p>Lead Time: {prop.duration} days</p>
+                <p>Revenue: {prop.profit * 100} %</p>
+                <p>Maturi-Tree: {prop.duration} days</p>
                 <p>Unit Price: {prop.price.toLocaleString()} php</p>
                    
 
@@ -153,19 +179,45 @@ export default function BanksTreeStore(prop: Props) {
                 <DrawerTrigger className='bg-[#A8DC08] px-3 py-2 text-sm font-bold text-amber-950 rounded-sm mt-6'>
                     Buy now
                 </DrawerTrigger>
-                <DrawerContent className=' flex flex-col items-center justify-center h-[80%] md:h-[50%] bg-cream border-amber-100'>
+                <DrawerContent className=' flex flex-col items-center justify-center h-fit max-h-[90%] bg-cream border-amber-100 '>
                     <DrawerHeader>
                     <DrawerTitle></DrawerTitle>
                     <DrawerDescription></DrawerDescription>
                     </DrawerHeader>
 
-                    <div className=' w-full max-w-[700px] grid grid-cols-1 md:grid-cols-2 h-auto bg-amber-50 rounded-sm overflow-hidden'>
-                        <div className=' w-full flex items-center justify-center overflow-hidden '>
-                            <img src={bgImage()} alt="bank" width={100} height={100} className=' w-full object-top' />
+                    <div className=' w-full max-w-[700px] grid grid-cols-1 md:grid-cols-2 h-auto bg-amber-50 rounded-sm max-h-[90%] overflow-auto'>
+                        <div className=' w-full hidden md:flex items-center justify-center overflow-hidden '>
+                            <img src={bgTreeImage(prop.name)} alt="bank" width={100} height={100} className=' w-full object-cover object-center  h-[16rem] md:h-full' />
                         </div>
 
                         <div className=' w-full flex flex-col justify-center text-amber-950 p-4 md:p-6'>
-                            <h2 className=' text-lg font-black'>{prop.name}</h2>
+                            {/* <h2 className=' text-lg font-black'>{prop.name}</h2> */}
+
+                            <div className=' flex gap-2 items-center w-full'>
+                                <div className=' flex items-center flex-wrap gap-2'>
+                                    <img src={bgTreeImage(prop.name)} alt="bank" width={100} height={100} className=' block md:hidden w-[4rem] h-[4rem] rounded-full' />
+                                    <p className=' text-lg font-black'>{prop.name}</p>
+                                    <p className=' text-sm'>({prop.sname})</p>
+                                </div>
+                            </div>
+
+                             <div className=' flex gap-2 items-center w-full'>
+                                   <p className=' text-sm font-bold mt-2'>Description</p>
+                               </div>
+                               <p className=' text-xs whitespace-pre-wrap'>{prop.description}</p>
+
+                               
+                             <div className=' flex gap-2 items-center w-full'>
+                                   <p className=' text-sm font-bold mt-2'>Health Benefits</p>
+                               </div>
+                              <div className=' flex flex-col gap-1 mb-6'>
+                                {prop.benefits.map((item, index) => (
+                                    <p key={index} className=' text-xs'>{index + 1}. {item}</p>
+                                ))}
+
+                            </div>
+
+
                             <p>Revenue: {prop.profit * 100} %</p>
                             <p>Lead Time: {prop.duration} days</p>
                             <p>Unit Price: {prop.price.toLocaleString()} php</p>

@@ -17,6 +17,7 @@ import toast from 'react-hot-toast';
 import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import rateStore from '@/store/rate';
+import { bgTreeOwnImage } from '@/helpers/assets';
 
 
 type Prop = {
@@ -148,7 +149,7 @@ export default function MyTreeOwn( prop: Prop) {
         <img src="/assets/bigcard.png" alt="bank" className=' min-h-[600px] absolute top-0' />
         <div className=' absolute w-full h-full p-4 '>
             <div className=' w-full  overflow-hidden flex items-center justify-center'>
-                <img src={bgImage()} alt="" className=' w-full object-center' />
+                <img src={bgTreeOwnImage(prop.bankname, getEarningTier())} alt="" className=' w-full object-cover max-h-[20rem]' />
             </div>
 
             <div className=' flex flex-col gap-2 text-amber-950 p-4'>

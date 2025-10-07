@@ -42,13 +42,17 @@ interface StoreTree {
   id: string
   isActive: boolean
   limit: number
-  name: string
   price: number
   profit: number
   stocks: number
   type: string
   totalprofit: number
   purchasedCount: number
+
+  name: string,
+  scientificName: string,
+  description: string,
+  healthBenefits: string[]
 
 }
 
@@ -164,7 +168,7 @@ const filteredStore = storeTree
         ):(
            <div className=' w-full grid grid-cols-[repeat(auto-fill,minmax(325px,1fr))] gap-4 h-fit place-items-center '>
               {filteredStore.map((item, index) => (
-                  <BanksTreeStore key={index} _id={item.id} type={item.type} name={item.name} price={item.price} duration={item.duration} profit={item.profit} isActive={item.isActive} limit={item.limit} stocks={item.stocks} owned={item.purchasedCount}/>
+                  <BanksTreeStore key={index} _id={item.id} type={item.type} name={item.name} price={item.price} duration={item.duration} profit={item.profit} isActive={item.isActive} limit={item.limit} stocks={item.stocks} owned={item.purchasedCount} sname={item.scientificName} description={item.description} benefits={item.healthBenefits}/>
               ))}
 
           </div>

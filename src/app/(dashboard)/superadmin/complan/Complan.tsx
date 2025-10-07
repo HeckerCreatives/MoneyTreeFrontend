@@ -35,18 +35,23 @@ interface Complan {
 
 }
 
-interface ComplanTree {
+export interface ComplanTree {
   duration: number
   id: string
   isActive: boolean
   limit: number
-  name: string
   price: number
   profit: number
   stocks: number
   type: string
   timesBought: number
 
+  name: string,
+  scientificName: string,
+  description: string,
+  healthBenefits: string[]
+  isPurchased: boolean,
+  purchasedCount: number,
 }
 
 
@@ -156,18 +161,10 @@ export default function Complan() {
         </div>
       </TabsContent>
       <TabsContent value="tree">
-          <div className=' w-full h-auto grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] place-items-center gap-4 '>
-            {sortedTree.map((item, index) => (
+          <div className=' w-full h-auto grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(600px,1fr))] place-items-center gap-4 '>
+            {tree.map((item, index) => (
               <Complantreecard 
-                key={index}
-                _id={item.id}
-                name={item.name}
-                type={item.type}
-                price={item.price}
-                duration={item.duration}
-                profit={item.profit}
-                isActive={item.isActive}
-                islocked={false} limit={item.limit} stocks={item.stocks} sold={item.timesBought}/>
+               prop={item}/>
           ))}
         </div>
       </TabsContent>
