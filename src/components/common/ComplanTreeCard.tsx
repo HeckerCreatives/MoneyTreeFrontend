@@ -197,7 +197,7 @@ export default function Complantreecard( {prop} :Props) {
 
 
   return (
-    <div className={` group w-full h-auto bg-cream rounded-md shadow-md grid grid-cols-1 md:grid-cols-2 `}>
+    <div className={` group w-full h-full bg-cream rounded-md shadow-md grid grid-cols-1 md:grid-cols-2 `}>
 
                    
 
