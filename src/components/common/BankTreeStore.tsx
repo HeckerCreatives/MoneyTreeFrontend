@@ -179,13 +179,13 @@ export default function BanksTreeStore(prop: Props) {
                 <DrawerTrigger className='bg-[#A8DC08] px-3 py-2 text-sm font-bold text-amber-950 rounded-sm mt-6'>
                     Buy now
                 </DrawerTrigger>
-                <DrawerContent className=' flex flex-col items-center justify-center h-fit max-h-[90%] bg-cream border-amber-100 '>
+                <DrawerContent className=' flex flex-col items-center justify-center md:h-fit h-screen bg-cream border-amber-100 '>
                     <DrawerHeader>
                     <DrawerTitle></DrawerTitle>
                     <DrawerDescription></DrawerDescription>
                     </DrawerHeader>
 
-                    <div className=' w-full max-w-[700px] grid grid-cols-1 md:grid-cols-2 h-auto bg-amber-50 rounded-sm max-h-[90%] overflow-auto'>
+                    <div className=' w-full max-w-[700px] grid grid-cols-1 md:grid-cols-2 h-screen md:h-auto bg-amber-50 rounded-sm overflow-auto'>
                         <div className=' w-full hidden md:flex items-center justify-center overflow-hidden '>
                             <img src={bgTreeImage(prop.name)} alt="bank" width={100} height={100} className=' w-full object-cover object-center  h-[16rem] md:h-full' />
                         </div>
