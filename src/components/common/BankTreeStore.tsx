@@ -233,7 +233,7 @@ export default function BanksTreeStore(prop: Props) {
 
                             <div className='flex flex-col gap-1 mt-2'>
                                 <label htmlFor="" className=' text-sm'>Quantity</label>
-                                <Input type='number' value={quantity} onChange={(e) => setQuantity(e.target.valueAsNumber)} placeholder='Quantity'/>
+                                <Input type='number' step={1} value={quantity} onChange={(e) => setQuantity(e.target.valueAsNumber)} placeholder='Quantity'/>
                             </div>
 
                             <div className=' flex items-center gap-2 mt-4'>
