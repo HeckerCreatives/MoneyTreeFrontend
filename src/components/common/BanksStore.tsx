@@ -227,7 +227,27 @@ export default function BanksStore(prop: Bank) {
                             <div className=' flex items-end w-full gap-1'>
                                  <div className=' flex flex-col gap-1 w-full'>
                                     <label htmlFor="" className=' text-xs'>Enter amount</label>
-                                    <Input type='number' step={1} min={500} value={val} onChange={(e) => setVal(e.target.valueAsNumber)} placeholder='Amount'/>
+                                   <Input
+                                        type="number"
+                                        min={500}
+                                        step={1}
+                                        value={val === 0 ? '' : val} // show empty when 0
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            // Allow empty input for typing, but block decimals
+                                            if (value === '' || /^\d+$/.test(value)) {
+                                            setVal(value === '' ? 0 : Number(value));
+                                            }
+                                        }}
+                                        onKeyDown={(e) => {
+                                            // Prevent decimals, commas, or scientific notation
+                                            if (e.key === '.' || e.key === ',' || e.key === 'e') {
+                                            e.preventDefault();
+                                            }
+                                        }}
+                                        placeholder="Amount"
+/>
+
                                 </div>
                                 <button onClick={() => setVal(val + 1)} className=' bg-blue-600 text-white h-10 px-3 rounded-md text-lg font-bold'>+</button>
                                 <button disabled={val === 0} onClick={() => setVal(val - 1)} className=' bg-red-600 text-white h-10 px-3 rounded-md text-lg font-bold'>-</button>
