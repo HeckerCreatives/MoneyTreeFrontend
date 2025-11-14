@@ -27,6 +27,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import ApprovedPayin from './ApprovedPayin'
+import { Button } from '@/components/ui/button'
+import { RefreshCcw } from 'lucide-react'
 
 interface List {
     id: string
@@ -51,6 +53,7 @@ export default function Payinhistory() {
     const {loading, setLoading, clearLoading} = loadingtableStore()
     const {rate, setRate, clearRate} = rateStore()
     const [search, setSearch] = useState('')
+    const [date, setDate] = useState('')
     const { refresh, setRefresh} = refreshStore()
 
 
@@ -61,7 +64,7 @@ export default function Payinhistory() {
         const delayDebounceFn = setTimeout(async () => {
           try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_API_URL}/payin/getpayinhistorysuperadmin?page=${currentpage}&limit=10&searchUsername=${search}`,
+              `${process.env.NEXT_PUBLIC_API_URL}/payin/getpayinhistorysuperadmin?page=${currentpage}&limit=10&searchUsername=${search}&date=${date}`,
               { withCredentials: true }
             );
     
@@ -80,10 +83,15 @@ export default function Payinhistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage, search, refresh]);
+      }, [currentpage, search, refresh, date]);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
+    }
+
+    const reset = () => {
+      setSearch('')
+      setDate('')
     }
 
    
@@ -94,7 +102,12 @@ export default function Payinhistory() {
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Payin History</p>
 
-        <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' bg-gray-100 w-fit'/>
+        <div className=' flex gap-2'>
+          <Input value={date} onChange={(e) => setDate(e.target.value)} type='date'/>
+          <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' w-fit'/>
+          <Button onClick={reset}><RefreshCcw size={20}/></Button>
+        </div>
+
         </div>
             <Table>
                 {loading === true && (
