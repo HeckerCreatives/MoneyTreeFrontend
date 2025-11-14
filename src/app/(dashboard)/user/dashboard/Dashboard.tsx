@@ -199,7 +199,7 @@ export default function Dashboard() {
 
         <div className=' grid grid-cols-1 lg:grid-cols-[350px_1fr] place-items-center md:place-items-start gap-4'>
             <div className='relative flex items-center justify-center  w-full max-w-[350px] h-full max-h-[520px] rounded-lg shadow-sm p-4 overflow-hidden'
-            style={{backgroundImage: 'url(/assets/Background.png)'}}
+            style={{backgroundImage: "url('/Christmas Theme.jpg')" , backgroundPosition:'bottom', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
             >
 
               <div className=' z-0 absolute w-full h-full bg-zinc-950/30'>
