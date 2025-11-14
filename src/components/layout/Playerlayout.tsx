@@ -165,7 +165,8 @@ export default function Playerlayout({
     
   return (
     <div className=' w-full max-w-[1920px] h-[100dvh] grid grid-cols-1 lg:grid-cols-[100px_1fr] items-center p-4 overflow-hidden'
-    style={{backgroundImage: "url('/assets/Background.png')" , backgroundPosition:'bottom', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
+        style={{backgroundImage: "url('/Christmas Theme.jpeg')" , backgroundPosition:'bottom', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
+
     
     >
 
