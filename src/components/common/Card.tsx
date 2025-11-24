@@ -24,6 +24,7 @@ type Props = {
     color: string
     subcolor: string
     type?: string
+    subtitle?: string
     editable: boolean
 }
 export default function Card( prop: Props) {
@@ -140,7 +141,7 @@ export default function Card( prop: Props) {
                     </div>
 
                 )}
-                <p className=' text-zinc-700 text-[.7rem]'>Total balance</p>
+                <p className=' text-zinc-700 text-[.7rem]'>{prop.subtitle || 'Total balance'}</p>
 
             </div>
 

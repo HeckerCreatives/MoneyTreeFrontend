@@ -374,6 +374,8 @@ export default function Payouthistory() {
     }
   };
 
+  console.log(totalrequests)
+
 
    
 
@@ -382,10 +384,11 @@ export default function Payouthistory() {
 
     <div className=' flex flex-col gap-12 w-full py-8'>
       <div className=' w-full flex items-center justify-center'>
-        <div className=' w-fit grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4'>
+        <div className=' w-fit grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4'>
           <Card name={'Game Payout'} amount={totalrequests?.totalrequestgame || 0} color={''} subcolor={''} editable={false}/>
           <Card name={'Referral Payout'} amount={totalrequests?.totalrequestdirect || 0} color={''} subcolor={''} editable={false}/>
           <Card name={'Unilevel Payout'} amount={totalrequests?.totalrequestunilevel || 0} color={''} subcolor={''} editable={false}/>
+          <Card name={'Rank Up Bonus Payout'} amount={totalrequests?.totalrequestunilevel || 0} color={''} subcolor={''} editable={false}/>
         </div>
       </div>
      

@@ -83,7 +83,7 @@ export default function Payinhistory() {
         }, 500); 
     
         return () => clearTimeout(delayDebounceFn); 
-      }, [currentpage, search, refresh, date]);
+    }, [currentpage, search, refresh, date]);
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page)
@@ -101,7 +101,6 @@ export default function Payinhistory() {
      <div className=' w-full flex flex-col gap-4 h-auto  bg-cream rounded-xl shadow-sm mt-4 p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Payin History</p>
-
         <div className=' flex gap-2'>
           <Input value={date} onChange={(e) => setDate(e.target.value)} type='date'/>
           <Input value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search user...' className=' w-fit'/>

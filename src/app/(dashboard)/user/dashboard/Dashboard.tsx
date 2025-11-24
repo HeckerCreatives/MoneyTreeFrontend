@@ -16,20 +16,26 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { stat } from 'fs'
 
 
 interface Wallet {
-    gamebalance: 0,
-    fiatbalance: 0,
-    commissionbalance: 0
-    directreferralbalance: 0,
-    unilevelbalance: 0
+    gamebalance: number,
+    fiatbalance: number,
+    commissionbalance: number
+    directreferralbalance: number,
+    unilevelbalance: number,
+    rankbonusbalance: number
 }
 
 interface Statistics {
     game:number,
     referral:number,
-    unilevel:number
+    unilevel:number,
+    rankbonuslevel: string,
+    rankbonusbalance: number
+    rankbonusearnings: number
+    rankbonuspercentage: number
 }
 
 export default function Dashboard() {
@@ -44,6 +50,8 @@ export default function Dashboard() {
     const [open, setOpen] = useState(false)
     const [gameid, setGameid] = useState('')
     const [username, setUsername] = useState('')
+
+    console.log(stats)
 
  
     
@@ -191,6 +199,8 @@ export default function Dashboard() {
       navigator.clipboard.writeText(`${gameid}`)
       toast.success('Game id copied')
     }
+
+    console.log(wallet)
     
 
 
@@ -263,6 +273,8 @@ export default function Dashboard() {
               <Card name="Unilevel Commissions Wallet" amount={wallet?.unilevelbalance || 0} color="bg-cyan-400" subcolor="bg-cyan-300" editable={false} />
               {/* <Card name="Commission Wallet Earnings" amount={wallet?.commissionbalance || 0} color="bg-sky-400" subcolor="bg-sky-300" /> */}
               <Card name="Total Profit" amount={(stats?.referral || 0) + (stats?.unilevel || 0) + (stats?.game || 0)} color="bg-indigo-400" subcolor="bg-indigo-300" editable={false} />
+              <Card name="Rank Up Bonus Wallet" amount={(stats?.rankbonusbalance || 0)} color="bg-indigo-400" subcolor="bg-indigo-300" editable={false} subtitle={stats?.rankbonuslevel} />
+
           </div>
 
 

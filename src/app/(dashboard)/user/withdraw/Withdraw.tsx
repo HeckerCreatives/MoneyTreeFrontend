@@ -17,6 +17,7 @@ interface Wallet {
     commissionbalance: number
     directreferralbalance: number,
     unilevelbalance: number,
+    rankbonusbalance: number,
 }
 
 
@@ -104,6 +105,21 @@ export default function Withdraw() {
                         <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.unilevelbalance.toLocaleString()}</h2>
                         <h2 className=' text-[.7rem] '>${((wallet?.unilevelbalance || 0) / rate).toLocaleString()}</h2>
                         <Withdrawform wallet={'Unilevel Commission Wallet Balance'} type={'unilevel'}/>
+                    </div>
+                </div>
+
+            </div>
+
+            <div className=' relative flex items-center justify-center w-full max-w-[400px] h-[170px] shadow-sm rounded-md'>
+                <img src="/assets/card.png" alt="card" className=' max-w-[400px] w-full max-h-[220px] h-full'/>
+                <div className=' p-6 absolute w-full items-center justify-center text-amber-950'>
+                    <div className=' flex flex-col'>
+                        <p className=' text-sm/lg font-bold'>Rank Up Bonus Wallet Balance
+                        </p>
+                        <p className=' text-xs mt-2'>Total earnings</p>
+                        <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.rankbonusbalance.toLocaleString()}</h2>
+                        <h2 className=' text-[.7rem] '>${((wallet?.rankbonusbalance || 0) / rate).toLocaleString()}</h2>
+                        <Withdrawform wallet={'Rank Up Bonus Wallet Balance'} type={'rankbonusbalance'}/>
                     </div>
                 </div>
 

@@ -186,7 +186,7 @@ export default function Maintenance() {
 
         <div className=' flex flex-wrap items-center gap-4'>
             <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full max-w-[280px] h-[130px] justify-between'>
-                <h2 className='  ~text-xl/2xl font-semibold'>Payout  ({!checked1 ? 'off' : 'on'})</h2>
+                <h2 className='  ~text-xl/2xl font-semibold'>Payout({!checked1 ? 'off' : 'on'})</h2>
                 <Switch checked={checked1} 
                 onCheckedChange={(newChecked) => {
                     setChecked1(newChecked); 
