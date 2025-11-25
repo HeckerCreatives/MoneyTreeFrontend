@@ -119,7 +119,7 @@ export default function Withdraw() {
                         <p className=' text-xs mt-2'>Total earnings</p>
                         <h2 className=' ~text-xl/2xl font-medium '>₱{wallet?.rankbonusbalance.toLocaleString()}</h2>
                         <h2 className=' text-[.7rem] '>${((wallet?.rankbonusbalance || 0) / rate).toLocaleString()}</h2>
-                        <Withdrawform wallet={'Rank Up Bonus Wallet Balance'} type={'rankbonus'}/>
+                        <Withdrawform wallet={'Rank Up Bonus Wallet Balance'} type={'bonusbalance'}/>
                     </div>
                 </div>
 

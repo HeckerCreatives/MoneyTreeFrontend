@@ -1097,7 +1097,7 @@ export default function Payouthistory() {
         
        </div>
       </TabsContent>
-       <TabsContent value="rankbonus" className=' flex flex-col gap-4'>
+       <TabsContent value="bonusbalance" className=' flex flex-col gap-4'>
       <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Rank Up Payout List</p>

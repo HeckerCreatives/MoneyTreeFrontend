@@ -97,7 +97,7 @@ export default function Withdrawhistory() {
           <SelectItem value="gamebalance">Game Wallet</SelectItem>
           <SelectItem value="unilevelbalance">Unilevel Wallet</SelectItem>
           <SelectItem value="directreferralbalance">Referral Wallet</SelectItem>
-          <SelectItem value="rankbonus">Rank Up Bonus Wallet</SelectItem>
+          <SelectItem value="bonusbalance">Rank Up Bonus Wallet</SelectItem>
         </SelectContent>
       </Select>
             <Table>
