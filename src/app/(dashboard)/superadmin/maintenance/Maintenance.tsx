@@ -15,6 +15,10 @@ interface List {
 export default function Maintenance() {
     const [checked1, setChecked1] = useState(false)
     const [checked2, setChecked2] = useState(false)
+    const [game, setGame] = useState(false)
+    const [referral, setReferral] = useState(false)
+    const [unilevel, setUnilevel] = useState(false)
+    const [rankBonus, setRankBonus] = useState(false)
     const [checked3, setChecked3] = useState(false)
     const { loading, setLoading, clearLoading } = loadingStore()
     const router = useRouter()
@@ -25,6 +29,10 @@ export default function Maintenance() {
     const buyonetakeone = list.find((item) => item.type === 'b1t1')
     const payout = list.find((item) => item.type === 'payout')
     const full = list.find((item) => item.type === 'fullgame')
+    const gameState = list.find((item) => item.type === 'game')
+    const referralState = list.find((item) => item.type === 'referral')
+    const unilevelState = list.find((item) => item.type === 'unilevel')
+    const rankBonusState = list.find((item) => item.type === 'rankbonus')
 
     useEffect(() => {
         setLoading(true)
@@ -76,6 +84,10 @@ export default function Maintenance() {
     useEffect(() => {
         setChecked1(payout?.value == '0' ? false : true)
         setChecked2(full?.value == '0' ? false : true)
+        setGame(gameState?.value == '0' ? false : true)
+        setReferral(referralState?.value == '0' ? false : true)
+        setUnilevel(unilevelState?.value == '0' ? false : true)
+        setRankBonus(rankBonusState?.value == '0' ? false : true)
     },[list])
 
     const updateMaintenance = async (data: string, open: boolean) => {
@@ -206,45 +218,45 @@ export default function Maintenance() {
             </div>
 
             <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full justify-between'>
-                <h2 className=' ~text-sm/xl font-semibold'>Game Wallet Balance ({!checked2 ? 'off' : 'on'})</h2>
+                <h2 className=' ~text-sm/xl font-semibold'>Game Wallet Balance ({!game ? 'off' : 'on'})</h2>
                 <h2 className=' ~text-xs/sm font-semibold'>Cut Value</h2>
-                <Switch checked={checked2} 
+                <Switch checked={game} 
                 onCheckedChange={(newChecked) => {
-                    setChecked1(newChecked); 
-                    updateMaintenance('fullgame', newChecked); 
+                    setGame(newChecked); 
+                    updateMaintenance('game', newChecked); 
                 }}
                 />
             </div>
 
             <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full justify-between'>
-                <h2 className=' ~text-sm/lg font-semibold'>Referral Commission Wallet Balance ({!checked2 ? 'off' : 'on'})</h2>
+                <h2 className=' ~text-sm/lg font-semibold'>Referral Commission Wallet Balance ({!referral ? 'off' : 'on'})</h2>
                 <h2 className=' ~text-xs/sm font-semibold'>Cut Value</h2>
-                <Switch checked={checked2} 
+                <Switch checked={referral} 
                 onCheckedChange={(newChecked) => {
                     setChecked1(newChecked); 
-                    updateMaintenance('fullgame', newChecked); 
+                    updateMaintenance('referral', newChecked); 
                 }}
                 />
             </div>
 
             <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full justify-between'>
-                <h2 className=' ~text-sm/lg font-semibold'>Unilevel Commission Wallet Balance ({!checked2 ? 'off' : 'on'})</h2>
+                <h2 className=' ~text-sm/lg font-semibold'>Unilevel Commission Wallet Balance ({!unilevel ? 'off' : 'on'})</h2>
                 <h2 className=' ~text-xs/sm font-semibold'>Cut Value</h2>
-                <Switch checked={checked2} 
+                <Switch checked={unilevel} 
                 onCheckedChange={(newChecked) => {
                     setChecked1(newChecked); 
-                    updateMaintenance('fullgame', newChecked); 
+                    updateMaintenance('unilevel', newChecked); 
                 }}
                 />
             </div>
 
             <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full justify-between'>
-                <h2 className=' ~text-sm/lg font-semibold'>Rank Up Bonus Wallet Balance ({!checked2 ? 'off' : 'on'})</h2>
+                <h2 className=' ~text-sm/lg font-semibold'>Rank Up Bonus Wallet Balance ({!rankBonus ? 'off' : 'on'})</h2>
                 <h2 className=' ~text-xs/sm font-semibold'>Cut Value</h2>
-                <Switch checked={checked2} 
+                <Switch checked={rankBonus} 
                 onCheckedChange={(newChecked) => {
                     setChecked1(newChecked); 
-                    updateMaintenance('fullgame', newChecked); 
+                    updateMaintenance('rankbonus', newChecked); 
                 }}
                 />
             </div>

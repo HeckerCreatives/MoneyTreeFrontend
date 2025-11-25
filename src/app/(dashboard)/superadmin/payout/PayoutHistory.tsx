@@ -77,6 +77,7 @@ interface Totals {
   totalrequestgame: number
   totalrequestdirect: number,
   totalrequestunilevel: number,
+  totalrequestrankbonus: number,
 }
 
 
@@ -374,8 +375,6 @@ export default function Payouthistory() {
     }
   };
 
-  console.log(totalrequests)
-
 
    
 
@@ -388,7 +387,7 @@ export default function Payouthistory() {
           <Card name={'Game Payout'} amount={totalrequests?.totalrequestgame || 0} color={''} subcolor={''} editable={false}/>
           <Card name={'Referral Payout'} amount={totalrequests?.totalrequestdirect || 0} color={''} subcolor={''} editable={false}/>
           <Card name={'Unilevel Payout'} amount={totalrequests?.totalrequestunilevel || 0} color={''} subcolor={''} editable={false}/>
-          <Card name={'Rank Up Bonus Payout'} amount={totalrequests?.totalrequestunilevel || 0} color={''} subcolor={''} editable={false}/>
+          <Card name={'Rank Up Bonus Payout'} amount={totalrequests?.totalrequestrankbonus || 0} color={''} subcolor={''} editable={false}/>
         </div>
       </div>
      
@@ -397,7 +396,7 @@ export default function Payouthistory() {
         <TabsTrigger onClick={() => setTab('gamebalance')} value="gamebalance">Game</TabsTrigger>
         <TabsTrigger onClick={() => setTab('directreferralbalance')} value="directreferralbalance">Referral</TabsTrigger>
         <TabsTrigger onClick={() => setTab('unilevelbalance')} value="unilevelbalance">Unilevel</TabsTrigger>
-        <TabsTrigger onClick={() => setTab('rankbonus')} value="rankbonus">Rank Up</TabsTrigger>
+        <TabsTrigger onClick={() => setTab('rankbonusbalance')} value="rankbonusbalance">Rank Up</TabsTrigger>
       </TabsList>
       <TabsContent value="gamebalance" className=' flex flex-col gap-4'>
       <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
@@ -1097,7 +1096,7 @@ export default function Payouthistory() {
         
        </div>
       </TabsContent>
-       <TabsContent value="bonusbalance" className=' flex flex-col gap-4'>
+       <TabsContent value="rankbonusbalance" className=' flex flex-col gap-4'>
       <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
         <p className=' text-sm font-medium'>Rank Up Payout List</p>
@@ -1234,7 +1233,7 @@ export default function Payouthistory() {
        </div>
        <div className=' w-full flex flex-col gap-4 h-auto bg-cream rounded-xl shadow-sm p-6'>
         <div className=' w-full flex items-center justify-between '>
-        <p className=' text-sm font-medium'>Game Payout History</p>
+        <p className=' text-sm font-medium'>Rank Up Payout History</p>
 
          <div className=' flex items-center gap-2'>
           <Input placeholder='Search' value={searchHistory} onChange={(e) => setSearchHistory(e.target.value)}/>
