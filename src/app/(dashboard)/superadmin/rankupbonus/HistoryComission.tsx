@@ -51,12 +51,12 @@ export interface RankResponse {
 
 
 const levelsTab = [
-    {id: 0, name: 'Level 1 - Associate'},
-    {id: 1, name: 'Level 2 - Senior'},
-    {id: 2, name: 'Level 3 - Manager'},
-    {id: 3, name: 'Level 4 - Director'},
-    {id: 4, name: 'Level 5 - Prestige'},
-    {id: 5, name: 'Level 6 - Hall of Fame'},
+    {id: 1, name: 'Level 1 - Associate'},
+    {id: 2, name: 'Level 2 - Senior'},
+    {id: 3, name: 'Level 3 - Manager'},
+    {id: 4, name: 'Level 4 - Director'},
+    {id: 5, name: 'Level 5 - Prestige'},
+    {id: 6, name: 'Level 6 - Hall of Fame'},
 ]
 
 export default function Topcommission() {
