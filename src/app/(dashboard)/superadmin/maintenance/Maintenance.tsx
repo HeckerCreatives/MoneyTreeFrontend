@@ -252,7 +252,7 @@ export default function Maintenance() {
 
             <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full justify-between'>
                 <h2 className=' ~text-sm/lg font-semibold'>Rank Up Bonus Wallet Balance ({!rankBonus ? 'off' : 'on'})</h2>
-                <h2 className=' ~text-xs/sm font-semibold'>Cut Value</h2>
+                {/* <h2 className=' ~text-xs/sm font-semibold'>Cut Value</h2> */}
                 <Switch checked={rankBonus} 
                 onCheckedChange={(newChecked) => {
                     setChecked1(newChecked); 
