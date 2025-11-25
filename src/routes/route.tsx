@@ -1,5 +1,5 @@
 import { Activity, Banknote, BarChart, Cable, ChartColumnBig, ChartPie, Clock12, Cog, CreditCard, Folder, Grid2X2, Info, PawPrint, Play, Settings, ShoppingBag, Trophy, Users, Wallet, Wrench } from "lucide-react";
-import { FaBox } from "react-icons/fa6";
+import { FaBox, FaRankingStar } from "react-icons/fa6";
 
 
 export const user = [
@@ -44,6 +44,8 @@ export const superadmin = [
      path:'/superadmin/sales', subpath:[]},
      {name: 'Top Commission', icon: <Users size={15}/>, 
      path:'/superadmin/topcommission', subpath:[]},
+     {name: 'Rank Up Bonus', icon: <FaRankingStar size={15}/>, 
+     path:'/superadmin/rankupbonus', subpath:[]},
     // {name: 'Leaderboard', icon: <Users size={15}/>, 
     // path:'/superadmin/leaderboard', subpath:[]},
     
