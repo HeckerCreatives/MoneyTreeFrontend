@@ -196,8 +196,8 @@ export default function Maintenance() {
   return (
     <div className="w-full flex flex-col gap-4 font-light my-8">
 
-        <div className=' w-full grid grid-cols-4 gap-4'>
-            <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full  justify-between'>
+        <div className=' w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+            <div className='flex flex-col gap-2 bg-cream shadow-md p-4 rounded-md w-full justify-between'>
                 <h2 className=' ~text-sm/xl font-semibold'>Payout({!checked1 ? 'off' : 'on'})</h2>
                 <Switch checked={checked1} 
                 onCheckedChange={(newChecked) => {
