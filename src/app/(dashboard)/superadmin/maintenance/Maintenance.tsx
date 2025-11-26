@@ -143,55 +143,49 @@ export default function Maintenance() {
         }
     };
 
-    const resetleaderboard = async () => {
-        setRefresh('true');
-        setLoading(true);
-        try {
-            const request = axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reset/resetleaderboard`,{
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'Application/json'
-                }
-            });
-
-            const response = await toast.promise(request, {
-                loading: `Reseting leaderboard...`,
-                success: `Leaderboard successfully reset. `,
-                error: `Error while reseting leaderboard.`,
-            });
-            if (response.data.message === 'success') {
-                setRefresh('false');
-                setLoading(false);
-            }
-        } catch (error) {
-            setRefresh('true');
-            setLoading(false);
-
-            if (axios.isAxiosError(error)) {
-                const axiosError = error as AxiosError<{ message: string, data: string }>;
-                if (axiosError.response && axiosError.response.status === 401) {
-                    toast.error(`${axiosError.response.data.data}`);
-                    router.push('/');
-                }
-
-                if (axiosError.response && axiosError.response.status === 400) {
-                    toast.error(`${axiosError.response.data.data}`);
-                }
-
-                if (axiosError.response && axiosError.response.status === 402) {
-                    toast.error(`${axiosError.response.data.data}`);
-                }
-
-                if (axiosError.response && axiosError.response.status === 403) {
-                    toast.error(`${axiosError.response.data.data}`);
-                }
-
-                if (axiosError.response && axiosError.response.status === 404) {
-                    toast.error(`${axiosError.response.data.data}`);
-                }
-            }
-        }
-    };
+    //  const resetleaderboard = async () => {
+    //      setRefresh('true');
+    //      setLoading(true);
+    //      try {
+    //          const request = axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reset/resetleaderboard`,{
+    //              withCredentials: true,
+    //              headers: {
+    //                  'Content-Type': 'Application/json'
+    //              }
+    //          });
+    //          const response = await toast.promise(request, {
+    //              loading: `Reseting leaderboard...`,
+    //              success: `Leaderboard successfully reset. `,
+    //              error: `Error while reseting leaderboard.`,
+    //          });
+    //          if (response.data.message === 'success') {
+    //              setRefresh('false');
+    //              setLoading(false);
+    //          }
+    //      } catch (error) {
+    //          setRefresh('true');
+    //          setLoading(false);
+    //          if (axios.isAxiosError(error)) {
+    //              const axiosError = error as AxiosError<{ message: string, data: string }>;
+    //              if (axiosError.response && axiosError.response.status === 401) {
+    //                  toast.error(`${axiosError.response.data.data}`);
+    //                  router.push('/');
+    //              }
+    //              if (axiosError.response && axiosError.response.status === 400) {
+    //                  toast.error(`${axiosError.response.data.data}`);
+    //              }
+    //              if (axiosError.response && axiosError.response.status === 402) {
+    //                  toast.error(`${axiosError.response.data.data}`);
+    //              }
+    //              if (axiosError.response && axiosError.response.status === 403) {
+    //                  toast.error(`${axiosError.response.data.data}`);
+    //              }
+    //              if (axiosError.response && axiosError.response.status === 404) {
+    //                  toast.error(`${axiosError.response.data.data}`);
+    //              }
+    //          }
+    //      }
+    //  };
 
   return (
     <div className="w-full flex flex-col gap-4 font-light my-8">
@@ -211,7 +205,7 @@ export default function Maintenance() {
                 <h2 className=' ~text-sm/xl font-semibold'>Full Maintenance ({!checked2 ? 'off' : 'on'})</h2>
                 <Switch checked={checked2} 
                 onCheckedChange={(newChecked) => {
-                    setChecked1(newChecked); 
+                    setChecked2(newChecked); 
                     updateMaintenance('fullgame', newChecked); 
                 }}
                 />
