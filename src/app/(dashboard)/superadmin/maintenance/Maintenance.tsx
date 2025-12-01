@@ -58,28 +58,28 @@ export default function Maintenance() {
         getWallets()
     },[ refresh])
 
-    useEffect(() => {
-        setLoading(true)
-        const getData = async () => {
-          try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reset/resetleaderboard`,{
-            withCredentials:true
-            })
+    // useEffect(() => {
+    //     setLoading(true)
+    //     const getData = async () => {
+    //       try {
+    //         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reset/resetleaderboard`,{
+    //         withCredentials:true
+    //         })
 
-            setLoading(false)
+    //         setLoading(false)
             
-          } catch (error) {
-            setLoading(false)
-            if (axios.isAxiosError(error)) {
-              const axiosError = error as AxiosError<{ message: string, data: string }>;
-              if (axiosError.response && axiosError.response.status === 401) {
+    //       } catch (error) {
+    //         setLoading(false)
+    //         if (axios.isAxiosError(error)) {
+    //           const axiosError = error as AxiosError<{ message: string, data: string }>;
+    //           if (axiosError.response && axiosError.response.status === 401) {
                 
-                }    
-              } 
-          }
-        }
-        getData()
-    },[ refresh])
+    //             }    
+    //           } 
+    //       }
+    //     }
+    //     getData()
+    // },[ refresh])
 
     useEffect(() => {
         setChecked1(payout?.value == '0' ? false : true)
@@ -105,9 +105,9 @@ export default function Maintenance() {
             });
 
             const response = await toast.promise(request, {
-                loading: `Updating ${data === 'eventgame' ? 'event game' : 'buy one take one'} maintenance...`,
-                success: `${data === 'payout' ? 'Maintenance Payout' : ' Full Maintenance'} successfully ${open ? 'on' : 'off'}. `,
-                error: `Error while updating ${data === 'payout' ? 'Maintenance Payout' : ' Full Maintenance'} maintenance.`,
+                loading: `Updating maintenance...`,
+                success: `Maintenance ${data} successfully ${open ? 'on' : 'off'}. `,
+                error: `Error while updating maintenance.`,
             });
             if (response.data.message === 'success') {
                 setRefresh('false');
