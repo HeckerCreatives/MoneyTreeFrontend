@@ -50,3 +50,19 @@
             }
         
     }
+
+export const findBadge = (data: string) => {
+    if(data.includes('1')){
+         return '/badge/1.png'
+    }else  if(data.includes('2')){
+         return '/badge/2.png'
+    }else  if(data.includes('3')){
+         return '/badge/3.png'
+    }else  if(data.includes('4')){
+         return '/badge/4.png'
+    }else  if(data.includes('5')){
+         return '/badge/5.png'
+    }else  if(data.includes('6')){
+         return '/badge/6.png'
+    }
+}

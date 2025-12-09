@@ -132,7 +132,7 @@ const gamerUrl = `${process.env.NEXT_PUBLIC_GAME_LINK}/${gameid}`
             <DialogTrigger>
             <p className=' text-sm text-white font-medium bg-dark py-3 w-full rounded-lg'><Play size={20}/>Play now</p>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className=''>
               <DialogHeader>
                 <DialogTitle>Play now</DialogTitle>
                 <DialogDescription>

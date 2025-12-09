@@ -17,6 +17,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { stat } from 'fs'
+import { findBadge } from '@/helpers/assets'
 
 
 interface Wallet {
@@ -207,8 +208,8 @@ export default function Dashboard() {
   return (
     <div className=' w-full h-fit flex flex-col gap-2 py-8 font-thin'>
 
-        <div className=' grid grid-cols-1 lg:grid-cols-[350px_1fr] place-items-center md:place-items-start gap-4'>
-            <div className='relative flex items-center justify-center  w-full max-w-[350px] h-full max-h-[520px] rounded-lg shadow-sm p-4 overflow-hidden'
+        <div className=' grid grid-cols-1 lg:grid-cols-[350px_1fr] place-items-center md:place-items-start gap-4 relative'>
+            <div className='relative flex items-center justify-center  w-full lg:max-w-[350px] h-full max-h-[520px] rounded-lg shadow-sm p-4 overflow-hidden'
             style={{backgroundImage: "url('/Christmas Theme.jpg')" , backgroundPosition:'bottom', backgroundRepeat:'no-repeat', backgroundSize:'cover'}}
             >
 
@@ -234,9 +235,14 @@ export default function Dashboard() {
                     </div>
                     
 
-                    <div className=' flex items-center justify-center'>
-                      <img src="/assets/logo.png" width={300} height={300} className=' ' />
+                    <div className=' flex items-center justify-center py-[15%] md:py-[10%]'>
+                      <img src="/assets/logo.png" width={300} height={300} className=' ~w-44/72' />
                     </div>
+
+
+
+                    <img src={findBadge(stats?.rankbonuslevel || '1')} alt="badge" width={100} height={100} className=' ~w-20/28 absolute top-0 right-0' />
+                    
 
 
                     <Dialog open={open} onOpenChange={setOpen}>

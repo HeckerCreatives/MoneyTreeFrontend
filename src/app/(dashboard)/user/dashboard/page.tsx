@@ -32,7 +32,7 @@ export default function page() {
     <Playerlayout>
 
       <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className=' !p-0 w-[95%]'>
+      <DialogContent className=' !p-0 max-h-[90%] w-[95%]'>
         <video
           src={'/popupvideo.mp4'}
           autoPlay
