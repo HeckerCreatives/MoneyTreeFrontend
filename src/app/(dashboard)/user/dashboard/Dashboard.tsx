@@ -239,9 +239,10 @@ export default function Dashboard() {
                       <img src="/assets/logo.png" width={300} height={300} className=' ~w-44/72' />
                     </div>
 
+                    {stats?.rankbonuslevel && (
+                    <img src={findBadge(stats?.rankbonuslevel)} alt="badge" width={100} height={100} className=' ~w-20/28 absolute top-0 right-0' />
 
-
-                    <img src={findBadge(stats?.rankbonuslevel || '1')} alt="badge" width={100} height={100} className=' ~w-20/28 absolute top-0 right-0' />
+                    )}
                     
 
 
